@@ -1,0 +1,125 @@
+/* TOÀN TRANG */
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.wrapper{
+    width: 100%;
+    height: 900px;
+    margin: 0 auto;
+}
+
+
+
+/* HEADER */
+header{
+    height: 70px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 15px 0;
+
+    background: #FFFFFF;
+    background-blend-mode: hard-light;
+    box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+}
+.container {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu {
+    list-style: none; /*bỏ dấu đầu dòng*/
+    position: absolute;
+    top: 5px;
+    left: 150px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /*khoảng cách*/
+}
+
+.menu li a {
+    width: 130px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+
+    color: #000000;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+    font-weight:600;
+    border-bottom: 0.5px solid black; /* Gạch chân đậm màu đen */
+    transition: transform 0.2s ease, border-bottom 0.2s ease;
+}
+
+.logo{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50px;
+    top: 0;
+}
+.logo a img{
+    width:100%;
+}
+
+.icon-search {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 1120px;
+    top: 30px;
+}
+.icon-search a img {
+    width: 100%;
+}
+
+.icon-cart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 1190px;
+    top: 30px;
+}
+.icon-cart a img {
+    width: 100%;
+}
+
+
+/* MAIN */
+#main{
+    border: 1px solid #ffe608;
+    width: 100%;
+    height: 500px;
+}
+
+.maincontent{
+    border: 1px solid #1ae513;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+
+/* FOOTER */
+footer{
+    width: 100%;
+    height: 400px;
+    background-color: #0D2B45;
+}
