@@ -27,8 +27,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `phone`, `address`, `status`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'Cong Thanh', 'bcthanh@gmail.com', '2023-11-23 05:02:40', '123456', '123456123456123456123456', '0909090909', 'Quảng Ngãi', 'Active', 'Admin', NULL, NULL),
-(2, 'Nhan Vien', 'nv1@gmail.com', '2023-11-23 05:02:40', '123456', '123456123456123456123456', '0909090909', 'Quảng Ngãi', 'Active', 'Staff', NULL, NULL);
+(1, 'Quan Ly', 'Admin@gmail.com', '2025-05-23 05:02:40', 'Admin123456', '123456123456123456123456', '0909090909', 'TP.HCM', 'Active', 'Admin', NULL, NULL),
+(2, 'Nhan Vien', 'Staff@gmail.com', '2025-05-23 05:02:40', 'Admin123456', '123456123456123456123456', '0909090909', 'TP.HCM', 'Active', 'Staff', NULL, NULL);
 
 --
 -- Indexes for table `admins`
@@ -36,3 +36,9 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `r
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
