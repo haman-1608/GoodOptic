@@ -123,3 +123,14 @@ footer{
     height: 400px;
     background-color: #0D2B45;
 }
+
+.logof{
+    position: relative;
+    top: 100px;
+    left: 50px;
+    width: 150px;
+    height: 150px;
+}
+.logof img{
+    width: 100%;
+}
