@@ -9,12 +9,10 @@
     <title>Good Optic - Nhìn rõ hôm nay, tự tin ngày mai</title>
 </head>
 <body>
-    <div class="wrapper">
-        <?php
+    <?php
         include("components/header.php");
         // include("componens/main.php");
         include("components/footer.php");
-        ?>
-    </div>
+    ?>
 </body>
 </html>
