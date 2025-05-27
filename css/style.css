@@ -134,3 +134,8 @@ footer{
 .logof img{
     width: 100%;
 }
+
+.social{
+    display: flex;
+    gap: 30px;
+}
