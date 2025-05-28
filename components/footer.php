@@ -6,23 +6,23 @@
             </div>                                                                                                                                                                                                                                                                                                                                                                  
             <div class="social">
                 <div class="fb">
-                    <a href="http://"><img src="imgs/icon-footer/teenyicons--facebook-outline 1.svg" alt="Facebook"></a>
+                    <a href="https://www.facebook.com/"><img src="imgs/icon-footer/teenyicons--facebook-outline 1.svg" alt="Facebook"></a>
                 </div>
                 <div class="ins">
-                    <a href="http://"><img src="imgs/icon-footer/lets-icons--insta-light 1.svg" alt="Instagram"></a>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                    <a href="https://www.instagram.com/"><img src="imgs/icon-footer/lets-icons--insta-light 1.svg" alt="Instagram"></a>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                 </div>
                 <div class="tt">
-                    <a href="http://"><img src="imgs/icon-footer/ph--tiktok-logo-thin 1.svg" alt="TikTok"></a>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                    <a href="https://www.tiktok.com/"><img src="imgs/icon-footer/ph--tiktok-logo-thin 1.svg" alt="TikTok"></a>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                 </div>
                 <div class="yt">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                    <a href="http://"><img src="imgs/icon-footer/ph--youtube-logo-light 1.svg" alt="Youtube"></a>
+                    <a href="https://www.youtube.com/"><img src="imgs/icon-footer/ph--youtube-logo-light 1.svg" alt="Youtube"></a>
                 </div>                                                                                                                                                                                                                                                                                                                                                                                      
             </div>                                                                                      
         </div>
         <div class="gioithieu">
             <h3>Giới thiệu</h3>
             <p style="width: fit-content;">
-                Good Optic chuyên cung cấp mắt kính – gọng kính chất lượng cao, giá hợp lý, phù hợp với nhu cầu và tâm lý khách hàng. Chúng tôi cam kết sản phẩm chính hãng, dịch vụ tận tâm, giá cả cạnh tranh, luôn đặt sự hài lòng của khách hàng lên hàng đầu.
+                Good Optic chuyên cung cấp mắt kính - gọng kính chất lượng cao, giá hợp lý, phù hợp với nhu cầu và tâm lý khách hàng. Chúng tôi cam kết sản phẩm chính hãng, dịch vụ tận tâm, giá cả cạnh tranh, luôn đặt sự hài lòng của khách hàng lên hàng đầu.
                 HỘ KINH DOANH MẮT KÍNH GOOD OPTIC
                 <ul>
                     <li>Mã số đăng ký: 41Q8049999</li>
@@ -56,9 +56,9 @@
            <div>
             <h3>Chấp nhận thanh toán</h3>
             <div class="ppttoan">
-                <img src="imgs/icon-footer/bi--cash 1.svg" alt="Shoppe">
-                <img src="imgs/icon-footer/solar--card-linear 1.svg" alt="Lazada">
-                <img src="imgs/icon-footer/lineicons--apple-pay 1.svg" alt="Lazada">
+                <img src="imgs/icon-footer/bi--cash 1.svg">
+                <img src="imgs/icon-footer/solar--card-linear 1.svg">
+                <img src="imgs/icon-footer/lineicons--apple-pay 1.svg">
             </div>
            </div> 
         </div>

@@ -89,17 +89,10 @@ header{
 
 
 /* MAIN */
-#main{
-    border: 1px solid #ffe608;
-    width: 100%;
-    height: 500px;
-}
-
-.maincontent{
-    border: 1px solid #1ae513;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
+main{
+    display: grid;
+    justify-content: center;
+    background-color: #FFFFFF;
 }
 
 

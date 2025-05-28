@@ -1,17 +1,17 @@
 <header>
     <div class="header2">
         <div class="logo" style="margin-left: 30px; width:130px; height:130px;">
-            <a href="index.php"><img src="imgs/Logo2.png" alt="Good Optic" style="width: 100%;"></a>
+            <a href="index.php?page=trangchu"><img src="imgs/Logo2.png" alt="Good Optic" style="width: 100%;"></a>
         </div>
     
         <nav>
             <ul class="menu">
-                <li><a href="index.php">Trang Chủ</a></li>
-                <li><a href="#">Gọng Kính</a></li>
-                <li><a href="#">Kính Râm</a></li>
-                <li><a href="#">Tròng Kính</a></li>
-                <li><a href="#">Giới Thiệu</a></li>
-                <li><a href="#">Liên Hệ</a></li>
+                <li><a href="index.php?page=trangchu">Trang Chủ</a></li>
+                <li><a href="index.php?page=gongkinh">Gọng Kính</a></li>
+                <li><a href="index.php?page=kinhram">Kính Râm</a></li>
+                <li><a href="index.php?page=trongkinh">Tròng Kính</a></li>
+                <li><a href="index.php?page=gioithieu">Giới Thiệu</a></li>
+                <li><a href="index.php?page=lienhe">Liên Hệ</a></li>
             </ul>
         </nav>
 
