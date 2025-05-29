@@ -1,48 +1,38 @@
 /* TOÀN TRANG */
 body{
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 0;
 }
-
-.wrapper{
-    width: 100%;
-    height: 900px;
-    margin: 0 auto;
-}
-
 
 
 /* HEADER */
 header{
-    height: 70px;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 130px;
     position: sticky;
-    top: 0;
-    left: 0;
     z-index: 100;
-    padding: 15px 0;
-
     background: #FFFFFF;
     background-blend-mode: hard-light;
     box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
 }
-.container {
-    width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
+.header2{
+
+    max-width: 1440px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 15px;
+}
 .menu {
+    padding-left: 0px;
     list-style: none; /*bỏ dấu đầu dòng*/
-    position: absolute;
-    top: 5px;
-    left: 150px;
     display: flex;
     flex-direction: row;
-    gap: 20px; /*khoảng cách*/
+    gap: 30px; /*khoảng cách*/
 }
 
 .menu li a {
@@ -54,7 +44,7 @@ header{
     align-items: center;
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
 
     color: #000000;
@@ -69,73 +59,99 @@ header{
 }
 
 .logo{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    left: 50px;
-    top: 0;
+    width: 130px;
+    height: 130px;
 }
 .logo a img{
     width:100%;
 }
 
 .icon-search {
-    position: absolute;
     width: 30px;
     height: 30px;
-    left: 1120px;
-    top: 30px;
 }
 .icon-search a img {
     width: 100%;
 }
 
 .icon-cart {
-    position: absolute;
     width: 30px;
     height: 30px;
-    left: 1190px;
-    top: 30px;
 }
 .icon-cart a img {
     width: 100%;
 }
 
-
-/* MAIN */
-#main{
-    border: 1px solid #ffe608;
-    width: 100%;
-    height: 500px;
+.sxc{
+    display: flex;
+    gap: 30px;
 }
 
-.maincontent{
-    border: 1px solid #1ae513;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
+
+/* MAIN */
+main{
+    max-width: 1440px;
+    background-color: #FFFFFF;
 }
 
 
 /* FOOTER */
 footer{
-    width: 100%;
+    display: grid;
+    justify-content: center;
     height: 400px;
     background-color: #0D2B45;
 }
 
-.logof{
-    position: relative;
-    top: 100px;
-    left: 50px;
-    width: 150px;
-    height: 150px;
-}
-.logof img{
-    width: 100%;
-}
-
 .social{
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
+
+
+.footer2{
+    max-width: 1440px;
+    font-size: 12px;
+    font-weight: 200;
+    display: flex;
+    color: #FFFFFF;
+    gap: 50px;
+    margin-left: 30px;
+}
+
+.footer2 h3{
+    font-size: 20px;
+}
+
+.logof{
+    position: relative;
+    left: 30px;
+}
+
+.san{
+    
+    padding-left: 28px;
+    align-items: center;
+    display: flex
+;
+    gap: 20px;
+}
+.gioithieu{
+    flex:1;
+}
+.csachxlhe {
+    justify-content: space-between;
+    display: flex;
+    gap: 40px;
+}
+.tmdt{
+    flex:1;
+}
+.ppttoan{
+    padding-left: 15px;
+    display: flex
+;
+    gap: 20px;
+}
+
+
