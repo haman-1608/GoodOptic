@@ -3,7 +3,7 @@
         <img src="imgs/trangchu/Banner.png" alt="Good Optic">
     </div>
 
-    <div class="dichvu">
+    <div class="dichvu"> 
         <div>
             <img src="imgs/trangchu/mdi--support 2.svg" alt="" class="">
             <p> <b>Vệ Sinh Kính Miễn Phí</b> <br>
@@ -27,6 +27,13 @@
             <p> <b>Hỗ Trợ Đo Mắt</b> <br>
             tại toàn bộ hệ thống mắt kính Good Optic
             </p>
+        </div>
+    </div>
+    <div class="bphu">
+        <h2>NHÌN RÕ HÔM NAY, TỰ TIN NGÀY MAI</h2>
+        <div class="bphu2">
+            <div><img src="imgs/trangchu/newbanner2.jpg" alt=""></div>
+            <div><img src="imgs/trangchu/salebanner.jpg" alt=""></div>
         </div>
     </div>
 </div>
