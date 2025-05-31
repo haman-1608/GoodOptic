@@ -69,9 +69,9 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories` (bảng danh mục sản phẩm)
 --
 INSERT INTO `categories` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Kinh Ram', 'kinh-ram', 'Active', NULL, NULL),
-(2, 'Trong Kinh', 'trong-kinh', 'Active', NULL, NULL),
-(3, 'Kinh Can', 'kinh-can', 'Active', NULL, NULL);
+(1, 'Kính Râm', 'kinh-ram', 'Active', NULL, NULL),
+(2, 'Tròng Kính', 'trong-kinh', 'Active', NULL, NULL),
+(3, 'Kính Cận', 'kinh-can', 'Active', NULL, NULL);
 --
 -- Indexes for table `categories` (bảng danh mục sản phẩm)
 --
@@ -102,7 +102,7 @@ CREATE TABLE `target` (
 
 INSERT INTO `target` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Trẻ em', 'tre-em', 'Active', NULL, NULL),
-(3, 'Người lớn', 'nguoi-lon', 'Active', NULL, NULL);
+(2, 'Người lớn', 'nguoi-lon', 'Active', NULL, NULL);
 
 --
 -- Indexes for table `target` (bảng đối tượng)
@@ -173,8 +173,8 @@ CREATE TABLE `Material` (
 --
 
 INSERT INTO `Material` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Nhựa cứng', 'Nhua-cung', 'Active', NULL, NULL),
-(2, 'Nhựa dẻo', 'Nhua-deo', 'Active', NULL, NULL);
+(1, 'Nhựa cứng', 'nhua-cung', 'Active', NULL, NULL),
+(2, 'Nhựa dẻo', 'nhua-deo', 'Active', NULL, NULL);
 
 --
 -- Indexes for table `Material` (bảng chất liệu)
@@ -210,16 +210,12 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Ray-Ban', 'ray-ban', 'Active', NULL, NULL),
-(2, 'Oakley', 'oakley', 'Active', NULL, NULL),
-(3, 'Maui Jim', 'maui-jim', 'Active', NULL, NULL),
-(4, 'Persol', 'persol', 'Active', NULL, NULL),
-(5, 'Gucci', 'gucci', 'Active', NULL, NULL),
-(6, 'Prada', 'prada', 'Active', NULL, NULL),
-(7, 'Versace', 'versace', 'Active', NULL, NULL),
-(8, 'Fendi', 'fendi', 'Active', NULL, NULL),
-(9, 'Dior', 'dior', 'Active', NULL, NULL),
-(10, 'Bvlgari', 'bvlgari', 'Active', NULL, NULL);
+(1, 'Ray-Ban', 'ray-ban', 'Active', NOW(), NOW()),
+(2, 'Oakley', 'oakley', 'Active', NOW(), NOW()),
+(3, 'Gucci', 'gucci', 'Inactive', NOW(), NOW()),
+(4, 'Prada', 'prada', 'Active', NOW(), NOW()),
+(5, 'Versace', 'versace', 'Inactive', NOW(), NOW()),
+(6, 'Burberry', 'burberry', 'Active', NOW(), NOW());
 
 --
 -- Indexes for table `brands` (bảng thương hiệu)
@@ -256,14 +252,12 @@ CREATE TABLE `Refractive` (
 --
 
 INSERT INTO `Refractive` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, '1.5', '1-5', 'Active', NULL, NULL),
-(2, '1.56', '1-56', 'Active', NULL, NULL),
-(3, '1.61', '1-61', 'Active', NULL, NULL),
-(4, '1.67', '1-67', 'Active', NULL, NULL),
-(5, '1.74', '1-74', 'Active', NULL, NULL),
-(6, '1.9', '1-9', 'Active', NULL, NULL),
-(7, 'Polycarbonate', 'polycarbonate', 'Active', NULL, NULL),
-(8, 'Trivex', 'trivex', 'Active', NULL, NULL);
+(1, 'Cận thị', 'can-thi', 'Active', NOW(), NOW()),
+(2, 'Viễn thị', 'vien-thi', 'Active', NOW(), NOW()),
+(3, 'Loạn thị', 'loan-thi', 'Inactive', NOW(), NOW()),
+(4, 'Lão thị', 'lao-thi', 'Active', NOW(), NOW()),
+(5, 'Khúc xạ hỗn hợp', 'khuc-xa-hon-hop', 'Inactive', NOW(), NOW()),
+(6, 'Mắt bình thường', 'mat-binh-thuong', 'Active', NOW(), NOW());
 
 --
 -- Indexes for table `Refractive` (bảng khúc xạ)
@@ -372,6 +366,7 @@ ALTER TABLE `products`
   ADD CONSTRAINT `products_Refractive_id_foreign` FOREIGN KEY (`Refractive_id`) REFERENCES `Refractive` (`id`),
   ADD CONSTRAINT `products_Material_id_foreign` FOREIGN KEY (`Material_id`) REFERENCES `Material` (`id`);
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `orders` (bảng đơn hàng)
 --
@@ -401,6 +396,7 @@ INSERT INTO `orders` (`id`, `customers_id`, `firstname`, `lastname`, `address`, 
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_user_id_foreign` (`customers_id`);
   ADD KEY `orders_user_id_foreign` (`customers_id`);
 
 --
