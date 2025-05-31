@@ -69,9 +69,9 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories` (bảng danh mục sản phẩm)
 --
 INSERT INTO `categories` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Kinh Ram', 'kinh-ram', 'Active', NULL, NULL),
-(2, 'Trong Kinh', 'trong-kinh', 'Active', NULL, NULL),
-(3, 'Kinh Can', 'kinh-can', 'Active', NULL, NULL),
+(1, 'Kính Râm', 'kinh-ram', 'Active', NULL, NULL),
+(2, 'Tròng Kính', 'trong-kinh', 'Active', NULL, NULL),
+(3, 'Kính Cận', 'kinh-can', 'Active', NULL, NULL);
 --
 -- Indexes for table `categories` (bảng danh mục sản phẩm)
 --
@@ -102,7 +102,7 @@ CREATE TABLE `target` (
 
 INSERT INTO `target` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Trẻ em', 'tre-em', 'Active', NULL, NULL),
-(3, 'Người lớn', 'nguoi-lon', 'Active', NULL, NULL),
+(2, 'Người lớn', 'nguoi-lon', 'Active', NULL, NULL);
 
 --
 -- Indexes for table `target` (bảng đối tượng)
@@ -138,7 +138,7 @@ CREATE TABLE `UV` (
 INSERT INTO `UV` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'UV 400', 'UV-400', 'Active', NULL, NULL),
 (2, 'UV 380', 'UV-380', 'Active', NULL, NULL),
-(3, 'UV 100%', 'UV-100%', 'Active', NULL, NULL);
+(3, 'UV 100%', 'UV-100%', 'Active', NULL, NULL),
 (4, 'UV A/B', 'UV-A/B', 'Active', NULL, NULL);
 
 --
@@ -173,8 +173,8 @@ CREATE TABLE `Material` (
 --
 
 INSERT INTO `Material` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Nhựa cứng', 'Nhua-cung', 'Active', NULL, NULL),
-(2, 'Nhựa dẻo', 'Nhua-deo', 'Active', NULL, NULL),
+(1, 'Nhựa cứng', 'nhua-cung', 'Active', NULL, NULL),
+(2, 'Nhựa dẻo', 'nhua-deo', 'Active', NULL, NULL);
 
 --
 -- Indexes for table `Material` (bảng chất liệu)
@@ -210,7 +210,12 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1,)
+(1, 'Ray-Ban', 'ray-ban', 'Active', NOW(), NOW()),
+(2, 'Oakley', 'oakley', 'Active', NOW(), NOW()),
+(3, 'Gucci', 'gucci', 'Inactive', NOW(), NOW()),
+(4, 'Prada', 'prada', 'Active', NOW(), NOW()),
+(5, 'Versace', 'versace', 'Inactive', NOW(), NOW()),
+(6, 'Burberry', 'burberry', 'Active', NOW(), NOW());
 
 --
 -- Indexes for table `brands` (bảng thương hiệu)
@@ -247,7 +252,12 @@ CREATE TABLE `Refractive` (
 --
 
 INSERT INTO `Refractive` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1,)
+(1, 'Cận thị', 'can-thi', 'Active', NOW(), NOW()),
+(2, 'Viễn thị', 'vien-thi', 'Active', NOW(), NOW()),
+(3, 'Loạn thị', 'loan-thi', 'Inactive', NOW(), NOW()),
+(4, 'Lão thị', 'lao-thi', 'Active', NOW(), NOW()),
+(5, 'Khúc xạ hỗn hợp', 'khuc-xa-hon-hop', 'Inactive', NOW(), NOW()),
+(6, 'Mắt bình thường', 'mat-binh-thuong', 'Active', NOW(), NOW());
 
 --
 -- Indexes for table `Refractive` (bảng khúc xạ)
@@ -273,7 +283,7 @@ CREATE TABLE `customers` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -282,7 +292,7 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`) VALUES
 (1, 'Nguyen Van A', 'Abc@gmail.com', '0909090909', 'TP.HCM'),
-(2, 'Nguyen Van B', 'Adasd@gmail.com', '09090432429', 'TP.HCM'),
+(2, 'Nguyen Van B', 'Adasd@gmail.com', '09090432429', 'TP.HCM');
 
 --
 -- Indexes for table `customers` (bảng khách hàng)
@@ -309,10 +319,65 @@ CREATE TABLE `discount` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `discount` double NOT NULL,
   `start_date` timestamp NULL DEFAULT NULL,
-  `end_date` date NOT NULL,
+  `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
+
+
+--
+-- Table structure for table `products` (bảng sản phẩm)
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` double NOT NULL,
+  `discount` double NOT NULL DEFAULT 0,
+  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `brand_id` bigint(20) UNSIGNED NOT NULL,
+  `target_id` bigint(20) UNSIGNED NOT NULL,
+  `UV_id` bigint(20) UNSIGNED NOT NULL,
+  `Refractive_id` bigint(20) UNSIGNED NOT NULL,
+  `Material_id` bigint(20) UNSIGNED NOT NULL,
+  `status` enum('Active','Inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products` (bảng sản phẩm)
+--
+
+--
+-- Indexes for table `products` (bảng sản phẩm)
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `products_slug_unique` (`slug`),
+  ADD KEY `products_category_id_foreign` (`category_id`),
+  ADD KEY `products_brand_id_foreign` (`brand_id`),
+  ADD KEY `products_target_id_foreign` (`target_id`),
+  ADD KEY `products_UV_id_foreign` (`UV_id`);
+--
+-- AUTO_INCREMENT for table `products` (bảng sản phẩm)
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
+-- Constraints for table `products` (bảng sản phẩm)
+--
+
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `products_target_id_foreign` FOREIGN KEY (`target_id`) REFERENCES `target` (`id`),
+  ADD CONSTRAINT `products_UV_id_foreign` FOREIGN KEY (`UV_id`) REFERENCES `UV` (`id`);
+
 
 --
 -- Table structure for table `orders` (bảng đơn hàng)
@@ -340,7 +405,7 @@ CREATE TABLE `orders` (
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `orders_user_id_foreign` (`user_id`);
+  ADD KEY `orders_user_id_foreign` (`customers_id`);
 
 --
 -- AUTO_INCREMENT for table `orders` (bảng đơn hàng)
@@ -393,62 +458,7 @@ ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `products` (bảng sản phẩm)
---
-
-CREATE TABLE `products` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` double NOT NULL,
-  `discount` double NOT NULL DEFAULT 0,
-  `disscounted_price` double NOT NULL = price*(1 - discount / 100),
-  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
-  `brand_id` bigint(20) UNSIGNED NOT NULL,
-  `target_id` bigint(20) UNSIGNED NOT NULL,
-  `UV_id` bigint(20) UNSIGNED NOT NULL,
-  `Refractive_id` bigint(20) UNSIGNED NOT NULL,
-  `Material_id` bigint(20) UNSIGNED NOT NULL,
-  `status` enum('Active','Inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `products` (bảng sản phẩm)
---
-
---
--- Indexes for table `products` (bảng sản phẩm)
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `products_slug_unique` (`slug`),
-  ADD KEY `products_category_id_foreign` (`category_id`),
-  ADD KEY `products_brand_id_foreign` (`brand_id`);
-  ADD KEY `products_target_id_foreign` (`target_id`),
-  ADD KEY `products_UV_id_foreign` (`UV_id`),
---
--- AUTO_INCREMENT for table `products` (bảng sản phẩm)
---
-ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- Constraints for table `products` (bảng sản phẩm)
---
-
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
-  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
-  ADD CONSTRAINT `products_target_id_foreign` FOREIGN KEY (`target_id`) REFERENCES `target` (`id`),
-  ADD CONSTRAINT `products_UV_id_foreign` FOREIGN KEY (`UV_id`) REFERENCES `UV` (`id`),
-
+-- -------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
