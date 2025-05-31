@@ -20,7 +20,7 @@ header{
 }
 
 .header2{
-
+    margin-right: 60px;
     max-width: 1440px;
     align-items: center;
     justify-content: center;

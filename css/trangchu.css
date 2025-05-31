@@ -8,7 +8,7 @@
 .dichvu{
     margin-bottom: 30px;
     margin-left: 10px;
-    margin-top: 90px;
+    margin-top: 80px;
     font-size: 15px;
     display: flex;
     gap: 30px;
@@ -24,27 +24,70 @@
 }
 
 .bphu{
-    margin-top: 80px;
-    align-content: center;
-}
-
-.bphu h2{
-    text-align: center;
-    font-weight: bold;
-}
-
-.bphu2{
+    margin-top: 30px;
     justify-content: center;
     display: flex;
     gap: 25px;
 }
 
-.bphu2 div{
-    width: 500px;
+.bphu div img {
+    width: 600px;
+    border-radius: 30px;
+}
+.imgsp{
+    position:relative;
+}
+.overclay{
+    border-radius: 30px;
+    top: -1px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+
 }
 
-.bphu2 div img{
-    border-radius: 30px;
-    width: 100%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.29), rgba(0, 0, 0, 0.29));
+.banchay{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-bottom: 30px;
 }
+
+.banchay .chon_spbc{
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    white-space: nowrap;
+}
+
+.chon_spbc{
+    flex: 1;
+}
+
+.banchay .tab_button.active{
+    background: #000000;
+    color: #fff;
+ }
+
+.banchay .tab_button{
+    cursor: pointer;
+    padding: 10px 35px;
+    border: 0.2px solid #333;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: .4s cubic-bezier(.5, 0, 0, 1.25);
+ }
+
+ .banchay .tab_button:hover{
+    background: #000000;
+    color: #fff;
+ }

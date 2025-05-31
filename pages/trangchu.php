@@ -29,11 +29,31 @@
             </p>
         </div>
     </div>
+
+    <h2 style="margin-top: 90px; text-align:center">NHÌN RÕ HÔM NAY, TỰ TIN NGÀY MAI</h2>
     <div class="bphu">
-        <h2>NHÌN RÕ HÔM NAY, TỰ TIN NGÀY MAI</h2>
-        <div class="bphu2">
-            <div><img src="imgs/trangchu/newbanner2.jpg" alt=""></div>
-            <div><img src="imgs/trangchu/salebanner.jpg" alt=""></div>
+        <div class="imgsp">
+            <img src="imgs/trangchu/newbanner2.jpg" alt="">
+            <div class="overclay">MỚI NHẤT </div>
+        </div>
+        <div  class="imgsp">
+            <img src="imgs/trangchu/salebanner.jpg" alt="">
+            <div class="overclay">GIÁ HỜI NHẤT</div>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 90px; text-align:center">SẢN PHẨM BÁN CHẠY</h2>
+    <div class="banchay">
+        <div class="chon_spbc">
+            <div class="tab_button active">Gọng Kính</div>
+            <div class="tab_button">Kính Râm</div>
+            <div class="tab_button">Tròng Kính</div>
+        </div>
+
+        <div>
+            
         </div>
     </div>
 </div>
+
+<s
