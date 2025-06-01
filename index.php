@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/trangchu.css">
+    <link rel="stylesheet" type="text/css" href="css/danhmucsp.css">
     <link rel="icon" type="image/png" href="imgs/Logo1.png">
     <title>Good Optic - Nhìn rõ hôm nay, tự tin ngày mai</title>
 </head>

@@ -90,6 +90,7 @@ header{
 
 /* MAIN */
 main{
+    display: contents;
     max-width: 1440px;
     background-color: #FFFFFF;
 }
