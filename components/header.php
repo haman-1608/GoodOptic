@@ -1,6 +1,6 @@
 <header>
-    <div class="header2">
-        <div class="logo" style="margin-left: 30px; width:130px; height:130px;">
+
+        <div class="logo" style="width:130px; height:130px;">
             <a href="index.php?page=trangchu"><img src="imgs/Logo2.png" alt="Good Optic" style="width: 100%;"></a>
         </div>
     
@@ -23,5 +23,5 @@
                 <a href="#"><img src="imgs/icon-header/solar--cart-4-bold.svg" alt="Giỏ hàng"></a>
             </div>
         </div>
-    </div>
+
 </header>

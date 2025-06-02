@@ -1,5 +1,5 @@
 <div class="dmsp">
-    <p style="margin: 20px;">Trang chủ > <span style="font-weight: bold;">Gọng kính</span></p>
+    <p style="margin: 20px;">Trang chủ > <b>Gọng kính</b></p>
     <h2 style = "text-align: center;">Gọng Kính</h2>
     <div class="filter">
         <div class="filter1">Chất liệu</div>

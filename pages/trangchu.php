@@ -49,10 +49,7 @@
             <div class="tab_button">Kính Râm</div>
             <div class="tab_button">Tròng Kính</div>
         </div>
-
-        <div>
-            
-        </div>
+        
     </div>
 </div>
 

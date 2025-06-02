@@ -1,14 +1,14 @@
 /* TOÀN TRANG */
 body{
-    margin: 0 auto;
-    padding: 0;
+    margin: 0;
     font-family: 'Inter', sans-serif;
-    margin-bottom: 0;
+
 }
 
 
 /* HEADER */
 header{
+    gap: 20px;
     display: flex;
     justify-content: center;
     height: 130px;
@@ -19,19 +19,12 @@ header{
     box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
-.header2{
-    margin-right: 60px;
-    max-width: 1440px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    gap: 15px;
-}
+
 .menu {
     padding-left: 0px;
     list-style: none; /*bỏ dấu đầu dòng*/
     display: flex;
-    flex-direction: row;
+    margin-top: 40px;
     gap: 30px; /*khoảng cách*/
 }
 
@@ -85,23 +78,30 @@ header{
 .sxc{
     display: flex;
     gap: 30px;
+    margin-top: 50px;
 }
 
 
 /* MAIN */
 main{
-    display: contents;
-    max-width: 1440px;
+    margin: auto;
     background-color: #FFFFFF;
 }
 
 
 /* FOOTER */
 footer{
-    display: grid;
-    justify-content: center;
+     justify-content: center;
+    padding-left: 20px;
+    gap: 20px;
+    color: #FFFFFF;
     height: 400px;
-    background-color: #0D2B45;
+    background-color: black;
+    display: flex;
+}
+
+footer > div{
+    max-width: 400px;
 }
 
 .social{
@@ -109,18 +109,8 @@ footer{
     gap: 20px;
 }
 
-
-.footer2{
-    max-width: 1440px;
-    font-size: 12px;
-    font-weight: 200;
-    display: flex;
-    color: #FFFFFF;
-    gap: 50px;
-    margin-left: 30px;
-}
-
-.footer2 h3{
+ 
+.footer h3{
     font-size: 20px;
 }
 
@@ -141,17 +131,16 @@ footer{
     flex:1;
 }
 .csachxlhe {
-    justify-content: space-between;
+
     display: flex;
-    gap: 40px;
+    gap: 20px;
 }
 .tmdt{
     flex:1;
 }
 .ppttoan{
     padding-left: 15px;
-    display: flex
-;
+    display: flex;
     gap: 20px;
 }
 
