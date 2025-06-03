@@ -49,7 +49,64 @@
             <div class="tab_button">Kính Râm</div>
             <div class="tab_button">Tròng Kính</div>
         </div>
+        <div class="chon_dsbc">
+            <div class="tab_ds active">
+                <div class="dsbc">
+                    <a href="#" class="sp">
+                        <div class="ndsp">
+                        <div class="anhsp">
+                            <img src="imgs/trangchu/trongkinh.png">
+                        </div>
+                        <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
+                        <p class="gia" style="margin-top: 0px;">620.000 đ</p>
+                        </div>
+                    </a>
+                    <a href="#" class="sp">
+                        <div class="ndsp">
+                        <div class="anhsp">
+                            <img src="imgs/trangchu/trongkinh.png">
+                        </div>
+                        <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
+                        <p class="gia" style="margin-top: 0px;">620.000 đ</p>
+                        </div>
+                    </a>
+                    <a href="#" class="sp">
+                        <div class="ndsp">
+                        <div class="anhsp">
+                            <img src="imgs/trangchu/trongkinh.png">
+                        </div>
+                        <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
+                        <p class="gia" style="margin-top: 0px;">620.000 đ</p>
+                        </div>
+                    </a>
+                    <a href="#" class="sp">
+                        <div class="ndsp">
+                        <div class="anhsp">
+                            <img src="imgs/trangchu/trongkinh.png">
+                        </div>
+                        <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
+                        <p class="gia" style="margin-top: 0px;">620.000 đ</p>
+                        </div>
+                    </a>
+                </div>
+                <div style="display: flex; justify-content: center; margin-top: 40px;"> <a class="xthem" style="text-align: center;">Xem thêm</a> </div>
+            </div>
+            <div class="tab_ds"></div>
+            <div class="tab_ds"></div>
+        </div> 
         
+    </div>
+
+    <div class="store" style="font-size: 22px; background-color:rgba(235, 228, 175, 0.35); display:flex; max-width:1250px; gap:100px; padding:0px 65px; margin-bottom: 50px;">
+        <div style="height: 500px;display: flex; justify-content: center;"><img src="imgs/store.jpg" style="width:100%; height:100%;"></div>
+        <div  style="display: flex; align-items: center; flex-direction: column;">
+            <h3 style="margin-top: 80px;">HỆ THỐNG MẮT KÍNH GOOD OPTIC</h3>
+            <p style="width: 680px;">
+                Hệ thống Mắt Kính Good Optic với 30+ chi nhánh trên toàn quốc, tập trung hầu hết ở các tỉnh thành lớn như: TP. Hồ Chí Minh, TP. Hà Nội, TP. Đà Nẵng, TP. Cần Thơ, TP. Hải Phòng và nhiều tỉnh thành khác.
+                <br><br><br>
+                <i>“Good Optic - Nhìn rõ hôm nay, tự tin ngày mai”</i>
+            </p>
+        </div>
     </div>
 </div>
 

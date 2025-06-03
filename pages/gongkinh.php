@@ -7,7 +7,7 @@
         <div class="filter3">Giá tiền</div>
     </div>
     
-    <div id="gongkinh">
+    <div class="gongkinh">
         <a href="#" class="sp">
             <div class="ndsp">
                 <div class="anhsp">

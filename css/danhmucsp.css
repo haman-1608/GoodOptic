@@ -5,21 +5,28 @@
     flex-direction: column;
 }
 
-#trongkinh{
+.trongkinh{
     display:grid;
     grid-template-columns: repeat(4,1fr);
     justify-content: center;
     gap:30px;
 }
 
-#kinhram{
+.dsbc{
     display:grid;
     grid-template-columns: repeat(4,1fr);
     justify-content: center;
     gap:30px;
 }
 
-#gongkinh{
+.kinhram{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: center;
+    gap:30px;
+}
+
+.gongkinh{
     display:grid;
     grid-template-columns: repeat(4,1fr);
     justify-content: center;
