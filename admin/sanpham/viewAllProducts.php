@@ -71,18 +71,18 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form  enctype='multipart/form-data' onsubmit="addItems()" method="POST">
+          <form  enctype='multipart/form-data' onsubmit="addItems()" action="sanpham/addItemController.php" method="POST">
             <div class="form-group">
               <label for="name">Tên sản phẩm:</label>
               <input type="text" class="form-control" id="p_name" required>
             </div>
             <div class="form-group">
               <label for="price">Giá bán:</label>
-              <input type="number" class="form-control" id="p_price" required>
+              <input type="text" class="form-control" id="p_price" required>
             </div>
             <div class="form-group">
               <label for="unit">Đơn vị:</label>
-              <input type="number" class="form-control" id="unit" required>
+              <input type="text" class="form-control" id="unit" required>
             </div>
             <div class="form-group">
               <label for="qty">Mô tả:</label>

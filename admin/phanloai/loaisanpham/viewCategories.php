@@ -18,7 +18,7 @@
         while ($row=$result-> fetch_assoc()) {
     ?>
     <tr>
-      <td><?=$row["category_id"]?></td>
+      <td><?=$count?></td>
       <td><?=$row["category_name"]?></td>   
       <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
       <td><button class="btn btn-danger" style="height:40px" onclick="categoryDelete('<?=$row['category_id']?>')">Xóa</button></td>
@@ -46,7 +46,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form  enctype='multipart/form-data' action="./controller/addCatController.php" method="POST">
+          <form  enctype='multipart/form-data' action="phanloai/loaisanpham/addCatController.php" method="POST">
             <div class="form-group">
               <label for="c_name">Tên loại sản phẩm:</label>
               <input type="text" class="form-control" name="c_name" required>
