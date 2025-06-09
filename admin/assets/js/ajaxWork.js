@@ -20,9 +20,9 @@ function showCategory(){
         }
     });
 }
-function showSizes(){  
+function showMaterial(){  
     $.ajax({
-        url:"./adminView/viewSizes.php",
+        url:"./phanloai/chatlieu/viewMaterial.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -30,9 +30,29 @@ function showSizes(){
         }
     });
 }
-function showProductSizes(){  
+function showTarget(){  
     $.ajax({
-        url:"./adminView/viewProductSizes.php",
+        url:"./phanloai/doituong/viewTarget.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+function showRefractive(){  
+    $.ajax({
+        url:"./phanloai/khucxa/viewRefractive.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+function showUV(){  
+    $.ajax({
+        url:"./phanloai/uv/viewUV.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -213,7 +233,7 @@ function categoryDelete(id){
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Category Successfully deleted');
+            alert('Loại sản phẩm đã được xóa thành công');
             $('form').trigger('reset');
             showCategory();
         }
@@ -221,13 +241,13 @@ function categoryDelete(id){
 }
 
 //delete size data
-function sizeDelete(id){
+function materialDelete(id){
     $.ajax({
-        url:"./controller/deleteSizeController.php",
+        url:"./phanloai/chatlieu/deleteMaterial.php",
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Size Successfully deleted');
+            alert('Chất liệu đã được xóa thành công');
             $('form').trigger('reset');
             showSizes();
         }
@@ -236,19 +256,44 @@ function sizeDelete(id){
 
 
 //delete variation data
-function variationDelete(id){
+function targetDelete(id){
     $.ajax({
-        url:"./controller/deleteVariationController.php",
+        url:"./phanloai/doituong/deleteTarget.php",
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Successfully deleted');
+            alert('Đối tượng đã được xóa thành công');
             $('form').trigger('reset');
             showProductSizes();
         }
     });
 }
 
+function refractiveDelete(id){
+    $.ajax({
+        url:"./phanloai/khucxa/deleteRefractive.php",
+        method:"post",
+        data:{record:id},
+        success:function(data){
+            alert('xóa thành công');
+            $('form').trigger('reset');
+            showProductSizes();
+        }
+    });
+}
+
+function uvDelete(id){
+    $.ajax({
+        url:"./phanloai/uv/deleteUV.php",
+        method:"post",
+        data:{record:id},
+        success:function(data){
+            alert('UV đã được xóa thành công');
+            $('form').trigger('reset');
+            showProductSizes();
+        }
+    });
+}
 //edit variation data
 function variationEditForm(id){
     $.ajax({
