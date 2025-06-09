@@ -92,9 +92,9 @@ main{
 /* FOOTER */
 footer{
     font-size: 15px;
-     justify-content: center;
+    justify-content: center;
     padding-left: 20px;
-    gap: 20px;
+    gap: 35px;
     color: #FFFFFF;
     height: 400px;
     background-color: black;
@@ -120,12 +120,10 @@ footer > div{
     left: 30px;
 }
 
-.san{
-    
+.san{ 
     padding-left: 28px;
     align-items: center;
-    display: flex
-;
+    display: flex;
     gap: 20px;
 }
 .gioithieu{
@@ -134,7 +132,7 @@ footer > div{
 .csachxlhe {
 
     display: flex;
-    gap: 20px;
+    gap: 35px;
 }
 .tmdt{
     flex:1;
@@ -145,8 +143,8 @@ footer > div{
     gap: 20px;
 }
 
-p{
-    line-height: 1.5;
+.footer p{
+    line-height: 1.4;
 }
 
 
