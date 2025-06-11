@@ -1,7 +1,50 @@
 <?php
-    $sql = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active'";
-    $result = $conn->query($sql);
+    $sql_gongkinh = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active' AND category_id = 3 LIMIT 4";
+    $result_gongkinh = $conn->query($sql_gongkinh);
+
+    $sql_kinhram = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active' AND category_id = 1 LIMIT 4";
+    $result_kinhram = $conn->query($sql_kinhram);
+
+    $sql_trongkinh = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active' AND category_id = 2 LIMIT 4";
+    $result_trongkinh = $conn->query($sql_trongkinh);
 ?>
+
+
+<script>
+$(document).ready(function(){
+    $(".tab_button").click(function(){
+        let index = $(this).data("index");
+
+        // Bỏ active và đổi màu
+        $(".tab_button").removeClass("active").css({"background-color": "white", "color": "black"});
+        $(this).addClass("active").css({"background-color": "black", "color": "white"});
+
+        // Ẩn tất cả danh sách tab, sau đó chỉ hiện tab tương ứng
+        $(".tab_ds").removeClass("active").hide();
+        $(".tab_ds").eq(index).addClass("active").show();
+    });
+
+    // Hover effect
+    $(".tab_button").hover(
+        function() {
+            if (!$(this).hasClass("active")) {
+                $(this).css({"background-color": "black", "color": "white"});
+            }
+        },
+        function() {
+            if (!$(this).hasClass("active")) {
+                $(this).css({"background-color": "white", "color": "black"});
+            }
+        }
+    );
+
+    // Mặc định: chỉ hiện tab đầu
+    $(".tab_ds").hide();           // Ẩn tất cả
+    $(".tab_ds").eq(0).show();     // Chỉ hiện tab đầu tiên
+});
+</script>
+
+
 <div class="trangchu" style="margin: 0 auto; max-width: 1250px;">
     <div class="banner">
         <img src="imgs/trangchu/Banner.png" alt="Good Optic">
@@ -48,31 +91,17 @@
 
     <h2 style="margin-top: 90px; text-align:center">SẢN PHẨM BÁN CHẠY</h2>
     <div class="banchay">
-        <?php
-            $loai = $_GET['loai'] ?? 'gongkinh';
-
-            $map_category = [
-                'gongkinh' => 1,
-                'kinhram' => 2,
-                'trongkinh' => 3
-            ];
-
-            $category_id = $map_category[$loai] ?? 1;
-
-            // Lấy 4 sản phẩm thuộc category đang chọn
-            $sql = "SELECT * FROM products WHERE category_id = $category_id LIMIT 4";
-            $result = $conn->query($sql);
-        ?>
+ 
         <div class="chon_spbc">
-            <button class="tab_button active" data-tab="gongkinh">Gọng Kính</button>
-            <button class="tab_button" data-tab="kinhram">Kính Râm</button>
-            <button class="tab_button" data-tab="trongkinh">Tròng Kính</button>
+            <button class="tab_button active" data-index="0">Gọng Kính</button>
+            <button class="tab_button" data-index="1">Kính Râm</button>
+            <button class="tab_button" data-index="2">Tròng Kính</button>
         </div>
         <div class="chon_dsbc">
             <div class="tab_ds active" style="text-align: center;">
                 <div class="dsbc">
-                    <?php if ($result && $result->num_rows > 0): ?>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+                    <?php if ($result_gongkinh && $result_gongkinh->num_rows > 0): ?>
+                    <?php while ($row = $result_gongkinh->fetch_assoc()): ?>
                     <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
@@ -84,10 +113,54 @@
                     </a>
                     <?php endwhile; ?>
                     <?php else: ?>
-                    <p>Không có sản phẩm.</p>
+                    <p>Không có sản phẩm gợi ý.</p>
                     <?php endif; ?>
                 </div>
-                <a href="index.php?page=danhmuc&category=<?php echo $category_id; ?>">
+                <a href="index.php?page=trongkinh">
+                <button class="xthem">Xem thêm</button>
+                </a>
+            </div>
+            <div class="tab_ds" style="text-align: center;">
+                <div class="dsbc">
+                    <?php if ($result_kinhram && $result_kinhram->num_rows > 0): ?>
+                    <?php while ($row = $result_kinhram->fetch_assoc()): ?>
+                    <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
+                        <div class="ndsp">
+                        <div class="anhsp">
+                            <img src="imgs/trangchu/trongkinh.png">
+                        </div>
+                        <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
+                        <p class="gia" style="margin-top: 0px; margin-left: 10px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'); ?> đ</p>
+                        </div>
+                    </a>
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                    <p>Không có sản phẩm gợi ý.</p>
+                    <?php endif; ?>
+                </div>
+                <a href="index.php?page=kinhram">
+                <button class="xthem">Xem thêm</button>
+                </a>
+            </div>
+            <div class="tab_ds" style="text-align: center;">
+                <div class="dsbc">
+                    <?php if ($result_trongkinh && $result_trongkinh->num_rows > 0): ?>
+                    <?php while ($row = $result_trongkinh->fetch_assoc()): ?>
+                    <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
+                        <div class="ndsp">
+                        <div class="anhsp">
+                            <img src="imgs/trangchu/trongkinh.png">
+                        </div>
+                        <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
+                        <p class="gia" style="margin-top: 0px; margin-left: 10px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'); ?> đ</p>
+                        </div>
+                    </a>
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                    <p>Không có sản phẩm gợi ý.</p>
+                    <?php endif; ?>
+                </div>
+                <a href="index.php?page=trongkinh">
                 <button class="xthem">Xem thêm</button>
                 </a>
             </div>

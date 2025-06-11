@@ -17,6 +17,19 @@
         return;
     }
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".cart").hover(
+            function() {
+                $(this).css({"background-color": "white", "color": "black"});
+            },
+            function() {
+                $(this).css({"background-color": "black", "color": "white"});
+            }
+        );
+    
+    })
+</script>
 <div class="chitiet" style="margin: 0 auto;">
     <div class="ctietsp">
         <div style="width: 650px;">

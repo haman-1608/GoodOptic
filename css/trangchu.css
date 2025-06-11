@@ -79,14 +79,7 @@
     border-radius: 30px;
     padding: 8px 16px;
 }
-.tab_button:hover{
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-    padding: 8px 16px;
-}
+ 
 
 .tab_button.active{
     background-color: black;
