@@ -339,7 +339,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products` (bảng sản phẩm)
 --
 INSERT INTO `products` (`product_id`, `product_name`, `slug`, `desc`, `unit`, `price`, `disscounted_price`, `images`, `category_id`, `brand_id`, `target_id`, `UV_id`, `Refractive_id`, `Material_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Kính Ray-Ban RB2132', 'kinh-ray-ban-rb2132', 'Kính Ray-Ban RB2132 là một trong những mẫu kính nổi tiếng của thương hiệu Ray-Ban, với thiết kế hiện đại và chất lượng cao.', 'cái', 1350000, 1200000, '["image1.jpg","image2.jpg"]', 1, 1, 1, 1, 1, 1, 'Active', NULL, NULL),
+(1, 'Kính Ray-Ban RB2132', 'kinh-ray-ban-rb2132', 'Kính Ray-Ban RB2132 là một trong những mẫu kính nổi tiếng của thương hiệu Ray-Ban, với thiết kế hiện đại và chất lượng cao.', 'cái', 1350000, 1200000, '../../../gongKinhKimLoaiChongUVPradaUnisex.webp', 1, 1, 1, 1, 1, 1, 'Active', NULL, NULL),
 (2, 'Kính Oakley OO9208', 'kinh-oakley-oo9208', 'Kính Oakley OO9208 là một mẫu kính thể thao với thiết kế năng động và chất lượng vượt trội.', 'cái', 1700000, 1500000, '["image3.jpg","image4.jpg"]', 1, 2, 2, 2, 2, 1, 'Active', NULL, NULL),
 (3, 'Kính Maui Jim MJ429', 'kinh-maui-jim-mj429', 'Kính Maui Jim MJ429 mang đến sự kết hợp hoàn hảo giữa phong cách và bảo vệ mắt khỏi tia UV.', 'cái', 2375000, 2200000, '["image5.jpg","image6.jpg"]', 2, 3, 1, 3, 3, 2, 'Active', NULL, NULL);
 --
