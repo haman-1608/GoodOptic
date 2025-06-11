@@ -1,3 +1,7 @@
+<?php
+    $sql = "SELECT product_name, disscounted_price, images FROM products WHERE category_id = 3 AND status = 'Active'";
+    $result = $conn->query($sql);
+?>
 <div class="dmsp">
     <p style="margin: 20px;">Trang chủ > <b>Gọng kính</b></p>
     <h2 style = "text-align: center;">Gọng Kính</h2>
@@ -8,124 +12,20 @@
     </div>
     
     <div class="gongkinh">
+        <?php
+            while($row = $result -> fetch_assoc()):
+        ?>
+        
         <a href="#" class="sp">
             <div class="ndsp">
                 <div class="anhsp">
                     <img src="imgs/trangchu/trongkinh.png">
                 </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
+                <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
+                <p class="gia" style="margin-left: 10px; margin-top:0px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'). ' đ'; ?></p>
             </div>
         </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
-
-        <a href="#" class="sp">
-            <div class="ndsp">
-                <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
-                </div>
-                <p class="tensp">Gọng Kính Nhựa Pha Kim Loại GO - M4123</p>
-                <p class="gia" style="margin-top: 0px;">620.000 đ</p>
-            </div>
-        </a>
+        <?php endwhile; ?>
     </div>
+
 </div>

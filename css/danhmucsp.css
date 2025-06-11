@@ -58,11 +58,10 @@
     transform: translateY(-2px)
 }
 
-.ndsp p{
-    padding: 0px 10px;
-}
+
 
 .tensp{
+    margin-left: 10px;
     font-weight: 700;
     font-size: 17px;
     color: black;

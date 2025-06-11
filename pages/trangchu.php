@@ -52,7 +52,7 @@
         <div class="chon_dsbc">
             <div class="tab_ds active">
                 <div class="dsbc">
-                    <a href="#" class="sp">
+                    <a href="pages/chitiet.php" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
                             <img src="imgs/trangchu/trongkinh.png">
