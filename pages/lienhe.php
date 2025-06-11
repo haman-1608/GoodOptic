@@ -1,4 +1,4 @@
-<div class="lienhe">
+<div class="lienhe" style="margin: 0 auto; max-width: 1250px;">
     <div class="banner">
         <img src="imgs/trangchu/Banner1.png" alt="Good Optic">
     </div>

@@ -1,5 +1,5 @@
 <?php
-    $sql = "SELECT product_name, disscounted_price, images FROM products WHERE category_id = 1 AND status = 'Active'";
+    $sql = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE category_id = 1 AND status = 'Active'";
     $result = $conn->query($sql);
 ?>
 <div class="dmsp">
@@ -15,7 +15,7 @@
         <?php
             while($row = $result -> fetch_assoc()):
         ?>
-        <a href="#" class="sp">
+        <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
             <div class="ndsp">
                 <div class="anhsp">
                     <img src="imgs/trangchu/trongkinh.png">

@@ -1,5 +1,7 @@
 .dmsp{
-    margin: 40px 20px;
+    padding: 25px 20px;
+    max-width: 1250px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -15,9 +17,10 @@
 .dsbc{
     display:grid;
     grid-template-columns: repeat(4,1fr);
-    justify-content: center;
+
     gap:30px;
 }
+
 
 .kinhram{
     display:grid;
@@ -35,6 +38,7 @@
 
 .ndsp{
     display:flex;
+    text-align: left;
     flex-direction: column;
     justify-content: center;
 }

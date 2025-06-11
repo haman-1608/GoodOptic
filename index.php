@@ -7,7 +7,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +16,13 @@
     <link rel="stylesheet" type="text/css" href="css/trangchu.css">
     <link rel="stylesheet" type="text/css" href="css/danhmucsp.css">
     <link rel="stylesheet" type="text/css" href="css/gtvalh.css">
+    <link rel="stylesheet" type="text/css" href="css/chitiet.css">
     <link rel="icon" type="image/png" href="imgs/Logo1.png">
     <script src="jquery-3.7.1.js"></script> <!-- dẫn jquery -->
     <title>Good Optic - Nhìn rõ hôm nay, tự tin ngày mai</title>
 </head>
 <body>
+    
     <?php
         include("components/header.php");?>
         
@@ -42,5 +44,4 @@
     ?>
 </body>
 </html>
-
-<!-- echo lệnh xuất dữ liệu -->
+ 
