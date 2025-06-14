@@ -6,7 +6,11 @@
     $p_desc= $_POST['p_desc'];
     $p_price= $_POST['p_price'];
     $category= $_POST['category'];
-
+    $brand= $_POST['brand'];
+    $refractive= $_POST['refractive'];
+    $target= $_POST['target'];
+    $uv= $_POST['uv'];
+    $material= $_POST['material'];
     if( isset($_FILES['newImage']) ){
         
         $location="./uploads/";
@@ -29,7 +33,12 @@
         desc='$p_desc', 
         price=$p_price,
         category_id=$category,
-        product_image='$final_image' 
+        brand_id='$brand',
+        refractive_id='$refractive',
+        target_id='$target',
+        uv_id='$uv',
+        material_id='$material',
+        images='$final_image' 
         WHERE product_id=$product_id");
 
 

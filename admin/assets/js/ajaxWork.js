@@ -109,7 +109,6 @@ function ChangePay(id){
    });
 }
 
-
 //add product data
 function addItems(){
     var p_name=$('#p_name').val();
@@ -159,6 +158,11 @@ function updateItems(){
     var p_desc = $('#p_desc').val();
     var p_price = $('#p_price').val();
     var category = $('#category').val();
+    var brand = $('#brand').val();
+    var refractive = $('#refractive').val();
+    var uv = $('#uv').val();
+    var target = $('#target').val();
+
     var existingImage = $('#existingImage').val();
     var newImage = $('#newImage')[0].files[0];
     var fd = new FormData();
@@ -167,6 +171,10 @@ function updateItems(){
     fd.append('p_desc', p_desc);
     fd.append('p_price', p_price);
     fd.append('category', category);
+    fd.append('brand', brand);
+    fd.append('refractive', refractive);
+    fd.append('uv', uv);
+    fd.append('target', target);
     fd.append('existingImage', existingImage);
     fd.append('newImage', newImage);
    
@@ -291,113 +299,6 @@ function uvDelete(id){
             alert('UV đã được xóa thành công');
             $('form').trigger('reset');
             showProductSizes();
-        }
-    });
-}
-//edit variation data
-function variationEditForm(id){
-    $.ajax({
-        url:"./adminView/editVariationForm.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
-
-//update variation after submit
-function updateVariations(){
-    var v_id = $('#v_id').val();
-    var product = $('#product').val();
-    var size = $('#size').val();
-    var qty = $('#qty').val();
-    var fd = new FormData();
-    fd.append('v_id', v_id);
-    fd.append('product', product);
-    fd.append('size', size);
-    fd.append('qty', qty);
-   
-    $.ajax({
-      url:'./controller/updateVariationController.php',
-      method:'post',
-      data:fd,
-      processData: false,
-      contentType: false,
-      success: function(data){
-        alert('Update Success.');
-        $('form').trigger('reset');
-        showProductSizes();
-      }
-    });
-}
-function search(id){
-    $.ajax({
-        url:"./controller/searchController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('.eachCategoryProducts').html(data);
-        }
-    });
-}
-
-
-function quantityPlus(id){ 
-    $.ajax({
-        url:"./controller/addQuantityController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('form').trigger('reset');
-            showMyCart();
-        }
-    });
-}
-function quantityMinus(id){
-    $.ajax({
-        url:"./controller/subQuantityController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('form').trigger('reset');
-            showMyCart();
-        }
-    });
-}
-
-function checkout(){
-    $.ajax({
-        url:"./view/viewCheckout.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
-
-function removeFromWish(id){
-    $.ajax({
-        url:"./controller/removeFromWishlist.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            alert('Removed from wishlist');
-        }
-    });
-}
-
-
-function addToWish(id){
-    $.ajax({
-        url:"./controller/addToWishlist.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            alert('Added to wishlist');        
         }
     });
 }

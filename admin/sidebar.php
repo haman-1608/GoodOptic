@@ -1,18 +1,36 @@
-<!-- Sidebar -->
-<div class="sidebar" id="mySidebar" style="background-color: #836FFF;">
-<hr style="border:1px solid; background-color:#836FFF; border-color:#836FFF;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <a href="./index.php" ><i class="fa fa-home"></i> Màn hình chính</a>
-    <a href="#customers"  onclick="showCustomers()" ><i class="fa fa-users"></i> Danh sách khách hàng</a>
-    <a href="#category"   onclick="showCategory()" ><i class="fa fa-th-large"></i> Loại sản phẩm</a>   
-    <a href="#products"   onclick="showProductItems()" ><i class="fa fa-th"></i> Danh sách sản phẩm</a>
-    <a href="#orders" onclick="showOrders()"><i class="fa fa-list"></i> Đơn hàng</a>
-  
-  <!---->
-</div>
- 
-<div id="main">
-    <button class="openbtn" onclick="openNav()" style="background-color: #836FFF"><i class="fa fa-home"></i></button>
-</div>
 
-
+  <nav>
+    <div class="toggle_menu"><ion-icon name="menu"></ion-icon></div>
+    <ul>
+      <li>
+        <a href="index.php"><ion-icon name="home"></ion-icon>Dashboard</a>
+      </li>
+      <li>
+        <a href="#customers"  onclick="showCustomers()"><ion-icon name="people"></ion-icon>Khách hàng</a>
+      </li>
+      <li>
+        <a href="#category"   onclick="showCategory()" ><ion-icon name="apps"></ion-icon>Loại sản phẩm</a>
+      </li>
+      <li>
+        <a href="#material"   onclick="showMaterial()" ><ion-icon name="apps"></ion-icon>Chất liệu</a>
+      </li>
+      <li>
+        <a href="#material"   onclick="showMaterial()" ><ion-icon name="apps"></ion-icon>Thương hiệu</a>
+      </li>
+      <li>
+        <a href="#target"   onclick="showTarget()" ><ion-icon name="apps"></ion-icon>Đối tượng</a>
+      </li>
+      <li>
+        <a href="#refractive"   onclick="showRefractive()" ><ion-icon name="apps"></ion-icon>Khúc xạ</a>
+      </li>
+      <li>
+        <a href="#uv"   onclick="showUV()" ><ion-icon name="apps"></ion-icon>Độ chống UV</a>
+      </li>
+      <li>
+        <a href="#products"   onclick="showProductItems()"><ion-icon name="cube"></ion-icon>Danh sách sản phẩm</a>
+      </li>
+      <li>
+        <a href="orders.php"><ion-icon name="cart"></ion-icon>Đơn hàng</a>
+      </li>
+    </ul>
+</nav>

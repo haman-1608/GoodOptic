@@ -1,6 +1,4 @@
-
 <div >
-  <h3>Danh sách loại sản phẩm</h3>
   <table class="table ">
     <thead>
       <tr>

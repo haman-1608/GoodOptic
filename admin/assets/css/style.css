@@ -2,8 +2,14 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Work Sans', sans-serif;
-    font-size: 18px;
+}
+.body
+{
+  position:relative;
+  width: 100%;
+  min-height: 150vh;
 }
 
 .user-cart span{
@@ -23,78 +29,103 @@
       border-radius: 10px;
       box-shadow: 8px 5px 5px #3B3131;
   }
+nav {
+    width: 250px;
+    height: 100%;
+    background-color: #836FFF;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: ease-in-out 0.5s;
+}
+nav.hide {
+    width: 0;
+}
+nav ul {
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+}
 
-/************************** for sidebar ***********************************/
+nav ul li a{
+    width: 100%;
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 15px;
+    transition: linear 0.5s;
+}
 
-  /* The sidebar menu */
-  .sidebar {
-      height: 100%; /* 100% Full-height */
-      width: 0; /* 0 width - change this with JavaScript */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Stay on top */
-      top: 0;
-      left: 0;
-      background-color: #3B3131; /* Black*/
-      overflow-x: hidden; /* Disable horizontal scroll */
-      padding-top: 60px; /* Place content 60px from the top */
-      transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
-    }
-    
-    /* The sidebar links */
-    .sidebar a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 22px;
-      color: #fff;
-      display: block;
-      transition: 0.3s;
-    }
-    
-    .sidebar .side-header{
-          margin-left: 30px;
-          margin-bottom: 8px;
-          color: #fff;
-      }
+nav ul li a ion-icon{
+  margin: 0 20px;
+  color: white;
+  font-size: 1.2em;
+  transition: linear 0.2s;
+}
 
-    /* When you mouse over the navigation links, change their color */
-    .sidebar a:hover {
-      background-color: #584e46;
-    }
-    
-    /* Position and style the close button (top right corner) */
-    .sidebar .closebtn {
-      position: absolute;
-      top: 0;
-      right: 2px;
-      font-size: 34px;
-      margin-left: 50px;
-    }
-    
-    /* The button used to open the sidebar */
-    .openbtn {
-      font-size: 20px;
-      cursor: pointer;
-      padding: 10px 15px;
-      border: none;
-      color: #fff;
-      background-color:#584e46;
-    }
-    
-    .openbtn:hover {
-      color: #ECDAC9;
-    }
-    
-    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-    #main {
-      transition: margin-left .5s; /* If you want a transition effect */
-      padding: 20px;
-    }
-    
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
-      .sidebar {padding-top: 15px;}
-      .sidebar a {font-size: 18px;}
-    }
+nav ul li a:hover {
+  background: white;
+  color: #836FFF;
+}
+
+nav ul li a:hover ion-icon {
+  color: #836FFF;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 250px;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: ease-in-out 0.5s;
+}
+.content.expand {
+    left: 0;
+    width: 100%;
+}
+.content h2 {
+    font-size: 4.5em;
+    color: #1e90ff;
+    text-transform: uppercase;
+}
+
+nav .toggle_menu {
+    position: absolute;
+    top: 20px;
+    right: -46px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f1f1f1;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: linear 0.2s;
+}
+
+nav .toggle_menu ion-icon {
+    color: #1e90ff;
+    font-size: 1.5em;
+    transition: linear 0.2s;
+}
+
+nav .toggle_menu:hover {
+    background: #1e90ff;
+}
+
+nav .toggle_menu:hover ion-icon {
+    color: white;
+}
 
 /************************** product table styling *********************************/
 
@@ -114,7 +145,7 @@
   }
 
   th {
-    background-color: #584e46;
+    background-color: #836FFF;
     color: #fafafa;
     font-family: 'Open Sans', Sans-serif;
     font-weight: bold;

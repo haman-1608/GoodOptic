@@ -8,10 +8,10 @@
     $data=mysqli_query($conn,$query);
 
     if($data){
-        echo"Loại sản phẩm đã được xóa thành công";
+        echo"Category Item Deleted";
     }
     else{
-        echo"Lỗi khi xóa loại sản phẩm";
+        echo"Not able to delete";
     }
     
 ?>

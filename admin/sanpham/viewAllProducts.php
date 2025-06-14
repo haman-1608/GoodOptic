@@ -1,6 +1,5 @@
 
-<div >
-  <h2>Danh sách sản phẩm</h2>
+<div>
   <table class="table ">
     <thead>
       <tr>
@@ -63,7 +62,7 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+  
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -73,11 +72,11 @@
         <div class="modal-body">
           <form  enctype='multipart/form-data' onsubmit="addItems()" action="sanpham/addItemController.php" method="POST">
             <div class="form-group">
-              <label for="name">Tên sản phẩm:</label>
+              <label for="p_name">Tên sản phẩm:</label>
               <input type="text" class="form-control" id="p_name" required>
             </div>
             <div class="form-group">
-              <label for="price">Giá bán:</label>
+              <label for="p_price">Giá bán:</label>
               <input type="text" class="form-control" id="p_price" required>
             </div>
             <div class="form-group">
@@ -85,11 +84,11 @@
               <input type="text" class="form-control" id="unit" required>
             </div>
             <div class="form-group">
-              <label for="qty">Mô tả:</label>
+              <label for="p_desc">Mô tả:</label>
               <input type="text" class="form-control" id="p_desc" required>
             </div>
             <div class="form-group">
-              <label>Phân loại:</label>
+              <label for="category">Phân loại:</label>
               <select id="category" >
                 <option disabled selected>Chọn</option>
                 <?php
@@ -106,7 +105,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Thương hiệu:</label>
+              <label for="brand">Thương hiệu:</label>
               <select id="brand" >
                 <option disabled selected>Chọn</option>
                 <?php
@@ -123,7 +122,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Đối tượng:</label>
+              <label for="target">Đối tượng:</label>
               <select id="target" >
                 <option disabled selected>Chọn</option>
                 <?php
@@ -140,7 +139,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Chống tia UV:</label>
+              <label for="uv">Chống tia UV:</label>
               <select id="uv" >
                 <option disabled selected>Chọn</option>
                 <?php
@@ -157,7 +156,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Khúc xạ:</label>
+              <label for="refractive">Khúc xạ:</label>
               <select id="refractive" >
                 <option disabled selected>Chọn</option>
                 <?php
@@ -174,7 +173,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Chất liệu:</label>
+              <label for="material">Chất liệu:</label>
               <select id="material" >
                 <option disabled selected>Chọn</option>
                 <?php
