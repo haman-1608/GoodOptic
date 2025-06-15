@@ -1,4 +1,5 @@
-
+<?php include "./header.php"; ?>
+<?php include "./sidebar.php"; ?>
 <div>
   <table class="table ">
     <thead>
@@ -19,7 +20,7 @@
       </tr>
     </thead>
     <?php
-      include_once "../config/dbconnect.php";
+      include_once "./config/dbconnect.php";
       $sql="SELECT * from products, categories, brands, targets, UV, Refractive, Material
       WHERE products.category_id=categories.category_id 
       AND products.brand_id=brands.brand_id 
@@ -209,4 +210,6 @@
 
   
 </div>
+<?php include "./footer.php"; ?>
+
    

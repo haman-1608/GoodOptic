@@ -1,3 +1,5 @@
+<?php include "./header.php"; ?>
+<?php include "./sidebar.php"; ?>
 <div class="container">
 <table class="table table-striped">
     <thead>
@@ -11,7 +13,7 @@
         </tr>
     </thead>
     <?php
-        include_once "../config/dbconnect.php";
+        include_once "./config/dbconnect.php";
         $ID= $_GET['orderID'];
         //echo $ID;
         $sql="SELECT * from product_size_variation v, order_details d 
@@ -58,3 +60,4 @@
     ?>
 </table>
 </div>
+<?php include "./footer.php"; ?>

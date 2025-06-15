@@ -1,15 +1,18 @@
-<div >
+<?php include "./header.php"; ?>
+<?php include "./sidebar.php"; ?>
+<div class="container all Content-section">
+  <h2 class="text-center">Danh sách loại sản phẩm</h2>
   <table class="table ">
     <thead>
       <tr>
         <th class="text-center">Mã số</th>
-        <th class="text-center">Khúc xạ</th>
+        <th class="text-center">Tên loại sản phẩm</th>
         <th class="text-center" colspan="2">Hành động</th>
       </tr>
     </thead>
     <?php
-      include_once "../../config/dbconnect.php";
-      $sql="SELECT * from Refractive";
+      include_once "./config/dbconnect.php";
+      $sql="SELECT * from categories";
       $result=$conn-> query($sql);
       $count=1;
       if ($result-> num_rows > 0){
@@ -17,9 +20,9 @@
     ?>
     <tr>
       <td><?=$count?></td>
-      <td><?=$row["refractive_name"]?></td>   
+      <td><?=$row["category_name"]?></td>   
       <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
-      <td><button class="btn btn-danger" style="height:40px" onclick="refractiveDelete('<?=$row['refractive_id']?>')">Xóa</button></td>
+      <td><button class="btn btn-danger" style="height:40px" onclick="categoryDelete('<?=$row['category_id']?>')">Xóa</button></td>
       </tr>
       <?php
             $count=$count+1;
@@ -30,7 +33,7 @@
 
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-secondary" style="height:40px" data-toggle="modal" data-target="#myModal">
-    Thêm khúc xạ
+    Thêm loại sản phẩm
   </button>
 
   <!-- Modal -->
@@ -40,14 +43,14 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Thêm mới khúc xạ</h4>
+          <h4 class="modal-title">Thêm mới loại sản phẩm</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form  enctype='multipart/form-data' action="phanloai/khucxa/addRefractive.php" method="POST">
+          <form  enctype='multipart/form-data' action="phanloai/loaisanpham/addCatController.php" method="POST">
             <div class="form-group">
-              <label for="r_name">Tên loại sản phẩm:</label>
-              <input type="text" class="form-control" name="r_name" required>
+              <label for="c_name">Tên loại sản phẩm:</label>
+              <input type="text" class="form-control" name="c_name" required>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-secondary" name="upload" style="height:40px">Thêm</button>
@@ -65,4 +68,5 @@
 
   
 </div>
-   
+<?php include "./footer.php"; ?>
+

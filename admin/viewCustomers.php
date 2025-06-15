@@ -1,3 +1,5 @@
+<?php include "./header.php"; ?>
+<?php include "./sidebar.php"; ?>
 <div class="table-container">
   <div class="table-responsive">
     <table class="custom-table">
@@ -11,7 +13,7 @@
         </tr>
       </thead>
       <?php
-      include_once "../config/dbconnect.php";
+      include_once "./config/dbconnect.php";
       $sql="SELECT * from customers";
       $result=$conn-> query($sql);
       $count=1;
@@ -35,3 +37,4 @@
     </table>
   </div>
 </div>
+<?php include "./footer.php"; ?>

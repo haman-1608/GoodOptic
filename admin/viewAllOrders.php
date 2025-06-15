@@ -1,3 +1,5 @@
+<?php include "./header.php"; ?>
+<?php include "./sidebar.php"; ?>
 <div id="ordersBtn" >
   <h2>Order Details</h2>
   <table class="table table-striped">
@@ -14,7 +16,7 @@
      </tr>
     </thead>
      <?php
-      include_once "../config/dbconnect.php";
+      include_once "./config/dbconnect.php";
       $sql="SELECT * from orders";
       $result=$conn-> query($sql);
       
@@ -91,3 +93,4 @@
       });
     });
  </script>
+ <?php include "./footer.php"; ?>

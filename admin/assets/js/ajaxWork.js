@@ -12,7 +12,7 @@ function showProductItems(){
 }
 function showCategory(){  
     $.ajax({
-        url:"./phanloai/loaisanpham/viewCategories.php",
+        url:"viewCategories.php",
         method:"post",
         data:{record:1},
         success:function(data){

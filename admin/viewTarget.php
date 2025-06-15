@@ -1,3 +1,5 @@
+<?php include "./header.php"; ?>
+<?php include "./sidebar.php"; ?>
 <div >
   <table class="table ">
     <thead>
@@ -8,7 +10,7 @@
       </tr>
     </thead>
     <?php
-      include_once "../../config/dbconnect.php";
+      include_once "./config/dbconnect.php";
       $sql="SELECT * from targets";
       $result=$conn-> query($sql);
       $count=1;
@@ -65,4 +67,5 @@
 
   
 </div>
+<?php include "./footer.php"; ?>
    
