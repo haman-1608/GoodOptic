@@ -20,7 +20,7 @@
                 <a href="#"><img src="imgs/icon-header/cil--search.svg" alt="Tìm kiếm"></a>
             </div>
             <div class="icon-cart">
-                <a href="#"><img src="imgs/icon-header/solar--cart-4-bold.svg" alt="Giỏ hàng"></a>
+                <a href="index.php?page=giohang"><img src="imgs/icon-header/solar--cart-4-bold.svg" alt="Giỏ hàng"></a>
             </div>
         </div>
 
