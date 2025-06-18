@@ -1,122 +1,122 @@
 
 
-function showProductItems(){  
+function showProductItems() {
     $.ajax({
-        url:"./sanpham/viewAllProducts.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./sanpham/viewAllProducts.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
-function showCategory(){  
+function showCategory() {
     $.ajax({
-        url:"viewCategories.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./viewCategories.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
-function showMaterial(){  
+function showMaterial() {
     $.ajax({
-        url:"./phanloai/chatlieu/viewMaterial.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./phanloai/chatlieu/viewMaterial.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
-function showTarget(){  
+function showTarget() {
     $.ajax({
-        url:"./phanloai/doituong/viewTarget.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./phanloai/doituong/viewTarget.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
-function showRefractive(){  
+function showRefractive() {
     $.ajax({
-        url:"./phanloai/khucxa/viewRefractive.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./phanloai/khucxa/viewRefractive.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
-function showUV(){  
+function showUV() {
     $.ajax({
-        url:"./phanloai/uv/viewUV.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
-function showCustomers(){
-    $.ajax({
-        url:"./khachhang/viewCustomers.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./phanloai/uv/viewUV.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
 
-function showOrders(){
+function showCustomers() {
     $.ajax({
-        url:"./donhang/viewAllOrders.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
+        url: "./khachhang/viewCustomers.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
 
-function ChangeOrderStatus(id){
+function showOrders() {
     $.ajax({
-       url:"./donhang/updateOrderStatus.php",
-       method:"post",
-       data:{record:id},
-       success:function(data){
-           alert('Order Status updated successfully');
-           $('form').trigger('reset');
-           showOrders();
-       }
-   });
+        url: "./donhang/viewAllOrders.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
+            $('.allContent-section').html(data);
+        }
+    });
 }
 
-function ChangePay(id){
+function ChangeOrderStatus(id) {
     $.ajax({
-       url:"./donhang/updatePayStatus.php",
-       method:"post",
-       data:{record:id},
-       success:function(data){
-           alert('Payment Status updated successfully');
-           $('form').trigger('reset');
-           showOrders();
-       }
-   });
+        url: "./donhang/updateOrderStatus.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Order Status updated successfully');
+            $('form').trigger('reset');
+            showOrders();
+        }
+    });
+}
+
+function ChangePay(id) {
+    $.ajax({
+        url: "./donhang/updatePayStatus.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Payment Status updated successfully');
+            $('form').trigger('reset');
+            showOrders();
+        }
+    });
 }
 
 //add product data
-function addItems(){
-    var p_name=$('#p_name').val();
-    var p_desc=$('#p_desc').val();
-    var p_price=$('#p_price').val();
-    var category=$('#category').val();
-    var upload=$('#upload').val();
-    var file=$('#file')[0].files[0];
+function addItems() {
+    var p_name = $('#p_name').val();
+    var p_desc = $('#p_desc').val();
+    var p_price = $('#p_price').val();
+    var category = $('#category').val();
+    var upload = $('#upload').val();
+    var file = $('#file')[0].files[0];
 
     var fd = new FormData();
     fd.append('p_name', p_name);
@@ -126,12 +126,12 @@ function addItems(){
     fd.append('file', file);
     fd.append('upload', upload);
     $.ajax({
-        url:"./sanpham/addItemController.php",
-        method:"post",
-        data:fd,
+        url: "./sanpham/addItemController.php",
+        method: "post",
+        data: fd,
         processData: false,
         contentType: false,
-        success: function(data){
+        success: function (data) {
             alert('Product Added successfully.');
             $('form').trigger('reset');
             showProductItems();
@@ -140,19 +140,19 @@ function addItems(){
 }
 
 //edit product data
-function itemEditForm(id){
+function itemEditForm(id) {
     $.ajax({
-        url:"./sanpham/editItemForm.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./sanpham/editItemForm.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
 }
 
 //update product after submit
-function updateItems(){
+function updateItems() {
     var product_id = $('#product_id').val();
     var p_name = $('#p_name').val();
     var p_desc = $('#p_desc').val();
@@ -177,28 +177,28 @@ function updateItems(){
     fd.append('target', target);
     fd.append('existingImage', existingImage);
     fd.append('newImage', newImage);
-   
+
     $.ajax({
-      url:'./sanpham/updateItemController.php',
-      method:'post',
-      data:fd,
-      processData: false,
-      contentType: false,
-      success: function(data){
-        alert('Data Update Success.');
-        $('form').trigger('reset');
-        showProductItems();
-      }
+        url: './sanpham/updateItemController.php',
+        method: 'post',
+        data: fd,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            alert('Data Update Success.');
+            $('form').trigger('reset');
+            showProductItems();
+        }
     });
 }
 
 //delete product data
-function itemDelete(id){
+function itemDelete(id) {
     $.ajax({
-        url:"./sanpham/deleteItemController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./sanpham/deleteItemController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('Items Successfully deleted');
             $('form').trigger('reset');
             showProductItems();
@@ -208,12 +208,12 @@ function itemDelete(id){
 
 
 //delete cart data
-function cartDelete(id){
+function cartDelete(id) {
     $.ajax({
-        url:"./controller/deleteCartController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./controller/deleteCartController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('Cart Item Successfully deleted');
             $('form').trigger('reset');
             showMyCart();
@@ -221,12 +221,12 @@ function cartDelete(id){
     });
 }
 
-function eachDetailsForm(id){
+function eachDetailsForm(id) {
     $.ajax({
-        url:"./view/viewEachDetails.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./view/viewEachDetails.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             $('.allContent-section').html(data);
         }
     });
@@ -235,12 +235,12 @@ function eachDetailsForm(id){
 
 
 //delete category data
-function categoryDelete(id){
+function categoryDelete(id) {
     $.ajax({
-        url:"./phanloai/loaisanpham/catDeleteController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./phanloai/loaisanpham/catDeleteController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('Loại sản phẩm đã được xóa thành công');
             $('form').trigger('reset');
             showCategory();
@@ -249,12 +249,12 @@ function categoryDelete(id){
 }
 
 //delete size data
-function materialDelete(id){
+function materialDelete(id) {
     $.ajax({
-        url:"./phanloai/chatlieu/deleteMaterial.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./phanloai/chatlieu/deleteMaterial.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('Chất liệu đã được xóa thành công');
             $('form').trigger('reset');
             showSizes();
@@ -264,12 +264,12 @@ function materialDelete(id){
 
 
 //delete variation data
-function targetDelete(id){
+function targetDelete(id) {
     $.ajax({
-        url:"./phanloai/doituong/deleteTarget.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./phanloai/doituong/deleteTarget.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('Đối tượng đã được xóa thành công');
             $('form').trigger('reset');
             showProductSizes();
@@ -277,12 +277,12 @@ function targetDelete(id){
     });
 }
 
-function refractiveDelete(id){
+function refractiveDelete(id) {
     $.ajax({
-        url:"./phanloai/khucxa/deleteRefractive.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./phanloai/khucxa/deleteRefractive.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('xóa thành công');
             $('form').trigger('reset');
             showProductSizes();
@@ -290,12 +290,12 @@ function refractiveDelete(id){
     });
 }
 
-function uvDelete(id){
+function uvDelete(id) {
     $.ajax({
-        url:"./phanloai/uv/deleteUV.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
+        url: "./phanloai/uv/deleteUV.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
             alert('UV đã được xóa thành công');
             $('form').trigger('reset');
             showProductSizes();
