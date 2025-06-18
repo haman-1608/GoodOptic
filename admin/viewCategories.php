@@ -1,6 +1,6 @@
 <?php include "./header.php"; ?>
 <?php include "./sidebar.php"; ?>
-<div class="container all Content-section">
+<div>
   <h2 class="text-center">Danh sách loại sản phẩm</h2>
   <table class="table ">
     <thead>
@@ -11,24 +11,24 @@
       </tr>
     </thead>
     <?php
-      include_once "./config/dbconnect.php";
-      $sql="SELECT * from categories";
-      $result=$conn-> query($sql);
-      $count=1;
-      if ($result-> num_rows > 0){
-        while ($row=$result-> fetch_assoc()) {
+    include_once "./config/dbconnect.php";
+    $sql = "SELECT * from categories";
+    $result = $conn->query($sql);
+    $count = 1;
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
     ?>
-    <tr>
-      <td><?=$count?></td>
-      <td><?=$row["category_name"]?></td>   
-      <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
-      <td><button class="btn btn-danger" style="height:40px" onclick="categoryDelete('<?=$row['category_id']?>')">Xóa</button></td>
-      </tr>
-      <?php
-            $count=$count+1;
-          }
-        }
-      ?>
+        <tr>
+          <td><?= $count ?></td>
+          <td><?= $row["category_name"] ?></td>
+          <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
+          <td><button class="btn btn-danger" style="height:40px" onclick="categoryDelete('<?= $row['category_id'] ?>')">Xóa</button></td>
+        </tr>
+    <?php
+        $count = $count + 1;
+      }
+    }
+    ?>
   </table>
 
   <!-- Trigger the modal with a button -->
@@ -39,7 +39,7 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -47,7 +47,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form  enctype='multipart/form-data' action="phanloai/loaisanpham/addCatController.php" method="POST">
+          <form enctype='multipart/form-data' action="phanloai/loaisanpham/addCatController.php" method="POST">
             <div class="form-group">
               <label for="c_name">Tên loại sản phẩm:</label>
               <input type="text" class="form-control" name="c_name" required>
@@ -62,11 +62,10 @@
           <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Đóng</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 
-  
+
 </div>
 <?php include "./footer.php"; ?>
-
