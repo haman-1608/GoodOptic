@@ -16,6 +16,8 @@
         echo "<p>Không tìm thấy sản phẩm.</p>";
         return;
     }
+
+
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -33,7 +35,31 @@
 <div class="chitiet" style="margin: 0 auto;">
     <div class="ctietsp">
         <div style="width: 650px;">
-            <img width=100% src="imgs/trangchu/trongkinh.png" alt="anh_sp">
+            <?php
+                $giam_phantram = 0;
+                if ($product['price'] > 0 && $product['disscounted_price'] < $product['price']) {
+                $giam_phantram = 100 - ($product['disscounted_price'] / $product['price']) * 100;
+                $giam_phantram = round($giam_phantram);
+                }
+            ?>
+            <?php if ($giam_phantram > 0): ?>
+            <p style="font-size: 20px;
+                    z-index: 1;
+                    top: 250px;
+                    margin: 0;
+                    border-radius: 0px 30px 30px 0px;
+                    width: 100px;
+                    padding: 11px 13px;
+                    font-weight: bold;
+                    color: white;
+                    background-color: red;
+                    position: absolute;">Giảm <?php echo $giam_phantram; ?>%</p>
+            <?php endif; ?>
+            <?php
+                $images = json_decode($product['images'], true);
+                $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+            ?>
+            <img style="width: 100%;" src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
         </div>
         <div>
             <h1 style="margin-top: 0;"><?php echo $product['product_name']; ?></h1>
@@ -55,7 +81,7 @@
                 <b style="font-size: 18px; margin-top: 40px;">Số lượng</b>
                 <div class="add">
                     <input class="solg" type="number" name="quantity" value="1" min="1"/>
-                    <button type="submit" class="cart">ADD TO CARD</button>
+                    <button type="submit" name="add_to_cart" class="cart">ADD TO CARD</button>
                 </div>
             </div>
         </div>
