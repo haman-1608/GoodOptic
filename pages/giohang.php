@@ -1,5 +1,5 @@
 <div class="giohang">
-    <div class="ttvc">
+    <form class="ttvc" method="post">
         <b style="font-size: 25px;">THÔNG TIN VẬN CHUYỂN</b> <br>
         <i style="font-size: 13px;">Vui lòng nhập đầy đủ các thông tin bên dưới</i>
 
@@ -20,24 +20,23 @@
         <div class="noio" style="width: 98%;">
             <div>
                 <p>Tỉnh/Thành phố *</p>
-                <select name="job" style="width: 90%;">
+                <select name="tinh" id="tinh" style="width: 90%;">
                     <option value="">Chọn tỉnh thành</option>
-                    <option value="hs">--Chọn quận huyện</option>
-                    <option value="gv">-- Chọn xã phường</option>
+
                 </select>
             </div>
             <div>
                 <p>Quận/Huyện *</p>
-                <select name="job" style="width: 90%;">
-                    <option value="hs">Chọn quận huyện</option>
-                    <option value="gv">Giáo viên</option>
+                <select name="huyen" id="huyen" style="width: 90%;">
+                    <option value="">Chọn quận huyện</option>
+
                 </select>
             </div>
             <div>
                 <p>Xã/Phường *</p>
-                <select name="job" style="width: 90%;">
-                    <option value="hs">Chọn xã phường</option>
-                    <option value="gv">Giáo viên</option>
+                <select name="xa" id="xa" style="width: 90%;">
+                    <option value="">Chọn xã phường</option>
+
                 </select>
             </div>
         </div>
@@ -54,9 +53,9 @@
             <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" id="tienmat" value="0" checked = "true"></label>
             <label>Chuyển khoản ngân hàng<input type="radio" name="hinhthuc" id="chuyenkhoan" value="1"></label>
             <p style="font-size: 10px; margin: -10px 3px; font-size: 12px;">Thông tin cá nhân của bạn được sử dụng để xử lý đơn hàng, trải nghiệm trên trang web và các mục đích khác được mô tả trong <b>chính sách bảo mật</b> của chúng tôi.</p>
-            <button class="thanhtoan">THANH TOÁN</button>
+            <button type="submit" class="thanhtoan">THANH TOÁN</button>
         </div>
-    </div>
+    </form>
     <div class="ttvc" >
         <b style="font-size: 25px;">GIỎ HÀNG</b>
         <div class="sp_cart" style="margin-top: 25px;">
@@ -76,9 +75,9 @@
         <b style="font-size: 25px;">MÃ GIẢM GIÁ</b>
         <div class="giamgia" style="display: flex; gap:10px; margin-top:20px; margin-bottom: 60px;">
             <input style="width:60%; font-size:17px;" type="text" name="magiamgia" id="magiamgia" placeholder="NHẬP MÃ GIẢM GIÁ">
-            <button class="giam" >ÁP DỤNG</button>
+            <button type="submit" class="giam" >ÁP DỤNG</button>
         </div>
-        <div class="tien" style="">
+        <div class="tien">
             <b style="font-size: 20px;">TỔNG TIỀN</b>
             <p>351.000 VNĐ</p>
         </div>
@@ -97,3 +96,32 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const url = "https://provinces.open-api.vn/api/?depth=3";
+
+    $.getJSON(url, function(data) {
+        data.forEach(function(tinh) {
+            $('#tinh').append(`<option value="${tinh.name}">${tinh.name}</option>`);
+        });
+
+        $('#tinh').on('change', function() {
+            const selected = data.find(t => t.name === this.value);
+            $('#huyen').html('<option>Chọn huyện</option>');
+            $('#xa').html('<option>Chọn xã</option>');
+
+            selected.districts.forEach(h => {
+                $('#huyen').append(`<option value="${h.name}">${h.name}</option>`);
+            });
+
+            $('#huyen').on('change', function() {
+                const dist = selected.districts.find(d => d.name === this.value);
+                $('#xa').html('<option>Chọn xã</option>');
+                dist.wards.forEach(x => {
+                    $('#xa').append(`<option value="${x.name}">${x.name}</option>`);
+                });
+            });
+        });
+    });
+</script>

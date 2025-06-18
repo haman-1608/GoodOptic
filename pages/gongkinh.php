@@ -34,7 +34,11 @@
         <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
             <div class="ndsp">
                 <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
+                    <?php
+                        $images = json_decode($row['images'], true);
+                        $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+                    ?>
+                    <img src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
                 </div>
                 <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
                 <p class="gia" style="margin-left: 10px; margin-top:0px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'). ' đ'; ?></p>
@@ -50,7 +54,7 @@
             $end = min($total_pages, $page + $adjacents);
 
             if ($page > 1) {
-                echo '<a href="?page=trongkinh&page_num=' . ($page - 1) . '" class="arrow">‹</a>';
+                echo '<a href="?page=gongkinh&page_num=' . ($page - 1) . '" class="arrow">‹</a>';
             }
 
             // Hiển thị tất cả các trang
@@ -58,13 +62,13 @@
                 if ($i == $page) {
                     echo '<span class="current">' . $i . '</span>'; // Trang hiện tại
                 } else {
-                    echo '<a href="?page=trongkinh&page_num=' . $i . '">' . $i . '</a>';
+                    echo '<a href="?page=gongkinh&page_num=' . $i . '">' . $i . '</a>';
                 }
             }
 
             // Nút "›" tiến tới nếu không phải trang cuối
             if ($page < $total_pages) {
-                echo '<a href="?page=trongkinh&page_num=' . ($page + 1) . '" class="arrow">›</a>';
+                echo '<a href="?page=gongkinh&page_num=' . ($page + 1) . '" class="arrow">›</a>';
             }
         ?>
     </div>

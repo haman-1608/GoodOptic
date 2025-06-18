@@ -16,6 +16,8 @@
         echo "<p>Không tìm thấy sản phẩm.</p>";
         return;
     }
+
+
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -53,7 +55,11 @@
                     background-color: red;
                     position: absolute;">Giảm <?php echo $giam_phantram; ?>%</p>
             <?php endif; ?>
-            <img width=100% src="imgs/trangchu/trongkinh.png" alt="anh_sp">
+            <?php
+                $images = json_decode($product['images'], true);
+                $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+            ?>
+            <img style="width: 100%;" src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
         </div>
         <div>
             <h1 style="margin-top: 0;"><?php echo $product['product_name']; ?></h1>
@@ -75,7 +81,7 @@
                 <b style="font-size: 18px; margin-top: 40px;">Số lượng</b>
                 <div class="add">
                     <input class="solg" type="number" name="quantity" value="1" min="1"/>
-                    <button type="submit" class="cart">ADD TO CARD</button>
+                    <button type="submit" name="add_to_cart" class="cart">ADD TO CARD</button>
                 </div>
             </div>
         </div>

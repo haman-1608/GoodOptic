@@ -33,7 +33,11 @@
         <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
             <div class="ndsp">
                 <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
+                    <?php
+                        $images = json_decode($row['images'], true);
+                        $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+                    ?>
+                    <img src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
                 </div>
                 <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
                 <p class="gia" style="margin-left: 10px; margin-top:0px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'). ' đ'; ?></p>
