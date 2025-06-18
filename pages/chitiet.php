@@ -33,6 +33,26 @@
 <div class="chitiet" style="margin: 0 auto;">
     <div class="ctietsp">
         <div style="width: 650px;">
+            <?php
+                $giam_phantram = 0;
+                if ($product['price'] > 0 && $product['disscounted_price'] < $product['price']) {
+                $giam_phantram = 100 - ($product['disscounted_price'] / $product['price']) * 100;
+                $giam_phantram = round($giam_phantram);
+                }
+            ?>
+            <?php if ($giam_phantram > 0): ?>
+            <p style="font-size: 20px;
+                    z-index: 1;
+                    top: 250px;
+                    margin: 0;
+                    border-radius: 0px 30px 30px 0px;
+                    width: 100px;
+                    padding: 11px 13px;
+                    font-weight: bold;
+                    color: white;
+                    background-color: red;
+                    position: absolute;">Giảm <?php echo $giam_phantram; ?>%</p>
+            <?php endif; ?>
             <img width=100% src="imgs/trangchu/trongkinh.png" alt="anh_sp">
         </div>
         <div>
