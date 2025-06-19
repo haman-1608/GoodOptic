@@ -35,10 +35,10 @@
       while ($row = $result->fetch_assoc()) {
     ?>
         <tr>
-          <td><?= $row["product_id"] ?></td>
-          <td><img height='100px' src='<?= $row["images"] ?>'></td>
+          <td><?= $count ?></td>
+          <td><img height='100px' src="../imgs/products/<?php echo $row['images'] ?>"></td>
           <td><?= $row["product_name"] ?></td>
-          <td><?= $row["desc"] ?></td>
+          <td><?= $row["description"] ?></td>
           <td><?= $row["category_name"] ?></td>
           <td><?= $row["brand_name"] ?></td>
           <td><?= $row["target_name"] ?></td>
@@ -72,26 +72,26 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form enctype='multipart/form-data' onsubmit="addItems()" action="sanpham/addItemController.php" method="POST">
+          <form enctype='multipart/form-data' action="sanpham/addItemController.php" method="POST">
             <div class="form-group">
               <label for="p_name">Tên sản phẩm:</label>
-              <input type="text" class="form-control" id="p_name" required>
+              <input type="text" class="form-control" name="p_name" required>
             </div>
             <div class="form-group">
               <label for="p_price">Giá bán:</label>
-              <input type="text" class="form-control" id="p_price" required>
+              <input type="text" class="form-control" name="p_price" required>
             </div>
             <div class="form-group">
               <label for="unit">Đơn vị:</label>
-              <input type="text" class="form-control" id="unit" required>
+              <input type="text" class="form-control" name="unit" required>
             </div>
             <div class="form-group">
               <label for="p_desc">Mô tả:</label>
-              <input type="text" class="form-control" id="p_desc" required>
+              <input type="text" class="form-control" name="p_desc" required>
             </div>
             <div class="form-group">
               <label for="category">Phân loại:</label>
-              <select id="category">
+              <select name="category">
                 <option disabled selected>Chọn</option>
                 <?php
 
@@ -108,7 +108,7 @@
             </div>
             <div class="form-group">
               <label for="brand">Thương hiệu:</label>
-              <select id="brand">
+              <select name="brand">
                 <option disabled selected>Chọn</option>
                 <?php
 
@@ -125,7 +125,7 @@
             </div>
             <div class="form-group">
               <label for="target">Đối tượng:</label>
-              <select id="target">
+              <select name="target">
                 <option disabled selected>Chọn</option>
                 <?php
 
@@ -142,7 +142,7 @@
             </div>
             <div class="form-group">
               <label for="uv">Chống tia UV:</label>
-              <select id="uv">
+              <select name="uv">
                 <option disabled selected>Chọn</option>
                 <?php
 
@@ -159,7 +159,7 @@
             </div>
             <div class="form-group">
               <label for="refractive">Khúc xạ:</label>
-              <select id="refractive">
+              <select name="refractive">
                 <option disabled selected>Chọn</option>
                 <?php
 
@@ -176,7 +176,7 @@
             </div>
             <div class="form-group">
               <label for="material">Chất liệu:</label>
-              <select id="material">
+              <select name="material">
                 <option disabled selected>Chọn</option>
                 <?php
 
@@ -193,10 +193,10 @@
             </div>
             <div class="form-group">
               <label for="file">Chọn ảnh:</label>
-              <input type="file" class="form-control-file" id="file">
+              <input type="file" class="form-control-file" name="file">
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-secondary" id="upload" style="height:40px">Thêm</button>
+              <button type="submit" class="btn btn-secondary" name="upload" style="height:40px">Thêm</button>
             </div>
           </form>
 
