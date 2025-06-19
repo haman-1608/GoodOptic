@@ -12,23 +12,17 @@ if (isset($_POST['upload'])) {
     $uv = $_POST['uv'];
     $refractive = $_POST['refractive'];
     $material = $_POST['material'];
-    $status = $_POST['p_status'];
 
-    $name = $_FILES['file']['name'];
-    $temp = $_FILES['file']['tmp_name'];
+    $image = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
 
-    $location = "./uploads/";
-    $image = $location . $name;
-
-    $target_dir = "../uploads/";
-    $finalImage = $target_dir . $name;
-
-    move_uploaded_file($temp, $finalImage);
+    move_uploaded_file($image_tmp, '../../imgs/products/'.$image);
 
     $insert = mysqli_query($conn, "INSERT INTO products
-         (product_name,images,price,desc,category_id,brand_id,unit,target_id,UV_id,Refractive_id,Material_id,status) 
-         VALUES ('$ProductName','$image',$price,'$desc','$category','$brand','$unit','$target','$uv','$refractive','$material','$status')");
-
+         (product_name,images,price,description,category_id,brand_id,unit,target_id,UV_id,Refractive_id,Material_id) 
+         VALUES ('$ProductName','$image',$price,'$desc','$category','$brand','$unit','$target','$uv','$refractive','$material')");
+    
+    
     if (!$insert) {
         echo mysqli_error($conn);
     } else {

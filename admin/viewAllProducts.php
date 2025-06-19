@@ -192,8 +192,8 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="file">Chọn ảnh:</label>
-              <input type="file" class="form-control-file" name="file">
+              <label for="">Chọn ảnh:</label>
+              <input type="file" class="form-control-file" name="image">
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-secondary" name="upload" style="height:40px">Thêm</button>
