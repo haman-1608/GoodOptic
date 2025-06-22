@@ -20,6 +20,16 @@ function showCategory() {
         }
     });
 }
+function showBrand() {
+    $.ajax({
+        url: "./viewBrand.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
+            $('.allContent-section').html(data);
+        }
+    });
+}
 function showMaterial() {
     $.ajax({
         url: "./phanloai/chatlieu/viewMaterial.php",
@@ -257,7 +267,7 @@ function materialDelete(id) {
         success: function (data) {
             alert('Chất liệu đã được xóa thành công');
             $('form').trigger('reset');
-            showSizes();
+            showMaterial();
         }
     });
 }
@@ -272,7 +282,7 @@ function targetDelete(id) {
         success: function (data) {
             alert('Đối tượng đã được xóa thành công');
             $('form').trigger('reset');
-            showProductSizes();
+            showTarget();
         }
     });
 }
@@ -285,7 +295,7 @@ function refractiveDelete(id) {
         success: function (data) {
             alert('xóa thành công');
             $('form').trigger('reset');
-            showProductSizes();
+            showRefractive();
         }
     });
 }
@@ -298,7 +308,20 @@ function uvDelete(id) {
         success: function (data) {
             alert('UV đã được xóa thành công');
             $('form').trigger('reset');
-            showProductSizes();
+            showUV();
+        }
+    });
+}
+
+function brandDelete(id) {
+    $.ajax({
+        url: "./phanloai/thuonghieu/deleteBrand.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Thương hiệu đã được xóa thành công');
+            $('form').trigger('reset');
+            showBrand();
         }
     });
 }

@@ -165,7 +165,7 @@
               </select>
             <label for="">Chọn ảnh:</label>
               <input type="file" class="form-control-file" name="image">
-            <input type="submit" value="Submit" name="upload">
+            <input type="submit" value="Thêm" name="upload">
 					</form>
 				</div>
 			</div>
