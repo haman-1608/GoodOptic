@@ -1,10 +1,11 @@
 <?php
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
-        $sql = "SELECT p.*, m.material_name 
+        $sql = "SELECT p.*, m.material_name , b.brand_name
                 FROM products p 
+                JOIN brands b ON p.brand_id = b.brand_id 
                 JOIN Material m ON p.Material_id = m.material_id 
-                WHERE p.product_id = $id AND p.status = 'Active' AND m.status = 'Active'";
+                WHERE p.product_id = $id AND p.status = 'Active' AND m.status = 'Active' AND b.status = 'Active'";
         $result = $conn->query($sql);
         if ($result && $result->num_rows > 0) {
             $product = $result->fetch_assoc();
@@ -71,7 +72,7 @@
             <div  class="ttin">
                 <p>
                     &nbsp;&nbsp;&nbsp;THÔNG TIN GỌNG KÍNH<br> 
-                    * Thương Hiệu: Good Optic<br>
+                    * Thương Hiệu: <?php echo htmlspecialchars($product['brand_name']); ?><br>
                     * Mã sản phẩm: <?php echo $product['product_id']; ?><br>
                     * Chất liệu: <?php echo htmlspecialchars($product['material_name']); ?><br>
                     * Giá sản phẩm: <?php echo number_format($product['price'], 0, ',', '.') . ' VNĐ'; ?><br>
