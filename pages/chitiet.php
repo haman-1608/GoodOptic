@@ -56,10 +56,10 @@
                     position: absolute;">Giảm <?php echo $giam_phantram; ?>%</p>
             <?php endif; ?>
             <?php
-                $images = json_decode($product['images'], true);
-                $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+                $firstImage = $product['images'] ? trim($product['images']) : 'default.png';
+                $imgSrc = htmlspecialchars($firstImage);
             ?>
-            <img style="width: 100%;" src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
+            <img style="width: 100%;" src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
         </div>
         <div>
             <h1 style="margin-top: 0;"><?php echo $product['product_name']; ?></h1>
@@ -133,7 +133,11 @@
         <a href="index.php?page=chitiet&id=<?php echo $goiy['product_id']; ?>" class="sp">
             <div class="ndsp">
                 <div class="anhsp">
-                    <img src="imgs/trangchu/trongkinh.png">
+                    <?php
+                        $firstImage = $goiy['images'] ? trim($goiy['images']) : 'default.png';
+                        $imgSrc = htmlspecialchars($firstImage);
+                    ?>
+                    <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                 </div>
                 <p class="tensp"><?php echo htmlspecialchars($goiy['product_name']); ?></p>
                 <p class="gia" style="margin-top: 0px; margin-left: 10px;"><?php echo number_format($goiy['disscounted_price'], 0, ',', '.') . ' đ'; ?></p>

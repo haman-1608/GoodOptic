@@ -34,10 +34,10 @@
             <div class="ndsp">
                 <div class="anhsp">
                     <?php
-                        $images = json_decode($row['images'], true);
-                        $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+                        $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
+                        $imgSrc = htmlspecialchars($firstImage);
                     ?>
-                    <img src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
+                    <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                 </div>
                 <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
                 <p class="gia" style="margin-left: 10px; margin-top:0px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'). ' đ'; ?></p>
