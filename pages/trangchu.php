@@ -106,10 +106,10 @@ $(document).ready(function(){
                         <div class="ndsp">
                         <div class="anhsp">
                             <?php
-                                $images = json_decode($row['images'], true);
-                                $firstImage = isset($images[0]) ? $images[0] : 'default.png';
+                                $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
+                                $imgSrc = htmlspecialchars($firstImage);
                             ?>
-                            <img src="imgs/products/<?php echo htmlspecialchars($firstImage); ?>" alt="Ảnh sản phẩm">
+                            <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                         </div>
                         <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
                         <p class="gia" style="margin-top: 0px; margin-left: 10px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'); ?> đ</p>
@@ -131,7 +131,11 @@ $(document).ready(function(){
                     <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
-                            <img src="imgs/trangchu/trongkinh.png">
+                            <?php
+                                $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
+                                $imgSrc = htmlspecialchars($firstImage);
+                            ?>
+                            <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                         </div>
                         <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
                         <p class="gia" style="margin-top: 0px; margin-left: 10px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'); ?> đ</p>
@@ -153,7 +157,11 @@ $(document).ready(function(){
                     <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
-                            <img src="imgs/trangchu/trongkinh.png">
+                            <?php
+                                $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
+                                $imgSrc = htmlspecialchars($firstImage);
+                            ?>
+                            <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                         </div>
                         <p class="tensp"><?php echo htmlspecialchars($row['product_name']); ?></p>
                         <p class="gia" style="margin-top: 0px; margin-left: 10px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'); ?> đ</p>
