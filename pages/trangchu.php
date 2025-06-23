@@ -120,7 +120,7 @@ $(document).ready(function(){
                     <p>Không có sản phẩm gợi ý.</p>
                     <?php endif; ?>
                 </div>
-                <a href="index.php?page=trongkinh">
+                <a href="index.php?page=gongkinh">
                 <button class="xthem">Xem thêm</button>
                 </a>
             </div>
