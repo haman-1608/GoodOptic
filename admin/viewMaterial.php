@@ -21,7 +21,7 @@
       <td><?=$count?></td>
       <td><?=$row["material_name"]?></td>   
       <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
-      <td><button class="btn btn-danger" style="height:40px" onclick="materialDelete('<?=$row['material_id']?>')">Xóa</button></td>
+      <td><button class="btn-delete" onclick="materialDelete('<?=$row['material_id']?>')">Xóa</button></td>
       </tr>
       <?php
             $count=$count+1;

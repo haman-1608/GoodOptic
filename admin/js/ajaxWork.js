@@ -10,6 +10,16 @@ function showProductItems() {
         }
     });
 }
+function showAdmin() {
+    $.ajax({
+        url: "./viewUsers.php",
+        method: "post",
+        data: { record: 1 },
+        success: function (data) {
+            $('.allContent-section').html(data);
+        }
+    });
+}
 function showCategory() {
     $.ajax({
         url: "./viewCategories.php",
@@ -212,6 +222,20 @@ function itemDelete(id) {
             alert('Items Successfully deleted');
             $('form').trigger('reset');
             showProductItems();
+        }
+    });
+}
+
+//delete admins
+function adminDelete(id) {
+    $.ajax({
+        url: "./nguoidung/deleteAdmin.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Người dùng xóa thành công');
+            $('form').trigger('reset');
+            showAdmin();
         }
     });
 }

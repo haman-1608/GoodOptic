@@ -338,6 +338,17 @@ button:hover:after {
   border-radius: 50px;
 }
 
+.btn-edit, .btn-delete {
+    padding: 4px 8px;
+    font-size: 13px;
+    border-radius: 4px;
+    background: #403e3d;
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+    color: #fff;
+}
+
+
 .overlay {
   position: fixed;
   top: 0;

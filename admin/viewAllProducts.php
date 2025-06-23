@@ -46,8 +46,8 @@
           <td><?= $row["material_name"] ?></td>
           <td><?= $row["price"] ?></td>
           <td><?= $row["unit"] ?></td>
-          <td><button class="btn btn-primary" style="height:40px" onclick="itemEditForm('<?= $row['product_id'] ?>')">Edit</button></td>
-          <td><button class="btn btn-danger" style="height:40px" onclick="itemDelete('<?= $row['product_id'] ?>')">Delete</button></td>
+          <td><button class="btn-edit" onclick="itemEditForm('<?= $row['product_id'] ?>')">Edit</button></td>
+          <td><button class="btn-delete" onclick="itemDelete('<?= $row['product_id'] ?>')">Delete</button></td>
         </tr>
     <?php
         $count = $count + 1;

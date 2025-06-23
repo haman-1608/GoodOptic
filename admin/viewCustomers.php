@@ -1,5 +1,9 @@
-<?php include "./header.php"; ?>
-<?php include "./sidebar.php"; ?>
+<?php include "./header.php"; 
+include "./sidebar.php";
+if ($_SESSION['user']['type'] != 'Admin'){
+    echo "<h2>Bạn không có quyền truy cập nội dung này</h2>";
+} else {
+?>
 <div>
   <h2 class="text-center">Danh sách khách hàng</h2>
   <div class="table-responsive">
@@ -37,4 +41,7 @@
     </table>
   </div>
 </div>
+<?php
+}
+?>
 <?php include "./footer.php"; ?>
