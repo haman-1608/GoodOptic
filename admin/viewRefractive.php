@@ -21,7 +21,9 @@
           <td><?= $count ?></td>
           <td><?= $row["refractive_name"] ?></td>
           <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
-          <td><button class="btn-delete" onclick="refractiveDelete('<?= $row['refractive_id'] ?>')">Xóa</button></td>
+          <td><a class="btn-delete"
+              href="phanloai/khucxa/deleteRefractive.php?id=<?= $row['refractive_id'] ?>"
+              onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
         </tr>
     <?php
         $count = $count + 1;

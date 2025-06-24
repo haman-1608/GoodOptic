@@ -1,17 +1,15 @@
+
 <?php
 
-    include_once "../../config/dbconnect.php";
-    
-    $uv_id=$_POST['record'];
-    $query="DELETE FROM UV where uv_id='$uv_id'";
+//lay id goi den
+$delid = $_GET['id'];
 
-    $data=mysqli_query($conn,$query);
+//ket noi csdl
+require('../../config/dbconnect.php');
 
-    if($data){
-        echo"UV đã được xóa thành công";
-    }
-    else{
-        echo"Lỗi khi xóa UV";
-    }
-    
-?>
+$sql_str = "delete from UV where uv_id=$delid";
+mysqli_query($conn, $sql_str);
+
+//trở về trang liệt kê uv
+header("location: ../../viewUV.php");
+

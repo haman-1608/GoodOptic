@@ -47,7 +47,9 @@
           <td><?= $row["price"] ?></td>
           <td><?= $row["unit"] ?></td>
           <td><button class="btn-edit" onclick="itemEditForm('<?= $row['product_id'] ?>')">Edit</button></td>
-          <td><button class="btn-delete" onclick="itemDelete('<?= $row['product_id'] ?>')">Delete</button></td>
+          <td><a class="btn-delete"
+              href="sanpham/deleteItemController.php?id=<?= $row['product_id'] ?>"
+              onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
         </tr>
     <?php
         $count = $count + 1;

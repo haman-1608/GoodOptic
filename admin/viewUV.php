@@ -21,7 +21,9 @@
           <td><?= $count ?></td>
           <td><?= $row["uv_name"] ?></td>
           <!-- <td><button class="btn btn-primary" >Edit</button></td> -->
-          <td><button class="btn-delete" onclick="uvDelete('<?= $row['uv_id'] ?>')">Xóa</button></td>
+          <td><a class="btn-delete"
+              href="phanloai/uv/deleteUV.php?id=<?= $row['uv_id'] ?>"
+              onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
         </tr>
     <?php
         $count = $count + 1;

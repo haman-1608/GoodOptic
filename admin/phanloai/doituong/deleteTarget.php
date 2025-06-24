@@ -1,17 +1,15 @@
+
 <?php
 
-    include_once "../../config/dbconnect.php";
-    
-    $t_id=$_POST['record'];
-    $query="DELETE FROM targets where target_id='$t_id'";
+//lay id goi den
+$delid = $_GET['id'];
 
-    $data=mysqli_query($conn,$query);
+//ket noi csdl
+require('../../config/dbconnect.php');
 
-    if($data){
-        echo"Đối tượng đã được xóa thành công";
-    }
-    else{
-        echo"Lỗi khi xóa đối tượng";
-    }
-    
-?>
+$sql_str = "delete from targets where target_id=$delid";
+mysqli_query($conn, $sql_str);
+
+//trở về trang liệt kê targets
+header("location: ../../viewTarget.php");
+

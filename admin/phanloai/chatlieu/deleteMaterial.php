@@ -1,17 +1,15 @@
+
 <?php
 
-    include_once "../../config/dbconnect.php";
-    
-    $m_id=$_POST['record'];
-    $query="DELETE FROM Material where material_id='$m_id'";
+//lay id goi den
+$delid = $_GET['id'];
 
-    $data=mysqli_query($conn,$query);
+//ket noi csdl
+require('../../config/dbconnect.php');
 
-    if($data){
-        echo"Chất liệu đã được xóa thành công";
-    }
-    else{
-        echo"Lỗi khi xóa chất liệu";
-    }
-    
-?>
+$sql_str = "delete from Material where material_id=$delid";
+mysqli_query($conn, $sql_str);
+
+//trở về trang liệt kê Material
+header("location: ../../viewMaterial.php");
+

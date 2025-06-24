@@ -1,17 +1,15 @@
+
 <?php
 
-    include_once "../config/dbconnect.php";
-    
-    $id=$_POST['record'];
-    $query="DELETE FROM admins where id='$id'";
+//lay id goi den
+$delid = $_GET['id'];
 
-    $data=mysqli_query($conn,$query);
+//ket noi csdl
+require('../config/dbconnect.php');
 
-    if($data){
-        echo"Người dùng đã được xóa thành công";
-    }
-    else{
-        echo"Không thể xóa người dùng";
-    }
-    
-?>
+$sql_str = "delete from admins where id=$delid";
+mysqli_query($conn, $sql_str);
+
+//trở về trang liệt kê brands
+header("location: ../viewUsers.php");
+

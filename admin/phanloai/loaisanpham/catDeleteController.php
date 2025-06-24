@@ -1,17 +1,15 @@
+
 <?php
 
-    include_once "../../config/dbconnect.php";
-    
-    $c_id=$_POST['record'];
-    $query="DELETE FROM categories where category_id='$c_id'";
+//lay id goi den
+$delid = $_GET['id'];
 
-    $data=mysqli_query($conn,$query);
+//ket noi csdl
+require('../../config/dbconnect.php');
 
-    if($data){
-        echo"Category Item Deleted";
-    }
-    else{
-        echo"Not able to delete";
-    }
-    
-?>
+$sql_str = "delete from categories where category_id=$delid";
+mysqli_query($conn, $sql_str);
+
+//trở về trang liệt kê categories
+header("location: ../../viewCategories.php");
+

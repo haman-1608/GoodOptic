@@ -1,17 +1,15 @@
+
 <?php
 
-    include_once "../../config/dbconnect.php";
-    
-    $r_id=$_POST['record'];
-    $query="DELETE FROM Refractive where refractive_id='$r_id'";
+//lay id goi den
+$delid = $_GET['id'];
 
-    $data=mysqli_query($conn,$query);
+//ket noi csdl
+require('../../config/dbconnect.php');
 
-    if($data){
-        echo"Khúc xạ đã được xóa thành công";
-    }
-    else{
-        echo"Lỗi khi xóa";
-    }
-    
-?>
+$sql_str = "delete from Refractive where refractive_id=$delid";
+mysqli_query($conn, $sql_str);
+
+//trở về trang liệt kê refractive
+header("location: ../../viewRefractive.php");
+

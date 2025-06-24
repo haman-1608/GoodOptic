@@ -19,7 +19,7 @@ if ($_SESSION['user']['type'] != 'Admin'){
         </thead>
         <?php
         include_once "./config/dbconnect.php";
-        $sql = "SELECT name, email, type, status from admins order by created_at";
+        $sql = "SELECT id, name, email, type, status from admins order by created_at";
         $result = $conn->query($sql);
         $count = 1;
         if ($result->num_rows > 0) {
@@ -32,7 +32,9 @@ if ($_SESSION['user']['type'] != 'Admin'){
                     <td><?= $row["type"] ?></td>
                     <td><?= $row["status"] ?></td>
                     <td><a class="btn-edit" href="editAdmin.php">Sửa</button></td>
-                    <td><a class="btn-delete" href="nguoidung/deleteAdmin.php">Xóa</button></td>
+                    <td><a class="btn-delete" 
+                    href="nguoidung/deleteAdmin.php?id=<?=$row['id']?>"
+                    onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
                 </tr>
         <?php
                 $count = $count + 1;
