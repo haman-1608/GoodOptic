@@ -323,6 +323,7 @@ CREATE TABLE `products` (
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stock` tinyint(3) UNSIGNED NOT NULL,
   `unit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` double NOT NULL,
   `disscounted_price` double NOT NULL,
@@ -461,7 +462,6 @@ INSERT INTO `products` (`product_id`, `product_name`, `slug`, `description`, `un
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
-  ADD UNIQUE KEY `products_slug_unique` (`slug`),
   ADD KEY `products_category_id_foreign` (`category_id`),
   ADD KEY `products_brand_id_foreign` (`brand_id`),
   ADD KEY `products_target_id_foreign` (`target_id`),

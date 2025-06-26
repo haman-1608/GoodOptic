@@ -33,9 +33,15 @@
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
     ?>
+        <?php
+        $image = $row['images'];
+        $src   = (preg_match('#^https?://#i', $image))
+          ? $image
+          : "../imgs/products/{$image}";
+        ?>
         <tr>
           <td><?= $count ?></td>
-          <td><img height='100px' src="../imgs/products/<?php echo $row['images'] ?>"></td>
+          <td><img src="<?= htmlspecialchars($src) ?>" height="100px" alt="<?= htmlspecialchars($row['product_name']) ?>"></td>
           <td><?= $row["product_name"] ?></td>
           <td><?= $row["description"] ?></td>
           <td><?= $row["category_name"] ?></td>
@@ -46,7 +52,7 @@
           <td><?= $row["material_name"] ?></td>
           <td><?= $row["price"] ?></td>
           <td><?= $row["unit"] ?></td>
-          <td><button class="btn-edit" onclick="itemEditForm('<?= $row['product_id'] ?>')">Edit</button></td>
+          <td><a class="btn-edit" href="sanpham/updateItemController.php?id=<?= $row['product_id'] ?>">Edit</a></td>
           <td><a class="btn-delete"
               href="sanpham/deleteItemController.php?id=<?= $row['product_id'] ?>"
               onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
@@ -59,118 +65,118 @@
   </table>
 
   <div class="box">
-		<a class="button" href="#divOne">Thêm mới</a>
-	</div>
-	<div class="overlay" id="divOne">
-		<div id="myModalwrapper" class="modal-wrapper">
-			<h2>Thêm mới sản phẩm</h2><a class="close" href="#">&times;</a>
-			<div class="content">
-				<div class="modal">
-					<form enctype='multipart/form-data' action="sanpham/addItemController.php" method="POST">
-						<label for="p_name">Tên sản phẩm:</label>
-              <input type="text" class="form-control" name="p_name" required>
-						<label for="p_price">Giá bán:</label>
-              <input type="text" class="form-control" name="p_price" required>
+    <a class="button" href="#divOne">Thêm mới</a>
+  </div>
+  <div class="overlay" id="divOne">
+    <div id="myModalwrapper" class="modal-wrapper">
+      <h2>Thêm mới sản phẩm</h2><a class="close" href="#">&times;</a>
+      <div class="content">
+        <div class="modal">
+          <form enctype='multipart/form-data' action="sanpham/addItemController.php" method="POST">
+            <label for="p_name">Tên sản phẩm:</label>
+            <input type="text" class="form-control" name="p_name" required>
+            <label for="p_price">Giá bán:</label>
+            <input type="text" class="form-control" name="p_price" required>
             <label for="unit">Đơn vị:</label>
-              <input type="text" class="form-control" name="unit" required>
+            <input type="text" class="form-control" name="unit" required>
             <label for="p_desc">Mô tả:</label>
             <textarea name="p_desc" id=""></textarea>
             <label for="category">Phân loại:</label>
-              <select name="category">
-                <option disabled selected>Chọn</option>
-                <?php
+            <select name="category">
+              <option disabled selected>Chọn</option>
+              <?php
 
-                $sql = "SELECT * from categories";
-                $result = $conn->query($sql);
+              $sql = "SELECT * from categories";
+              $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['category_id'] . "'>" . $row['category_name'] . "</option>";
-                  }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['category_id'] . "'>" . $row['category_name'] . "</option>";
                 }
-                ?>
-              </select>
+              }
+              ?>
+            </select>
             <label for="brand">Thương hiệu:</label>
-              <select name="brand">
-                <option disabled selected>Chọn</option>
-                <?php
+            <select name="brand">
+              <option disabled selected>Chọn</option>
+              <?php
 
-                $sql = "SELECT * from brands";
-                $result = $conn->query($sql);
+              $sql = "SELECT * from brands";
+              $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['brand_id'] . "'>" . $row['brand_name'] . "</option>";
-                  }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['brand_id'] . "'>" . $row['brand_name'] . "</option>";
                 }
-                ?>
-              </select>
+              }
+              ?>
+            </select>
             <label for="target">Đối tượng:</label>
-              <select name="target">
-                <option disabled selected>Chọn</option>
-                <?php
+            <select name="target">
+              <option disabled selected>Chọn</option>
+              <?php
 
-                $sql = "SELECT * from targets";
-                $result = $conn->query($sql);
+              $sql = "SELECT * from targets";
+              $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['target_id'] . "'>" . $row['target_name'] . "</option>";
-                  }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['target_id'] . "'>" . $row['target_name'] . "</option>";
                 }
-                ?>
-              </select>
+              }
+              ?>
+            </select>
             <label for="uv">Chống tia UV:</label>
-              <select name="uv">
-                <option disabled selected>Chọn</option>
-                <?php
+            <select name="uv">
+              <option disabled selected>Chọn</option>
+              <?php
 
-                $sql = "SELECT * from UV";
-                $result = $conn->query($sql);
+              $sql = "SELECT * from UV";
+              $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['uv_id'] . "'>" . $row['uv_name'] . "</option>";
-                  }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['uv_id'] . "'>" . $row['uv_name'] . "</option>";
                 }
-                ?>
-              </select>
+              }
+              ?>
+            </select>
             <label for="refractive">Khúc xạ:</label>
-              <select name="refractive">
-                <option disabled selected>Chọn</option>
-                <?php
+            <select name="refractive">
+              <option disabled selected>Chọn</option>
+              <?php
 
-                $sql = "SELECT * from Refractive";
-                $result = $conn->query($sql);
+              $sql = "SELECT * from Refractive";
+              $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['refractive_id'] . "'>" . $row['refractive_name'] . "</option>";
-                  }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['refractive_id'] . "'>" . $row['refractive_name'] . "</option>";
                 }
-                ?>
-              </select>
+              }
+              ?>
+            </select>
             <label for="material">Chất liệu:</label>
-              <select name="material">
-                <option disabled selected>Chọn</option>
-                <?php
+            <select name="material">
+              <option disabled selected>Chọn</option>
+              <?php
 
-                $sql = "SELECT * from Material";
-                $result = $conn->query($sql);
+              $sql = "SELECT * from Material";
+              $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['material_id'] . "'>" . $row['material_name'] . "</option>";
-                  }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['material_id'] . "'>" . $row['material_name'] . "</option>";
                 }
-                ?>
-              </select>
+              }
+              ?>
+            </select>
             <label for="">Chọn ảnh:</label>
-              <input type="file" class="form-control-file" name="image">
+            <input type="file" class="form-control-file" name="image">
             <input type="submit" value="Thêm" name="upload">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-<?php include "./footer.php"; ?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php include "./footer.php"; ?>

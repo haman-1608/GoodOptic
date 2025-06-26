@@ -31,7 +31,7 @@ if ($_SESSION['user']['type'] != 'Admin'){
                     <td><?= $row["email"] ?></td>
                     <td><?= $row["type"] ?></td>
                     <td><?= $row["status"] ?></td>
-                    <td><a class="btn-edit" href="editAdmin.php">Sửa</button></td>
+                    <td><a class="btn-edit" href="editAdmin.php?id=<?=$row['id']?>">Sửa</button></td>
                     <td><a class="btn-delete" 
                     href="nguoidung/deleteAdmin.php?id=<?=$row['id']?>"
                     onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
@@ -47,7 +47,7 @@ if ($_SESSION['user']['type'] != 'Admin'){
     </div>
     <div class="overlay" id="divOne">
         <div id="myModalwrapper" class="modal-wrapper">
-            <h2>Thêm người dùng</h2><a class="close" href="#">&times;</a>
+            <h2>Cập nhật người dùng</h2><a class="close" href="#">&times;</a>
             <div class="content">
                 <div class="modal">
                     <form enctype='multipart/form-data' action="nguoidung/addAdmin.php" method="POST">
