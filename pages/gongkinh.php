@@ -6,8 +6,8 @@
     $offset = ($page - 1) * $limit;
 
     $count_sql = "SELECT COUNT(*) AS total FROM products WHERE category_id = 3 AND status = 'Active'";
-    $count_result = $conn->query($count_sql);
-    $total_row = $count_result->fetch_assoc();
+    $count_result = mysqli_query($conn, $count_sql);
+    $total_row = mysqli_fetch_assoc($count_result);
     $total_products = $total_row['total'];
     $total_pages = ceil($total_products / $limit);
 
@@ -15,7 +15,7 @@
             FROM products 
             WHERE category_id = 3 AND status = 'Active' 
             LIMIT $limit OFFSET $offset";
-    $result = $conn->query($sql);
+    $result = mysqli_query($conn, $sql);
 ?>
 <div class="dmsp">
     <p style="margin: 20px;">Trang chủ > <b>Gọng kính</b></p>
@@ -28,7 +28,7 @@
     
     <div class="gongkinh">
         <?php
-            while($row = $result -> fetch_assoc()):
+            while($row = mysqli_fetch_assoc($result)):
         ?>
         
         <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">

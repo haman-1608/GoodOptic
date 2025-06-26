@@ -28,21 +28,21 @@
             <div>
                 <p>Quận/Huyện *</p>
                 <select name="huyen" id="huyen" style="width: 90%;">
-                    <option value="">Chọn quận huyện</option>
+                    <option value="">Chọn huyện</option>
 
                 </select>
             </div>
             <div>
                 <p>Xã/Phường *</p>
                 <select name="xa" id="xa" style="width: 90%;">
-                    <option value="">Chọn xã phường</option>
+                    <option value="">Chọn xã</option>
 
                 </select>
             </div>
         </div>
         <div>
-            <p>Tên đường *</p>
-            <input type="text" name="tenduong" id="tenduong" placeholder="Ví dụ: Số 20, Võ Oanh...">
+            <p>Số nhà *</p>
+            <input type="text" name="sonha" id="sonha" placeholder="Ví dụ: Số 20, Võ Oanh...">
         </div>
         <div>
             <p>Chú thích</p>

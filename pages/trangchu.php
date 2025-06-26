@@ -1,12 +1,12 @@
 <?php
     $sql_gongkinh = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active' AND category_id = 3 LIMIT 4";
-    $result_gongkinh = $conn->query($sql_gongkinh);
+    $result_gongkinh = mysqli_query($conn, $sql_gongkinh);
 
     $sql_kinhram = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active' AND category_id = 1 LIMIT 4";
-    $result_kinhram = $conn->query($sql_kinhram);
+    $result_kinhram = mysqli_query($conn, $sql_kinhram);
 
     $sql_trongkinh = "SELECT product_id, product_name, disscounted_price, images FROM products WHERE status = 'Active' AND category_id = 2 LIMIT 4";
-    $result_trongkinh = $conn->query($sql_trongkinh);
+    $result_trongkinh = mysqli_query($conn, $sql_trongkinh);
 ?>
 
 

@@ -6,9 +6,9 @@
                 JOIN brands b ON p.brand_id = b.brand_id 
                 JOIN Material m ON p.Material_id = m.material_id 
                 WHERE p.product_id = $id AND p.status = 'Active' AND m.status = 'Active' AND b.status = 'Active'";
-        $result = $conn->query($sql);
+        $result = mysqli_query($conn, $sql);
         if ($result && $result->num_rows > 0) {
-            $product = $result->fetch_assoc();
+            $product = mysqli_fetch_assoc($result);
         } else {
             echo "<p>Sản phẩm không tồn tại.</p>";
             return;
