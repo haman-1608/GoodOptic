@@ -54,8 +54,8 @@ include "./sidebar.php"; ?>
                         <option value="Admin" <?= $admin['type'] === 'Admin'  ? 'selected' : '' ?>>Admin</option>
                         <option value="Staff" <?= $admin['type'] === 'Staff'  ? 'selected' : '' ?>>Staff</option>
                     </select>
-
-                    <input type="submit" value="Thêm" name="btnUpdate">
+                    
+                    <input type="submit" value="Cập nhật" name="btnUpdate">
                 </form>
             </div>
         </div>
