@@ -31,7 +31,7 @@ if ($_SESSION['user']['type'] != 'Admin'){
                     <td><?= $row["email"] ?></td>
                     <td><?= $row["type"] ?></td>
                     <td><?= $row["status"] ?></td>
-                    <td><a class="btn-edit" href="editAdmin.php?id=<?=$row['id']?>">Sửa</button></td>
+                    <td><a class="btn-edit" href="editAdmin.php?id=<?=$row['id']?>">Sửa</a></td>
                     <td><a class="btn-delete" 
                     href="nguoidung/deleteAdmin.php?id=<?=$row['id']?>"
                     onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>

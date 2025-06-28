@@ -52,7 +52,7 @@
           <td><?= $row["material_name"] ?></td>
           <td><?= $row["price"] ?></td>
           <td><?= $row["unit"] ?></td>
-          <td><a class="btn-edit" href="sanpham/updateItemController.php?id=<?= $row['product_id'] ?>">Edit</a></td>
+          <td><a class="btn-edit" href="editProduct.php?id=<?= $row['product_id'] ?>">Sửa</a></td>
           <td><a class="btn-delete"
               href="sanpham/deleteItemController.php?id=<?= $row['product_id'] ?>"
               onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
