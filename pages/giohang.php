@@ -5,16 +5,16 @@
 
         <div>
             <p>Họ và tên *</p>
-            <input type="text" name="hoten" placeholder="Họ và tên của bạn">
+            <input type="text" name="hoten" id="hoten" placeholder="Họ và tên của bạn">
         </div>
         <div style="display: flex; gap: 5px">
             <div class="sdt" style="width: 52%;"> 
                 <p>Số điện thoại *</p>
-                <input type="text" name="dt" placeholder="Số điện thoại của bạn">
+                <input type="text" name="dt" id="dt" placeholder="Số điện thoại của bạn">
             </div>
             <div class="email">
                 <p>Email</p>
-                <input type="text" name="mail" placeholder="Email của bạn">
+                <input type="text" name="mail" id="mail" placeholder="Email của bạn">
             </div>
         </div>
         <div class="noio" style="width: 98%;">
@@ -56,18 +56,29 @@
             <button type="submit" class="thanhtoan">THANH TOÁN</button>
         </div>
     </form>
+
+    <?php
+        $sl = "SELECT product_id, product_name, disscounted_price, images FROM products";
+        $kq = mysqli_query($conn, $sl);
+        $row = mysqli_fetch_array($kq);
+    ?> 
+
     <div class="ttvc" >
         <b style="font-size: 25px;">GIỎ HÀNG</b>
         <div class="sp_cart" style="margin-top: 25px;">
             <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                 <div class="ndsp" style="display: flex; flex-direction: row; gap: 30px; justify-content: flex-start;">
                     <div class="anhsp" style="width: 140px;">
-                        <img src="imgs/trangchu/trongkinh.png">
+                         <?php
+                            $firstImage = $row['images'];
+                            $imgSrc = htmlspecialchars($firstImage);
+                        ?>
+                        <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                     </div>
                     <div>
-                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="" style="text-decoration: underline; color: black;">GK. GỌNG KÍNH THỜI TRANG - M3251</a></p>
-                        <p class="gia" style="margin-top: 20px;">350.000 VNĐ</p>
-                        <input class="solg" type="number" name="quantity" value="1" min="1"/>
+                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="" style="text-decoration: underline; color: black;"><?php echo $row['product_name']; ?></a></p>
+                        <p class="gia" style="margin-top: 20px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'). ' đ'; ?></p>
+                        <input style="border: 0.5px solid black; border-radius: 30px; text-align: center;" type="number" name="quantity" value="1" min="1"/>
                     </div>
                 </div>
             </a>

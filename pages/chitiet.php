@@ -22,7 +22,7 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".cart").hover(
+        $(".add button").hover(
             function() {
                 $(this).css({"background-color": "white", "color": "black"});
             },
@@ -57,7 +57,7 @@
                     position: absolute;">Giảm <?php echo $giam_phantram; ?>%</p>
             <?php endif; ?>
             <?php
-                $firstImage = $product['images'] ? trim($product['images']) : 'default.png';
+                $firstImage = $product['images'];
                 $imgSrc = htmlspecialchars($firstImage);
             ?>
             <img style="width: 100%;" src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
@@ -80,13 +80,19 @@
                     * HDSD: DÙNG ĐỂ ĐEO MẮT, TRÁNH NHIỆT ĐỘ CAO & VA CHẠM MẠNH<br>
                 </p>
                 <b style="font-size: 18px; margin-top: 40px;">Số lượng</b>
-                <div class="add">
-                    <input class="solg" type="number" name="quantity" value="1" min="1"/>
-                    <button type="submit" name="add_to_cart" class="cart">ADD TO CARD</button>
-                </div>
+                <form method="post">
+                    <div class="add">
+                        <input type="number" name="quantity" value="1" min="1"/>
+                        <button type="submit" name="add_to_cart">ADD TO CARD</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+    <?php
+        
+    ?>
     
     <div class="dichvu" style="max-width: 1250px;padding: 30px; border-top: 0.5px solid black; border-bottom: 0.5px solid black; width: 90%; margin: 50px auto;"> 
         <div>

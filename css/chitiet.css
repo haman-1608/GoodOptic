@@ -33,7 +33,7 @@
     font-size:18px;
 }
 
-.cart{
+.add button{
     cursor: pointer;
     border: 0.5px solid black;
     font-weight: bold;
@@ -52,15 +52,11 @@
     margin-top: 20px;
 }
 
-.quantity{
-    font-size: 20px;
-    text-align: center;
+
+.add input{
+    border: 0.5px solid black;
     border-radius: 30px;
+    text-align: center;
     padding: 10px 0px;
 }
-
-.solg{
-    border: 0.5px solid black;
-    text-align: center;
-    border-radius: 30px;
-}
+ 

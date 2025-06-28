@@ -311,7 +311,7 @@ ALTER TABLE `customers`
 --
 
 ALTER TABLE `customers`
-  MODIFY `customer_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 -- --------------------------------------------------------
 --

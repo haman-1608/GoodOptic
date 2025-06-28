@@ -2,7 +2,7 @@
     $limit = 12;
 
     $page = isset($_GET['page_num']) ? (int)$_GET['page_num'] : 1;
-    if($page < 1) $page = 1;
+    
     $offset = ($page - 1) * $limit;
 
     $count_sql = "SELECT COUNT(*) AS total FROM products WHERE category_id = 3 AND status = 'Active'";
@@ -14,16 +14,22 @@
     $sql = "SELECT product_id, product_name, disscounted_price, images 
             FROM products 
             WHERE category_id = 3 AND status = 'Active' 
-            LIMIT $limit OFFSET $offset";
+            LIMIT $offset, $limit";
     $result = mysqli_query($conn, $sql);
 ?>
 <div class="dmsp">
     <p style="margin: 20px;">Trang chủ > <b>Gọng kính</b></p>
     <h2 style = "text-align: center;">Gọng Kính</h2>
     <div class="filter">
-        <div class="filter1">Chất liệu</div>
-        <div class="filter2">Hình dáng</div>
-        <div class="filter3">Giá tiền</div>
+        <select class="filter1">
+            <option value="">Chất liệu</option>
+        </select>
+        <select class="filter2">
+            <option value="">Hình dáng</option>
+        </select>
+        <select class="filter3">
+            <option value="">Giá tiền</option>
+        </select>
     </div>
     
     <div class="gongkinh">
@@ -49,10 +55,7 @@
     
     <div class="pagination" style="text-align: center; margin-top: 20px;">
         <?php
-            $adjacents = 2;
-            $start = max(1, $page - $adjacents);
-            $end = min($total_pages, $page + $adjacents);
-
+ 
             if ($page > 1) {
                 echo '<a href="?page=gongkinh&page_num=' . ($page - 1) . '" class="arrow">‹</a>';
             }
