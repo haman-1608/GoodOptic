@@ -72,9 +72,9 @@
             <div  class="ttin">
                 <p>
                     &nbsp;&nbsp;&nbsp;THÔNG TIN GỌNG KÍNH<br> 
-                    * Thương Hiệu: <?php echo htmlspecialchars($product['brand_name']); ?><br>
+                    * Thương Hiệu: <?php echo $product['brand_name']; ?><br>
                     * Mã sản phẩm: <?php echo $product['product_id']; ?><br>
-                    * Chất liệu: <?php echo htmlspecialchars($product['material_name']); ?><br>
+                    * Chất liệu: <?php echo $product['material_name']; ?><br>
                     * Giá sản phẩm: <?php echo number_format($product['price'], 0, ',', '.') . ' VNĐ'; ?><br>
                     * CẢNH BÁO: BẢO QUẢN TRONG HỘP KÍNH<br>
                     * HDSD: DÙNG ĐỂ ĐEO MẮT, TRÁNH NHIỆT ĐỘ CAO & VA CHẠM MẠNH<br>
@@ -91,7 +91,39 @@
     </div>
 
     <?php
-        
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
+    $quantity = intval($_POST['quantity']);
+    if ($quantity < 1) $quantity = 1;
+    
+    $product_id = $product['product_id'];
+    $price = $product['disscounted_price'];
+    
+    // Kiểm tra xem sản phẩm này đã có trong giỏ chưa
+    $check = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
+    $check->bind_param("ii", $customer_id, $product_id);
+    $check->execute();
+    $checkResult = $check->get_result();
+
+    if ($checkResult->num_rows > 0) {
+        // Nếu đã có thì cập nhật số lượng
+        $cartItem = $checkResult->fetch_assoc();
+        $newQuantity = $cartItem['quantity'] + $quantity;
+
+        $update = $conn->prepare("UPDATE cart SET quantity = ?, price = ? WHERE cart_id = ?");
+        $update->bind_param("idi", $newQuantity, $price, $cartItem['cart_id']);
+        $update->execute();
+        echo "<script>alert('Cập nhật giỏ hàng thành công!');</script>";
+    } else {
+        // Nếu chưa có thì thêm mới
+        $insert = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+        $insert->bind_param("iiid", $customer_id, $product_id, $quantity, $price);
+        $insert->execute();
+        echo "<script>alert('Đã thêm vào giỏ hàng!');</script>";
+    }
+
+    $check->close();
+}  
     ?>
     
     <div class="dichvu" style="max-width: 1250px;padding: 30px; border-top: 0.5px solid black; border-bottom: 0.5px solid black; width: 90%; margin: 50px auto;"> 

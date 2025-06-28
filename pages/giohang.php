@@ -1,3 +1,19 @@
+<?php
+    if(isset($_COOKIE)){
+        $customer_id = intval($_COOKIE['customer_id']);
+    }
+
+    $sql = "SELECT c.cart_id, c.product_id, c.quantity, c.price, p.product_name, p.images 
+        FROM cart c 
+        JOIN products p ON c.product_id = p.product_id 
+        WHERE c.customer_id = $customer_id";
+
+        $result = mysqli_query($conn, $sql);
+
+        $total = 0;
+
+?>
+
 <div class="giohang">
     <form class="ttvc" method="post">
         <b style="font-size: 25px;">THÔNG TIN VẬN CHUYỂN</b> <br>
@@ -56,15 +72,10 @@
             <button type="submit" class="thanhtoan">THANH TOÁN</button>
         </div>
     </form>
-
-    <?php
-        $sl = "SELECT product_id, product_name, disscounted_price, images FROM products";
-        $kq = mysqli_query($conn, $sl);
-        $row = mysqli_fetch_array($kq);
-    ?> 
-
+ 
     <div class="ttvc" >
         <b style="font-size: 25px;">GIỎ HÀNG</b>
+        <?php while($row = $result->fetch_assoc()): ?>
         <div class="sp_cart" style="margin-top: 25px;">
             <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                 <div class="ndsp" style="display: flex; flex-direction: row; gap: 30px; justify-content: flex-start;">
@@ -83,6 +94,7 @@
                 </div>
             </a>
         </div>
+        <?php endwhile; ?>
         <b style="font-size: 25px;">MÃ GIẢM GIÁ</b>
         <div class="giamgia" style="display: flex; gap:10px; margin-top:20px; margin-bottom: 60px;">
             <input style="width:60%; font-size:17px;" type="text" name="magiamgia" id="magiamgia" placeholder="NHẬP MÃ GIẢM GIÁ">
