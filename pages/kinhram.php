@@ -41,7 +41,19 @@
                 <div class="anhsp">
                     <?php
                         $firstImage = $row['images'];
-                        $imgSrc = htmlspecialchars($firstImage);
+
+                        if (preg_match('#^https?://#i', $firstImage)) {
+                            // Là URL tuyệt đối
+                            $imgSrc = $firstImage;
+                        } else {
+                            // Là tên file ảnh được upload, kiểm tra file tồn tại
+                            $localPath = 'imgs/products/' . $firstImage;
+                            if (file_exists($localPath)) {
+                                $imgSrc = $localPath;
+                            } else {
+                                $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định nếu file không tồn tại
+                            }
+                        }
                     ?>
                     <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                 </div>
