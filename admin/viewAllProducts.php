@@ -88,6 +88,8 @@
 
   <hr>
 
+  <hr>
+
   <table class="table">
     <thead>
       <tr>
@@ -110,6 +112,11 @@
       <?php
       include_once "./config/dbconnect.php";
 
+      // Phân trang
+      $limit = 20;
+      $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+      $offset = ($page - 1) * $limit;
+
       $sql = "SELECT * FROM products 
               JOIN categories ON products.category_id = categories.category_id
               JOIN brands ON products.brand_id = brands.brand_id
@@ -123,7 +130,6 @@
         $pid = intval($_GET['product_id']);
         $where[] = "products.product_id = '$pid'";
       }
-
       if (!empty($_GET['category_id'])) {
         $where[] = "products.category_id = '" . $_GET['category_id'] . "'";
       }
@@ -147,16 +153,29 @@
         $sql .= " WHERE " . implode(" AND ", $where);
       }
 
+      // Đếm tổng số bản ghi
+      $countSql = "SELECT COUNT(*) as total FROM products 
+                   JOIN categories ON products.category_id = categories.category_id
+                   JOIN brands ON products.brand_id = brands.brand_id
+                   JOIN targets ON products.target_id = targets.target_id
+                   JOIN UV ON products.UV_id = UV.uv_id
+                   JOIN Refractive ON products.Refractive_id = Refractive.refractive_id
+                   JOIN Material ON products.Material_id = Material.material_id";
+      if (count($where) > 0) {
+        $countSql .= " WHERE " . implode(" AND ", $where);
+      }
+      $countResult = $conn->query($countSql);
+      $totalRows = $countResult->fetch_assoc()['total'];
+      $totalPages = ceil($totalRows / $limit);
+
+      // Thêm LIMIT để phân trang
+      $sql .= " LIMIT $limit OFFSET $offset";
       $result = $conn->query($sql);
-      $count = 1;
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $image = $row['images'];
-          $src = (preg_match('#^https?://#i', $image))
-            ? $image
-            : "../imgs/products/{$image}";
-
+          $src = (preg_match('#^https?://#i', $image)) ? $image : "../imgs/products/{$image}";
       ?>
           <tr>
             <td><?= htmlspecialchars($row['product_id']) ?></td>
@@ -182,6 +201,43 @@
       ?>
     </tbody>
   </table>
+
+  <!-- Thanh phân trang -->
+  <?php if ($totalPages > 1): ?>
+  <div class="pagination" style="text-align:center; margin: 20px 0;">
+    <?php
+    $currentPage = $page;
+    $maxDisplay = 5; // số trang tối đa hiển thị
+    $half = floor($maxDisplay / 2);
+    $start = max(1, $currentPage - $half);
+    $end = min($totalPages, $currentPage + $half);
+
+    if ($currentPage > 1) {
+      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => 1])) . '">«</a>';
+    }
+
+    if ($start > 1) {
+      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => 1])) . '">1</a>';
+      if ($start > 2) echo '<span style="margin:0 5px;">...</span>';
+    }
+
+    for ($i = $start; $i <= $end; $i++) {
+      $active = $i == $currentPage ? 'font-weight:bold; background:#007bff; color:white;' : '';
+      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $i])) . '" style="margin:0 5px; padding:6px 12px; border:1px solid #ccc; text-decoration:none; ' . $active . '">' . $i . '</a>';
+    }
+
+    if ($end < $totalPages) {
+      if ($end < $totalPages - 1) echo '<span style="margin:0 5px;">...</span>';
+      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $totalPages])) . '">' . $totalPages . '</a>';
+    }
+
+    if ($currentPage < $totalPages) {
+      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $totalPages])) . '">»</a>';
+    }
+    ?>
+  </div>
+<?php endif; ?>
+
 
   <div class="box">
     <a class="button" href="#divOne">Thêm mới</a>
