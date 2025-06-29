@@ -62,7 +62,7 @@
         </div>
         <div>
             <p>Chú thích</p>
-            <textarea name="note" rows="6" placeholder="Chú thích cho đơn hàng của bạn về đơn hàng hoặc về vận chuyển,..."></textarea>
+            <textarea name="note" sps="6" placeholder="Chú thích cho đơn hàng của bạn về đơn hàng hoặc về vận chuyển,..."></textarea>
         </div>
         <div class="htthanhtoan" style="margin-top: 20px;">
             <b style="font-size: 25px;">HÌNH THỨC THANH TOÁN</b>
@@ -75,26 +75,41 @@
  
     <div class="ttvc" >
         <b style="font-size: 25px;">GIỎ HÀNG</b>
-        <?php while($row = $result->fetch_assoc()): ?>
+        <?php if (!empty($_SESSION['cart'])): ?>
+            <?php foreach ($_SESSION['cart'] as $sp): ?>
         <div class="sp_cart" style="margin-top: 25px;">
-            <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
+            <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" class="sp">
                 <div class="ndsp" style="display: flex; flex-direction: row; gap: 30px; justify-content: flex-start;">
                     <div class="anhsp" style="width: 140px;">
                          <?php
-                            $firstImage = $row['images'];
-                            $imgSrc = htmlspecialchars($firstImage);
+                            $firstImage = $sp['imgs'];
+                            if (preg_match('#^https?://#i', $firstImage)) {
+                                    // Là URL tuyệt đối
+                                    $imgSrc = $firstImage;
+                                } else {
+                                    // Là tên file ảnh được upload, kiểm tra file tồn tại
+                                    $localPath = 'imgs/products/' . $firstImage;
+                                    if (file_exists($localPath)) {
+                                        $imgSrc = $localPath;
+                                    } else {
+                                        $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định nếu file không tồn tại
+                                    }
+                            }
                         ?>
                         <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                     </div>
                     <div>
-                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="" style="text-decoration: underline; color: black;"><?php echo $row['product_name']; ?></a></p>
-                        <p class="gia" style="margin-top: 20px;"><?php echo number_format($row['disscounted_price'], 0, ',', '.'). ' đ'; ?></p>
+                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
+                        <p class="gia" style="margin-top: 20px;"><?php echo number_format($sp['price'], 0, ',', '.'). ' đ'; ?></p>
                         <input style="border: 0.5px solid black; border-radius: 30px; text-align: center;" type="number" name="quantity" value="1" min="1"/>
                     </div>
                 </div>
             </a>
         </div>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Không có sản phẩm nào trong giỏ hàng.</p>
+    <?php endif; ?>
         <b style="font-size: 25px;">MÃ GIẢM GIÁ</b>
         <div class="giamgia" style="display: flex; gap:10px; margin-top:20px; margin-bottom: 60px;">
             <input style="width:60%; font-size:17px;" type="text" name="magiamgia" id="magiamgia" placeholder="NHẬP MÃ GIẢM GIÁ">

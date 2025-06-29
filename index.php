@@ -1,7 +1,7 @@
 <?php
-    include_once "admin/config/dbconnect.php";
-
-    if(!isset($_COOKIE['customer_id'])){
+    session_start();
+   include_once "admin/config/dbconnect.php";
+   if(!isset($_COOKIE['customer_id'])){
         $randomName = "Khách hàng";
         $randomEmail = uniqid().'@gmail.com';
         $randomPhone = '0000000000';
@@ -16,6 +16,23 @@
     }
     else{
         $customer_id = intval($_COOKIE['customer_id']);
+    }
+    if(!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
+    if(isset($_POST['add_to_cart'])){
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+        $imgs = $_POST['imgs'];
+        $quantity = $_POST['quantity'];
+        
+
+        $sp = array(
+            'id' => $id, 
+            'name' => $name, 
+            'price' => $price, 
+            'imgs' => $imgs, 
+            'quantity' => $quantity);
+        $_SESSION['cart'][] = $sp;
     }
 ?>
 <!DOCTYPE html>

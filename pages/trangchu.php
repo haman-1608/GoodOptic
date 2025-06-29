@@ -100,14 +100,26 @@ $(document).ready(function(){
         <div class="chon_dsbc">
             <div class="tab_ds active" style="text-align: center;">
                 <div class="dsbc">
-                    <?php if ($result_gongkinh && $result_gongkinh->num_rows > 0): ?>
-                    <?php while ($row = $result_gongkinh->fetch_assoc()): ?>
+                    <?php if ($result_gongkinh && mysqli_num_rows($result_gongkinh) > 0): ?>
+                    <?php while ($row = mysqli_fetch_assoc($result_gongkinh)): ?>
                     <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
                             <?php
-                                $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
-                                $imgSrc = htmlspecialchars($firstImage);
+                                $firstImage = $row['images'];
+
+                                if (preg_match('#^https?://#i', $firstImage)) {
+                                    // Là URL tuyệt đối
+                                    $imgSrc = $firstImage;
+                                } else {
+                                    // Là tên file ảnh được upload, kiểm tra file tồn tại
+                                    $localPath = 'imgs/products/' . $firstImage;
+                                    if (file_exists($localPath)) {
+                                        $imgSrc = $localPath;
+                                    } else {
+                                        $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định nếu file không tồn tại
+                                    }
+                                }
                             ?>
                             <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                         </div>
@@ -126,14 +138,26 @@ $(document).ready(function(){
             </div>
             <div class="tab_ds" style="text-align: center;">
                 <div class="dsbc">
-                    <?php if ($result_kinhram && $result_kinhram->num_rows > 0): ?>
-                    <?php while ($row = $result_kinhram->fetch_assoc()): ?>
+                    <?php if ($result_kinhram && mysqli_num_rows($result_kinhram) > 0): ?>
+                    <?php while ($row = mysqli_fetch_assoc($result_kinhram)): ?>
                     <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
                             <?php
-                                $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
-                                $imgSrc = htmlspecialchars($firstImage);
+                                $firstImage = $row['images'];
+
+                                if (preg_match('#^https?://#i', $firstImage)) {
+                                    // Là URL tuyệt đối
+                                    $imgSrc = $firstImage;
+                                } else {
+                                    // Là tên file ảnh được upload, kiểm tra file tồn tại
+                                    $localPath = 'imgs/products/' . $firstImage;
+                                    if (file_exists($localPath)) {
+                                        $imgSrc = $localPath;
+                                    } else {
+                                        $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định nếu file không tồn tại
+                                    }
+                                }
                             ?>
                             <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                         </div>
@@ -152,14 +176,26 @@ $(document).ready(function(){
             </div>
             <div class="tab_ds" style="text-align: center;">
                 <div class="dsbc">
-                    <?php if ($result_trongkinh && $result_trongkinh->num_rows > 0): ?>
-                    <?php while ($row = $result_trongkinh->fetch_assoc()): ?>
+                    <?php if ($result_trongkinh && mysqli_num_rows($result_trongkinh) > 0): ?>
+                    <?php while ($row = mysqli_fetch_assoc($result_trongkinh)): ?>
                     <a href="index.php?page=chitiet&id=<?php echo $row['product_id']; ?>" class="sp">
                         <div class="ndsp">
                         <div class="anhsp">
                             <?php
-                                $firstImage = $row['images'] ? trim($row['images']) : 'default.png';
-                                $imgSrc = htmlspecialchars($firstImage);
+                                $firstImage = $row['images'];
+
+                                if (preg_match('#^https?://#i', $firstImage)) {
+                                    // Là URL tuyệt đối
+                                    $imgSrc = $firstImage;
+                                } else {
+                                    // Là tên file ảnh được upload, kiểm tra file tồn tại
+                                    $localPath = 'imgs/products/' . $firstImage;
+                                    if (file_exists($localPath)) {
+                                        $imgSrc = $localPath;
+                                    } else {
+                                        $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định nếu file không tồn tại
+                                    }
+                                }
                             ?>
                             <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                         </div>

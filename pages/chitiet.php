@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
                 JOIN Material m ON p.Material_id = m.material_id 
                 WHERE p.product_id = $id AND p.status = 'Active' AND m.status = 'Active' AND b.status = 'Active'";
     $result = mysqli_query($conn, $sql);
-    if ($result && $result->num_rows > 0) {
+    if ($result && mysqli_num_rows($result) > 0) {
         $product = mysqli_fetch_assoc($result);
     } else {
         echo "<p>Sản phẩm không tồn tại.</p>";
@@ -101,6 +101,10 @@ if (isset($_GET['id'])) {
                 <b style="font-size: 18px; margin-top: 40px;">Số lượng</b>
                 <form method="post">
                     <div class="add">
+                        <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
+                        <input type="hidden" name="name" value="<?php echo $product['product_name'];?>">
+                        <input type="hidden" name="price" value="<?php echo $product['disscounted_price'];?>">
+                        <input type="hidden" name="imgs" value="<?php echo $imgSrc;?>">
                         <input type="number" name="quantity" value="1" min="1" />
                         <button type="submit" name="add_to_cart">ADD TO CARD</button>
                     </div>
@@ -108,43 +112,7 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
-
-    <?php
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
-        $quantity = intval($_POST['quantity']);
-        if ($quantity < 1) $quantity = 1;
-
-        $product_id = $product['product_id'];
-        $price = $product['disscounted_price'];
-
-        // Kiểm tra xem sản phẩm này đã có trong giỏ chưa
-        $check = $conn->prepare("SELECT cart_id, quantity FROM cart WHERE customer_id = ? AND product_id = ?");
-        $check->bind_param("ii", $customer_id, $product_id);
-        $check->execute();
-        $checkResult = $check->get_result();
-
-        if ($checkResult->num_rows > 0) {
-            // Nếu đã có thì cập nhật số lượng
-            $cartItem = $checkResult->fetch_assoc();
-            $newQuantity = $cartItem['quantity'] + $quantity;
-
-            $update = $conn->prepare("UPDATE cart SET quantity = ?, price = ? WHERE cart_id = ?");
-            $update->bind_param("idi", $newQuantity, $price, $cartItem['cart_id']);
-            $update->execute();
-            echo "<script>alert('Cập nhật giỏ hàng thành công!');</script>";
-        } else {
-            // Nếu chưa có thì thêm mới
-            $insert = $conn->prepare("INSERT INTO cart (customer_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
-            $insert->bind_param("iiid", $customer_id, $product_id, $quantity, $price);
-            $insert->execute();
-            echo "<script>alert('Đã thêm vào giỏ hàng!');</script>";
-        }
-
-        $check->close();
-    }
-    ?>
-
+ 
     <div class="dichvu" style="max-width: 1250px;padding: 30px; border-top: 0.5px solid black; border-bottom: 0.5px solid black; width: 90%; margin: 50px auto;">
         <div>
             <img src="imgs/trangchu/mdi--support 2.svg" alt="" class="">
@@ -181,13 +149,13 @@ if (isset($_GET['id'])) {
                     AND product_id != $product_id 
                     AND status = 'Active' 
                     LIMIT 4";
-    $result_goiy = $conn->query($sql_goiy);
+    $result_goiy = mysqli_query($conn, $sql_goiy);
     ?>
     <div class="like" style="margin: 0 auto; max-width: 1250px;">
         <h3 style=" margin-bottom: -20px; margin-left: 30px;">CÓ THỂ BẠN CŨNG THÍCH</h3>
         <div class="goiy">
-            <?php if ($result_goiy && $result_goiy->num_rows > 0): ?>
-                <?php while ($goiy = $result_goiy->fetch_assoc()): ?>
+            <?php if ($result_goiy && mysqli_num_rows($result_goiy) > 0): ?>
+                <?php while ($goiy = mysqli_fetch_assoc($result_goiy)): ?>
                     <a href="index.php?page=chitiet&id=<?php echo $goiy['product_id']; ?>" class="sp">
                         <div class="ndsp">
                             <div class="anhsp">
