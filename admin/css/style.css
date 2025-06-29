@@ -443,3 +443,48 @@ input[type="submit"] {
   text-transform: uppercase;
   letter-spacing: 3px;
 }
+
+/* ==== Filter bar small styling ==== */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 1em 10px;       /* rê xuống dưới, sát lề content */
+}
+
+.filter-bar label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.filter-bar button {
+  height: 1.8em;          /* chiều cao nhỏ */
+  padding: 0 0.6em;       /* padding trái phải vừa đủ */
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.filter-bar select {
+  flex: 0 0 auto;
+  width: 180px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Optional: hover / focus */
+.filter-bar select:focus,
+.filter-bar button:hover {
+  border-color: var(--accent-clr);
+}
+
+/* Nếu muốn button cùng tông màu với sidebar */
+.filter-bar button {
+  background: var(--accent-clr);
+  color: #fff;
+  border: none;
+}
