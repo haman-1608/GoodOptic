@@ -2,8 +2,34 @@
     // if(isset($_COOKIE)){
     //     $customer_id = intval($_COOKIE['customer_id']);
     // }
-    echo var_dump($_SESSION['cart']);
+    // echo var_dump($_SESSION['cart']);
 
+    //chỉnh sửa số lượng
+    if (isset($_POST['update_quantity_id']) && isset($_POST['update_quantity_value'])) {
+        $id = $_POST['update_quantity_id'];
+        $quantity = max(1, intval($_POST['update_quantity_value'])); // không cho < 1
+
+        foreach ($_SESSION['cart'] as $index => $sp) {
+            if ($sp['id'] == $id) {
+                $_SESSION['cart'][$index]['quantity'] = $quantity;
+                break;
+            }
+        }
+    }
+
+    //xóa sản phẩm trong giỏ hàng
+    if (isset($_POST['del_id'])) {
+        $id = $_POST['del_id'];
+
+        foreach ($_SESSION['cart'] as  $index => $sp) {
+            if ($sp['id'] == $id) {
+                unset($_SESSION['cart'][$index]); //xóa sản phẩm với index là chỉ số của mảng
+                $_SESSION['cart'] = array_values($_SESSION['cart']); // reset key mảng sau khi unset
+                break;
+            }
+        }
+    }
+    
     if(empty($_SESSION['cart'])){ 
 ?>
 
@@ -103,20 +129,28 @@
                         <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                     </div>
                     <div>
-                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
+                        <p class="tensp" style="width: 230px;margin: 0; font-weight: 500;"> <a href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
                         <p class="gia" style="margin-top: 20px;"><?php echo number_format($sp['price'], 0, ',', '.'). ' đ'; ?></p>
-                        <input style="border: 0.5px solid black; border-radius: 30px;" type="number" name="quantity" value="<?php echo $sp['quantity']; ?>" min="1"/>
+                        <form method="post" style="display: inline-block;">
+                            <input type="hidden" name="update_quantity_id" value="<?php echo $sp['id']; ?>">
+                            <input type="number" name="update_quantity_value" value="<?php echo $sp['quantity']; ?>" min="1" onchange="this.form.submit()">
+                        </form>
                     </div>
-                        <input type="submit" name="del" value="X">
+                        <form method="post">
+                            <input type="hidden" name="del_id" value="<?php echo $sp['id']; ?>">
+                            <input type="submit" name="del" value="X">
+                        </form>
                 </div>
             </a>
         </div>
-        <?php $total += $sp['price'];?>
-         <?php endforeach; ?>
+        <?php 
+            $t = $sp['price'] * $sp['quantity'];
+            $total += $t;?>
+        <?php endforeach; ?>
         <b style="font-size: 25px;">MÃ GIẢM GIÁ</b>
         <div class="giamgia" style="display: flex; gap:10px; margin-top:20px; margin-bottom: 60px;">
             <input style="width:60%; font-size:17px;" type="text" name="magiamgia" id="magiamgia" placeholder="NHẬP MÃ GIẢM GIÁ">
-            <button type="submit" class="giam" >ÁP DỤNG</button>
+            <input type="submit" name="giam" value="ÁP DỤNG"></input>
         </div>
         <div class="tien">
             <b style="font-size: 20px;">TỔNG TIỀN</b>
@@ -139,7 +173,9 @@
 </div>
 
     
-<?php } ?>
+<?php 
+}
+?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

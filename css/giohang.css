@@ -104,7 +104,7 @@ input[name = "thanhtoan"]:hover{
     width: 110px;
 }
 
-.giam{
+input[name="giam"]{
     width: 30%;
     padding: 10px 0px;
     font-size:17px;
@@ -117,7 +117,7 @@ input[name = "thanhtoan"]:hover{
     transition: .4s cubic-bezier(.5, 0, 0, 1.25);
 }
 
-.giam:hover{
+input[name="giam"]:hover{
     border: 0.2px solid #333;
     background-color: white;
     color: #000000;
@@ -144,4 +144,10 @@ input[name = "thanhtoan"]:hover{
     background-color: white;
     cursor: pointer;
     height: 32px;
+ }
+ input[name="update_quantity_value"]{
+    border: 0.5px solid black;
+    border-radius: 30px;
+    text-align: center;
+    padding: 10px 0px;
  }

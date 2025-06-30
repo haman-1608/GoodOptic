@@ -1,5 +1,6 @@
 <?php
     session_start();
+    // unset($_SESSION['cart']);
    include_once "admin/config/dbconnect.php";
 //    if(!isset($_COOKIE['customer_id'])){
 //         $randomName = "Khách hàng";
@@ -23,17 +24,27 @@
         $name = $_POST['name'];
         $price = $_POST['price'];
         $imgs = $_POST['imgs'];
-        $quantity = $_POST['quantity'];
+        $quantity = intval($_POST['quantity']);
         
+        $check = false;
 
-        $sp = array(
-            'id' => $id, 
-            'name' => $name, 
-            'price' => $price, 
-            'imgs' => $imgs, 
-            'quantity' => $quantity);
-        $_SESSION['cart'][] = $sp;
-        
+        foreach ($_SESSION['cart'] as $index => $sp) {
+            if ($sp['id'] == $id) {
+                $_SESSION['cart'][$index]['quantity'] += $quantity;
+                $check = true;
+                break;
+            }
+        }
+    
+        if(!$check){
+            $sp = array(
+                'id' => $id, 
+                'name' => $name, 
+                'price' => $price, 
+                'imgs' => $imgs, 
+                'quantity' => $quantity);
+            $_SESSION['cart'][] = $sp;
+        }
     }
 ?>
 <!DOCTYPE html>
