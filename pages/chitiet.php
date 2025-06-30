@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        $(".add button").hover(
+        $("input[name ='add_to_cart']").hover(
             function() {
                 $(this).css({
                     "background-color": "white",
@@ -106,7 +106,7 @@ if (isset($_GET['id'])) {
                         <input type="hidden" name="price" value="<?php echo $product['disscounted_price'];?>">
                         <input type="hidden" name="imgs" value="<?php echo $imgSrc;?>">
                         <input type="number" name="quantity" value="1" min="1" />
-                        <button type="submit" name="add_to_cart">ADD TO CARD</button>
+                        <input type="submit" name="add_to_cart" value="ADD TO CARD"></input>
                     </div>
                 </form>
             </div>

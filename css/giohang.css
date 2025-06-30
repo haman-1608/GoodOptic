@@ -64,7 +64,7 @@ textarea[name="note"]{
     border-radius: 10px;
 }
 
-.thanhtoan{
+input[name = "thanhtoan"]{
     margin-top: 40px;
     border: 0.2px solid #333;
     font-size: 21px;
@@ -78,7 +78,7 @@ textarea[name="note"]{
     width: 99%;
 }
 
-.thanhtoan:hover{
+input[name = "thanhtoan"]:hover{
     border: 0.2px solid #333;
     background-color: white;
     color: #000000;
@@ -135,4 +135,13 @@ textarea[name="note"]{
     font-weight: 600;
  }
 
- 
+ input[name="del"]{
+    margin: -1px 20px;
+    font-size: 12px;
+    width: 32px;
+    border: 0.5px solid black;
+    border-radius: 100%;
+    background-color: white;
+    cursor: pointer;
+    height: 32px;
+ }

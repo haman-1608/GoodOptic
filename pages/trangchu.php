@@ -133,7 +133,7 @@ $(document).ready(function(){
                     <?php endif; ?>
                 </div>
                 <a href="index.php?page=gongkinh">
-                <button class="xthem">Xem thêm</button>
+                <input type="submit" name="xthem" value="Xem thêm"></input>
                 </a>
             </div>
             <div class="tab_ds" style="text-align: center;">
@@ -171,7 +171,7 @@ $(document).ready(function(){
                     <?php endif; ?>
                 </div>
                 <a href="index.php?page=kinhram">
-                <button class="xthem">Xem thêm</button>
+                <input type="submit" name="xthem" value="Xem thêm"></input>
                 </a>
             </div>
             <div class="tab_ds" style="text-align: center;">
@@ -209,7 +209,7 @@ $(document).ready(function(){
                     <?php endif; ?>
                 </div>
                 <a href="index.php?page=trongkinh">
-                <button class="xthem">Xem thêm</button>
+                <input type="submit" name="xthem" value="Xem thêm"></input>
                 </a>
             </div>
         </div>        

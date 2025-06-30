@@ -1,18 +1,22 @@
 <?php
-    if(isset($_COOKIE)){
-        $customer_id = intval($_COOKIE['customer_id']);
-    }
+    // if(isset($_COOKIE)){
+    //     $customer_id = intval($_COOKIE['customer_id']);
+    // }
+    echo var_dump($_SESSION['cart']);
 
-    $sql = "SELECT c.cart_id, c.product_id, c.quantity, c.price, p.product_name, p.images 
-        FROM cart c 
-        JOIN products p ON c.product_id = p.product_id 
-        WHERE c.customer_id = $customer_id";
-
-        $result = mysqli_query($conn, $sql);
-
-        $total = 0;
-
+    if(empty($_SESSION['cart'])){ 
 ?>
+
+<div align = "center" style="min-height: 450px; margin-top: 80px;">
+    <img style="width: 130px; height: 130px;" src="imgs/solar--cart-3-broken.svg" alt="">
+    <h3 style="color: gray;">CHƯA CÓ SẢN PHẨM NÀO TRONG GIỎ</h3>
+</div>
+
+<?php 
+    }
+    else {
+?>
+
 
 <div class="giohang">
     <form class="ttvc" method="post">
@@ -69,14 +73,14 @@
             <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" id="tienmat" value="0" checked = "true"></label>
             <label>Chuyển khoản ngân hàng<input type="radio" name="hinhthuc" id="chuyenkhoan" value="1"></label>
             <p style="font-size: 10px; margin: -10px 3px; font-size: 12px;">Thông tin cá nhân của bạn được sử dụng để xử lý đơn hàng, trải nghiệm trên trang web và các mục đích khác được mô tả trong <b>chính sách bảo mật</b> của chúng tôi.</p>
-            <button type="submit" class="thanhtoan">THANH TOÁN</button>
+            <input type="submit" name="thanhtoan" value="THANH TOÁN"></input>
         </div>
     </form>
  
     <div class="ttvc" >
         <b style="font-size: 25px;">GIỎ HÀNG</b>
-        <?php if (!empty($_SESSION['cart'])): ?>
-            <?php foreach ($_SESSION['cart'] as $sp): ?>
+        <?php $total = 0;?>
+        <?php foreach ($_SESSION['cart'] as $sp): ?>
         <div class="sp_cart" style="margin-top: 25px;">
             <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" class="sp">
                 <div class="ndsp" style="display: flex; flex-direction: row; gap: 30px; justify-content: flex-start;">
@@ -99,17 +103,16 @@
                         <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
                     </div>
                     <div>
-                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
+                        <p class="tensp" style="margin: 0; font-weight: 500;"> <a href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
                         <p class="gia" style="margin-top: 20px;"><?php echo number_format($sp['price'], 0, ',', '.'). ' đ'; ?></p>
-                        <input style="border: 0.5px solid black; border-radius: 30px; text-align: center;" type="number" name="quantity" value="1" min="1"/>
+                        <input style="border: 0.5px solid black; border-radius: 30px;" type="number" name="quantity" value="<?php echo $sp['quantity']; ?>" min="1"/>
                     </div>
+                        <input type="submit" name="del" value="X">
                 </div>
             </a>
         </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Không có sản phẩm nào trong giỏ hàng.</p>
-    <?php endif; ?>
+        <?php $total += $sp['price'];?>
+         <?php endforeach; ?>
         <b style="font-size: 25px;">MÃ GIẢM GIÁ</b>
         <div class="giamgia" style="display: flex; gap:10px; margin-top:20px; margin-bottom: 60px;">
             <input style="width:60%; font-size:17px;" type="text" name="magiamgia" id="magiamgia" placeholder="NHẬP MÃ GIẢM GIÁ">
@@ -117,7 +120,7 @@
         </div>
         <div class="tien">
             <b style="font-size: 20px;">TỔNG TIỀN</b>
-            <p>351.000 VNĐ</p>
+            <p><?php echo number_format($total, 0, ',', '.'). ' VNĐ'; ?></p>
         </div>
         <div class="tien">
             <b style="font-size: 20px;">GIẢM GIÁ</b>
@@ -134,6 +137,9 @@
         </div>
     </div>
 </div>
+
+    
+<?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

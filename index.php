@@ -1,22 +1,22 @@
 <?php
     session_start();
    include_once "admin/config/dbconnect.php";
-   if(!isset($_COOKIE['customer_id'])){
-        $randomName = "Khách hàng";
-        $randomEmail = uniqid().'@gmail.com';
-        $randomPhone = '0000000000';
-        $randomAddress = 'Chưa có';
+//    if(!isset($_COOKIE['customer_id'])){
+//         $randomName = "Khách hàng";
+//         $randomEmail = uniqid().'@gmail.com';
+//         $randomPhone = '0000000000';
+//         $randomAddress = 'Chưa có';
 
-        $stmt = mysqli_prepare($conn, "INSERT INTO customers (customer_name, email, phone, address) VALUES (?,?,?,?)");
-        mysqli_stmt_bind_param( $stmt, 'ssss',$randomName, $randomEmail, $randomPhone, $randomAddress);
-        mysqli_stmt_execute($stmt);
-        $customer_id = mysqli_insert_id($conn);
-        setcookie("customer_id", $customer_id, time() + (86400 * 30), "/");
-        mysqli_stmt_close($stmt);
-    }
-    else{
-        $customer_id = intval($_COOKIE['customer_id']);
-    }
+//         $stmt = mysqli_prepare($conn, "INSERT INTO customers (customer_name, email, phone, address) VALUES (?,?,?,?)");
+//         mysqli_stmt_bind_param( $stmt, 'ssss',$randomName, $randomEmail, $randomPhone, $randomAddress);
+//         mysqli_stmt_execute($stmt);
+//         $customer_id = mysqli_insert_id($conn);
+//         setcookie("customer_id", $customer_id, time() + (86400 * 30)); // thời gian sống 30 ngày
+//         mysqli_stmt_close($stmt);
+//     }
+//     else{
+//         $customer_id = intval($_COOKIE['customer_id']);
+//     }
     if(!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
     if(isset($_POST['add_to_cart'])){
         $id = $_POST['id'];
@@ -33,6 +33,7 @@
             'imgs' => $imgs, 
             'quantity' => $quantity);
         $_SESSION['cart'][] = $sp;
+        
     }
 ?>
 <!DOCTYPE html>
