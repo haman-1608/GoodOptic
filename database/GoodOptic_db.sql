@@ -505,9 +505,9 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders` (bảng đơn hàng)
 --
 INSERT INTO `orders` (`order_id`, `customer_id`, `customer_name`, `address`, `phone`, `email`,`pay_method`, `pay_status`,`order_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nguyen Van A', 'TP.HCM', '0909090909', 'Abc@gmail.com', 'Chuyển khoản', 0, 0, '2025-05-23 05:02:40', NOW()),
-(2, 2, 'Nguyen Van B', 'TP.HCM', '09090432429', 'Adasd@gmail.com', 'Tiền mặt', 1, 0, '2025-05-23 05:02:40', NOW()),
-(3, 3, 'Nguyen Van C', 'TP.HCM', '0123123123', 'Asza@gmail.com', 'Chuyển khoản', 0, 1, '2025-05-23 05:02:40', NOW());
+(1, 1, 'Nguyen Van A', 'TP.HCM', '0909090909', 'Abc@gmail.com', 'Chuyển khoản', 1, 0, '2025-05-23 05:02:40', NOW()),
+(2, 2, 'Nguyen Van B', 'TP.HCM', '09090432429', 'Adasd@gmail.com', 'Tiền mặt', 0, 0, '2025-05-23 05:02:40', NOW()),
+(3, 3, 'Nguyen Van C', 'TP.HCM', '0123123123', 'Asza@gmail.com', 'Chuyển khoản', 1, 1, '2025-05-23 05:02:40', NOW());
 --
 -- Indexes for table `orders` (bảng đơn hàng)
 --

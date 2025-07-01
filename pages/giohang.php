@@ -29,7 +29,56 @@
             }
         }
     }
+
+    if (isset($_POST['thanhtoan'])){
+        $hoten = $_POST['hoten'];
+        $dt = $_POST['dt'];
+        $mail = $_POST['mail'];
+        $tinh = $_POST['tinh'];
+        $xa = $_POST['xa'];
+        $sonha = $_POST['sonha'];
+        $hinhthuc = $_POST['hinhthuc'];
+        if ($hinhthuc == "Chuyển khoản"){
+            $pay_status = 1;
+        } else {    $pay_status = 0;}
+        $order_status = 0; //mặc định là đang xử lý
+
+        $fullAddress = "$sonha, $xa, $tinh";
+
+        // tạo cookie khách hàng và lưu khách hàng
+        if(!isset($_COOKIE['customer_id'])){
+            $kh = mysqli_prepare($conn, "INSERT INTO customers (customer_name, email, phone, address) VALUES (?,?,?,?)");
+            mysqli_stmt_bind_param($kh, 'ssss', $hoten, $mail, $dt, $fullAddress);
+            mysqli_stmt_execute($kh);
+            $customer_id = mysqli_insert_id($conn);
+            setcookie("customer_id", $customer_id, time() + (86400 * 30)); // thời gian sống 30 ngày
+        } else {
+            $customer_id = intval($_COOKIE['customer_id']);
+        }
+        
+        //tạo đơn hàng 
+        $dh = mysqli_prepare($conn, "INSERT INTO orders (customer_id, customer_name, address, phone, email, pay_method, pay_status, order_status) VALUES (?,?,?,?,?,?,?,?)");
+        mysqli_stmt_bind_param($dh, 'isssssii', $customer_id, $hoten, $fullAddress, $dt, $mail, $hinhthuc, $pay_status, $order_status);
+        mysqli_stmt_execute($dh);
+        $order_id = mysqli_insert_id($conn);
+
+
+        //tạo chi tiết đơn hàng
+        $product_id = $sp['id'];
+        $quantity = $sp['quantity'];
+        $price = $sp['price'];
+        $total_ct = $price * $quantity;
+        foreach($_SESSION['cart'] as $sp){
+            $ctdh = mysqli_prepare($conn, "INSERT INTO order_details (order_id, product_id, price, quantity, total) VALUES (?,?,?,?,?)");
+            mysqli_stmt_bind_param($ctdh, 'iidid', $order_id, $product_id, $price, $quantity,$total_ct);
+            mysqli_stmt_execute($ctdh);
+            $order_details_id = mysqli_insert_id($conn);
+        }
+        unset($_SESSION['cart']);
+        echo "<script>alert('Đặt hàng thành công!'); window.location='index.php';</script>";
+    }
     
+
     if(empty($_SESSION['cart'])){ 
 ?>
 
@@ -51,16 +100,16 @@
 
         <div>
             <p>Họ và tên *</p>
-            <input type="text" name="hoten" id="hoten" placeholder="Họ và tên của bạn">
+            <input type="text" name="hoten" placeholder="Họ và tên của bạn">
         </div>
         <div style="display: flex; gap: 5px">
             <div class="sdt" style="width: 52%;"> 
                 <p>Số điện thoại *</p>
-                <input type="text" name="dt" id="dt" placeholder="Số điện thoại của bạn">
+                <input type="text" name="dt" placeholder="Số điện thoại của bạn">
             </div>
             <div class="email">
                 <p>Email</p>
-                <input type="text" name="mail" id="mail" placeholder="Email của bạn">
+                <input type="text" name="mail" placeholder="Email của bạn">
             </div>
         </div>
         <div class="noio" style="width: 98%;">
@@ -88,7 +137,7 @@
         </div>
         <div>
             <p>Số nhà *</p>
-            <input type="text" name="sonha" id="sonha" placeholder="Ví dụ: Số 20, Võ Oanh...">
+            <input type="text" name="sonha" placeholder="Ví dụ: Số 20, Võ Oanh...">
         </div>
         <div>
             <p>Chú thích</p>
@@ -96,8 +145,8 @@
         </div>
         <div class="htthanhtoan" style="margin-top: 20px;">
             <b style="font-size: 25px;">HÌNH THỨC THANH TOÁN</b>
-            <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" id="tienmat" value="0" checked = "true"></label>
-            <label>Chuyển khoản ngân hàng<input type="radio" name="hinhthuc" id="chuyenkhoan" value="1"></label>
+            <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" value="Tiền mặt" checked = "true"></label>
+            <label>Chuyển khoản ngân hàng<input type="radio" name="hinhthuc" value="Chuyển khoản"></label>
             <p style="font-size: 10px; margin: -10px 3px; font-size: 12px;">Thông tin cá nhân của bạn được sử dụng để xử lý đơn hàng, trải nghiệm trên trang web và các mục đích khác được mô tả trong <b>chính sách bảo mật</b> của chúng tôi.</p>
             <input type="submit" name="thanhtoan" value="THANH TOÁN"></input>
         </div>
