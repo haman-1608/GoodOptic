@@ -296,8 +296,8 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`customer_id`, `customer_name`, `email`, `phone`, `address`) VALUES
 (1, 'Nguyen Van A', 'Abc@gmail.com', '0909090909', 'TP.HCM'),
 (2, 'Nguyen Van B', 'Adasd@gmail.com', '09090432429', 'TP.HCM'),
-(3, 'Nguyen Van C', 'Asza@gmail.com', '0123123123', 'TP.HCM');
-
+(3, 'Nguyen Van C', 'Asza@gmail.com', '0123123123', 'TP.HCM'),
+(4, 'Nguyen Van D', 'Aszsda@gmail.com', '01434553123', 'TP.HCM');
 --
 -- Indexes for table `customers` (bảng khách hàng)
 --
@@ -495,8 +495,7 @@ CREATE TABLE `orders` (
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pay_method` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pay_status` int(11) NOT NULL,
-  `order_status` int(11) NOT NULL DEFAULT 0,
+  `status` enum('Processing','Confirmed','Shipping','Delivered','Cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Processing',
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -504,10 +503,11 @@ CREATE TABLE `orders` (
 --
 -- Dumping data for table `orders` (bảng đơn hàng)
 --
-INSERT INTO `orders` (`order_id`, `customer_id`, `customer_name`, `address`, `phone`, `email`,`pay_method`, `pay_status`,`order_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nguyen Van A', 'TP.HCM', '0909090909', 'Abc@gmail.com', 'Chuyển khoản', 1, 0, '2025-05-23 05:02:40', NOW()),
-(2, 2, 'Nguyen Van B', 'TP.HCM', '09090432429', 'Adasd@gmail.com', 'Tiền mặt', 0, 0, '2025-05-23 05:02:40', NOW()),
-(3, 3, 'Nguyen Van C', 'TP.HCM', '0123123123', 'Asza@gmail.com', 'Chuyển khoản', 1, 1, '2025-05-23 05:02:40', NOW());
+INSERT INTO `orders` (`order_id`, `customer_id`, `customer_name`, `address`, `phone`, `email`,`pay_method`,`status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Nguyen Van A', 'TP.HCM', '0909090909', 'Abc@gmail.com', 'Chuyển khoản', 'Cancelled', '2025-05-23 05:02:40', NOW()),
+(2, 2, 'Nguyen Van B', 'TP.HCM', '09090432429', 'Adasd@gmail.com', 'Tiền mặt', 'Processing', '2025-05-23 05:02:40', NOW()),
+(3, 3, 'Nguyen Van C', 'TP.HCM', '0123123123', 'Asza@gmail.com', 'Chuyển khoản', 'Delivered', '2025-05-23 05:02:40', NOW()),
+(4, 4, 'Nguyen Van D', 'TP.HCM', '01434553123', 'Aszsda@gmail.com', 'Chuyển khoản', 'Delivered', '2025-05-23 05:02:40', NOW());
 --
 -- Indexes for table `orders` (bảng đơn hàng)
 --
@@ -544,10 +544,10 @@ CREATE TABLE `order_details` (
 -- Dumping data for table `order_details` (bảng chi tiết đơn hàng)
 --
 INSERT INTO `order_details` (`order_details_id`, `order_id`, `product_id`, `price`, `quantity`, `total`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1350000, 2, 2700000, NULL, NULL),
-(2, 1, 2, 1700000, 1, 1700000, NULL, NULL),
-(3, 2, 3, 2375000, 1, 2375000, NULL, NULL),
-(4, 3, 1, 1350000, 1, 1350000, NULL, NULL);
+(1, 1, 17, 280000, 1, 280000, NOW(), NOW()),
+(2, 2, 14, 1062000, 1, 1062000, NOW(), NOW()),
+(3, 3, 18, 260000, 1, 260000, NOW(), NOW()),
+(4, 4, 21, 600000, 1, 600000, NOW(), NOW());
 
 --
 -- Indexes for table `order_details` (bảng chi tiết đơn hàng)
