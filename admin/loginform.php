@@ -8,6 +8,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/login.css" />
+    <link rel="icon" type="image/png" href="../imgs/Logo1.png">
     <title>Trang đăng nhập của quản trị viên</title>
   </head>
   <body>

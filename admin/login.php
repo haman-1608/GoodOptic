@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dangnhap'])) {
         // login thành công
         $_SESSION['user'] = mysqli_fetch_assoc($result);
         header('Location: index.php');
-        exit;   // quan trọng: dừng kịch bản sau khi redirect
+        exit; 
     } else {
         // login sai: gán thông báo lỗi
         $errorMsg = 'Email hoặc mật khẩu không đúng.';

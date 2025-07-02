@@ -26,7 +26,7 @@ if (isset($_POST['btnUpdate'])) {
 
     mysqli_query($conn, $sql_str2);
 
-    //chuyen qua trang listbrands
+    //chuyen qua trang quan ly nguoi dung
     header("location: viewUsers.php");
 }
 ?>

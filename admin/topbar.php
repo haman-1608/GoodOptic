@@ -19,10 +19,6 @@
                 <img src="./icons/profile/edit.png" /><a href="#">Sửa thông tin cá nhân</a>
             </li>
             <li>
-                <img src="./icons/profile/settings.png" /><a href="#">Cài đặt</a>
-            </li>
-            <li><img src="./icons/profile/question.png" /><a href="#">Trợ giúp</a></li>
-            <li>
                 <img src="./icons/profile/log-out.png" /><a href="logout.php">Đăng xuất</a>
             </li>
         </ul>

@@ -16,5 +16,6 @@ if (!isset($_SESSION["user"])) {
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/profile.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="icon" type="image/png" href="../imgs/Logo1.png">
 </head>
 <?php require "./topbar.php"; ?>

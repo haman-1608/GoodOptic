@@ -10,7 +10,7 @@
       placeholder="Tìm theo Mã SP"
       value="<?= htmlspecialchars($_GET['product_id'] ?? '') ?>"
       style="width:120px; margin-right:8px;">
-
+    <!-- ===== Lọc sản phẩm ===== -->
     <select name="category_id">
       <option value="">-- Loại sản phẩm --</option>
       <?php
