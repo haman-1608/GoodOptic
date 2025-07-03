@@ -36,6 +36,10 @@ $sql = "SELECT product_id, product_name, disscounted_price, images
         $where 
         LIMIT $offset, $limit";
 $result = mysqli_query($conn, $sql);
+
+if($total_products <= 0){
+    echo '<div style = "margin-top: 90px; text-align: center"> Không có sản phẩm nào tồn tại!!!! </div>';
+}
 ?>
 
 <div class="dmsp">

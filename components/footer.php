@@ -49,8 +49,8 @@
            <div>
                 <h3>Thương mại điện tử</h3>
                 <div class="san">
-                    <img src="imgs/icon-footer/simple-icons--shopee 1.svg" alt="Shoppe">
-                    <img src="imgs/icon-footer/arcticons--lazada 1.svg" alt="Lazada">
+                    <a href="https://shopee.vn/"><img src="imgs/icon-footer/simple-icons--shopee 1.svg" alt="Shoppe"></a>
+                    <a href="https://shopee.vn/"><img src="imgs/icon-footer/arcticons--lazada 1.svg" alt="Lazada"></a>
                 </div>
            </div> 
            <div>

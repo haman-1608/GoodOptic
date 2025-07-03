@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
-    $sql = "SELECT p.*, m.material_name , b.brand_name
+    $sql = "SELECT p.*, m.material_name , b.brand_name, stock
                 FROM products p 
                 JOIN brands b ON p.brand_id = b.brand_id 
                 JOIN Material m ON p.Material_id = m.material_id 
@@ -100,7 +100,7 @@ if (isset($_GET['id'])) {
                     * HDSD: DÙNG ĐỂ ĐEO MẮT, TRÁNH NHIỆT ĐỘ CAO & VA CHẠM MẠNH<br>
                 </p>
                 <b style="font-size: 18px; margin-top: 40px;">Số lượng</b>
-                <form method="post">
+                <form method="post" name="addcart" id="addcart" onsubmit="return checkAddToCart();">
                     <div class="add">
                         <input type="hidden" name="id" value="<?php echo $product['product_id']; ?>">
                         <input type="hidden" name="name" value="<?php echo $product['product_name']; ?>">
@@ -114,8 +114,8 @@ if (isset($_GET['id'])) {
                         }
                         ?>
                         <input type="hidden" name="imgs" value="<?php echo $imgPath; ?>">
-                        <input type="number" name="quantity" value="1" min="1" />
-                        <input type="submit" name="add_to_cart" value="ADD TO CARD"></input>
+                        <input type="number" name="quantity" value="1" min="1" max="<?= $product['stock'] ?>"/>
+                        <input type="submit" name="add_to_cart" id="add_to_cart" value="ADD TO CART"></input>
                     </div>
                 </form>
             </div>

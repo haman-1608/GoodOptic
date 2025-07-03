@@ -58,5 +58,6 @@ input[name = "quantity"]{
     border-radius: 30px;
     text-align: center;
     padding: 10px 0px;
+    width: 150px;
 }
  

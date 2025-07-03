@@ -35,6 +35,10 @@
     gap: 7px;
 }
 
+.noio > div {
+    flex: 1; /* Mỗi div chiếm 1 phần bằng nhau */
+}
+
 .noio select{
     font-size: 15px;
     border: 0.1px solid;

@@ -7,7 +7,7 @@
         $name = $_POST['name'];
         $price = $_POST['price'];
         $imgs = $_POST['imgs'];
-        $quantity = intval($_POST['quantity']);
+        $quantity = (isset($_POST['quantity'])) ? intval($_POST['quantity']) : 1;
         
         $check = false;
 
@@ -43,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="css/chitiet.css">
     <link rel="stylesheet" type="text/css" href="css/giohang.css">
     <link rel="icon" type="image/png" href="imgs/Logo1.png">
+    <script type="text/javascript" src="javascript/check.js"></script>
     <script src="jquery-3.7.1.js"></script> <!-- dẫn jquery -->
     <title>Good Optic - Nhìn rõ hôm nay, tự tin ngày mai</title>
 </head>

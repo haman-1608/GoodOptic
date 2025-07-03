@@ -102,7 +102,7 @@ if (empty($_SESSION['cart'])) {
 
 
 <div class="giohang">
-    <form class="ttvc" method="post">
+    <form class="ttvc" method="post" name="infor" id="infor" onsubmit="return checkInfomation();">
         <b style="font-size: 25px;">THÔNG TIN VẬN CHUYỂN</b> <br>
         <i style="font-size: 13px;">Vui lòng nhập đầy đủ các thông tin bên dưới</i>
 
@@ -156,7 +156,7 @@ if (empty($_SESSION['cart'])) {
             <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" value="Tiền mặt" checked="true"></label>
             <label>Chuyển khoản ngân hàng<input type="radio" name="hinhthuc" value="Chuyển khoản"></label>
             <p style="font-size: 10px; margin: -10px 3px; font-size: 12px;">Thông tin cá nhân của bạn được sử dụng để xử lý đơn hàng, trải nghiệm trên trang web và các mục đích khác được mô tả trong <b>chính sách bảo mật</b> của chúng tôi.</p>
-            <input type="submit" name="thanhtoan" value="THANH TOÁN"></input>
+            <input type="submit" name="thanhtoan" id="thanhtoan" value="THANH TOÁN"></input>
         </div>
     </form>
 
