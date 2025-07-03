@@ -213,19 +213,6 @@ if (empty($_SESSION['cart'])) {
             <b style="font-size: 20px;">TỔNG TIỀN</b>
             <p><?php echo number_format($total, 0, ',', '.'). ' VNĐ'; ?></p>
         </div>
-        <div class="tien">
-            <b style="font-size: 20px;">GIẢM GIÁ</b>
-            <p>100.000 VNĐ</p>
-        </div>
-        <div class="tien">
-            <b style="font-size: 20px;">PHÍ SHIP</b>
-            <p>30.000 VNĐ</p>
-
-        </div>
-        <div class="tien" style="border-top: 0.1px solid black; margin: 0; padding: 20px 0;">
-            <p style="font-size: 23px; font-weight: bolder;">THÀNH TIỀN</p>
-            <p>281.000 VNĐ</p>
-        </div>
     </div>
 </div>
 
