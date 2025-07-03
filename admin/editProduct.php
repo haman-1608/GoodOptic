@@ -38,7 +38,7 @@ $res = mysqli_query($conn, $sql_str);
 $product = mysqli_fetch_assoc($res);
 
 if (isset($_POST['btnUpdate'])) {
-    //lay du lieu tu form
+    // Lấy dữ liệu từ form
     $name = $_POST['name'];
     $desc = $_POST['description'];
     $price = $_POST['price'];
@@ -52,59 +52,51 @@ if (isset($_POST['btnUpdate'])) {
     $refractive = $_POST['refractive'];
     $material = $_POST['material'];
 
-    // Kiểm tra nếu có upload ảnh mới
     if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
         $imageName = basename($_FILES["image"]["name"]);
         $targetDir = dirname(__DIR__) . "/imgs/products/";
         $targetFile = $targetDir . $imageName;
 
-        // Di chuyển file vào thư mục ảnh
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)){
-
-
-            // cau lenh them vao bang
-            $sql_str2 = "UPDATE `products` 
-        SET `product_name`='$name',
-        `description`='$desc',  
-        `stock`='$stock', 
-        `unit`='$unit',
-        `price`='$price', 
-        `disscounted_price`='$dissPrice', 
-        `images`='$imageName', 
-        `category_id`='$category', 
-        `brand_id`='$brand',
-        `target_id`='$target',
-        `uv_id`='$uv',
-        `refractive_id`='$refractive',
-        `material_id`='$material' 
-        WHERE `product_id`=$id
-        ";
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+            $sql_str2 = "UPDATE products SET
+                product_name='$name',
+                description='$desc',
+                stock='$stock',
+                unit='$unit',
+                price='$price',
+                disscounted_price='$dissPrice',
+                images='$imageName',
+                category_id='$category',
+                brand_id='$brand',
+                target_id='$target',
+                uv_id='$uv',
+                refractive_id='$refractive',
+                material_id='$material'
+                WHERE product_id=$id";
+        }
     } else {
-        // Không có ảnh mới
-        $sql_str2 = "UPDATE `products` 
-        SET `product_name`='$name',
-        `description`='$desc',
-        `stock`='$stock', 
-        `unit`='$unit',
-        `price`='$price', 
-        `disscounted_price`='$dissPrice', 
-        `category_id`='$category', 
-        `brand_id`='$brand',
-        `target_id`='$target',
-        `uv_id`='$uv',
-        `refractive_id`='$refractive',
-        `material_id`='$material' 
-        WHERE `product_id`=$id";
-    }}
+        $sql_str2 = "UPDATE products SET
+            product_name='$name',
+            description='$desc',
+            stock='$stock',
+            unit='$unit',
+            price='$price',
+            disscounted_price='$dissPrice',
+            category_id='$category',
+            brand_id='$brand',
+            target_id='$target',
+            uv_id='$uv',
+            refractive_id='$refractive',
+            material_id='$material'
+            WHERE product_id=$id";
+    }
 
-
-    //    echo $sql_str; exit;
-
-    //thuc thi cau lenh
-    mysqli_query($conn, $sql_str2);
-
-    //tro ve trang 
-    header("location: viewAllProducts.php");
+    // Chỉ thực thi nếu $sql_str2 đã được tạo
+    if (isset($sql_str2)) {
+        mysqli_query($conn, $sql_str2);
+        header("location: viewAllProducts.php");
+        exit;
+    }
 }
 ?>
 <?php include "./header.php";
