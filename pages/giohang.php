@@ -1,95 +1,103 @@
 <?php
-    // if(isset($_COOKIE)){
-    //     $customer_id = intval($_COOKIE['customer_id']);
-    // }
-    // echo var_dump($_SESSION['cart']);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$server = "localhost";
+$user = "root";
+$password = "";
+$db = "GoodOptic";
 
-    //chỉnh sửa số lượng
-    if (isset($_POST['update_quantity_id']) && isset($_POST['update_quantity_value'])) {
-        $id = $_POST['update_quantity_id'];
-        $quantity = max(1, intval($_POST['update_quantity_value'])); // không cho < 1
+$conn = mysqli_connect($server, $user, $password, $db);
 
-        foreach ($_SESSION['cart'] as $index => $sp) {
-            if ($sp['id'] == $id) {
-                $_SESSION['cart'][$index]['quantity'] = $quantity;
-                break;
-            }
+if (!$conn) {
+    die("Kết nối thất bại:" . mysqli_connect_error());
+}
+
+if (isset($_POST['update_quantity_id']) && isset($_POST['update_quantity_value'])) {
+    $id = $_POST['update_quantity_id'];
+    $quantity = max(1, intval($_POST['update_quantity_value']));
+
+    foreach ($_SESSION['cart'] as $index => $sp) {
+        if ($sp['id'] == $id) {
+            $_SESSION['cart'][$index]['quantity'] = $quantity;
+            break;
         }
     }
+}
 
-    //xóa sản phẩm trong giỏ hàng
-    if (isset($_POST['del_id'])) {
-        $id = $_POST['del_id'];
-
-        foreach ($_SESSION['cart'] as  $index => $sp) {
-            if ($sp['id'] == $id) {
-                unset($_SESSION['cart'][$index]); //xóa sản phẩm với index là chỉ số của mảng
-                $_SESSION['cart'] = array_values($_SESSION['cart']); // reset key mảng sau khi unset
-                break;
-            }
+if (isset($_POST['del_id'])) {
+    $id = $_POST['del_id'];
+    foreach ($_SESSION['cart'] as $index => $sp) {
+        if ($sp['id'] == $id) {
+            unset($_SESSION['cart'][$index]);
+            $_SESSION['cart'] = array_values($_SESSION['cart']);
+            break;
         }
     }
+}
 
-    if (isset($_POST['thanhtoan'])){
-        $hoten = $_POST['hoten'];
-        $dt = $_POST['dt'];
-        $mail = $_POST['mail'];
-        $tinh = $_POST['tinh'];
-        $xa = $_POST['xa'];
-        $sonha = $_POST['sonha'];
-        $hinhthuc = $_POST['hinhthuc'];
-        if ($hinhthuc == "Chuyển khoản"){
-            $pay_status = 1;
-        } else {    $pay_status = 0;}
-        $order_status = 0; //mặc định là đang xử lý
+if (isset($_POST['thanhtoan'])) {
+    $hoten = $_POST['hoten'] ?? '';
+    $dt = $_POST['dt'] ?? '';
+    $mail = $_POST['mail'] ?? '';
+    $tinh = $_POST['tinh'] ?? '';
+    $xa = $_POST['xa'] ?? '';
+    $sonha = $_POST['sonha'] ?? '';
+    $hinhthuc = $_POST['hinhthuc'] ?? '';
+    $status = 'Processing';
 
-        $fullAddress = "$sonha, $xa, $tinh";
+    $fullAddress = "$sonha, $xa, $tinh";
 
-        // tạo cookie khách hàng và lưu khách hàng
-        if(!isset($_COOKIE['customer_id'])){
-            $kh = mysqli_prepare($conn, "INSERT INTO customers (customer_name, email, phone, address) VALUES (?,?,?,?)");
-            mysqli_stmt_bind_param($kh, 'ssss', $hoten, $mail, $dt, $fullAddress);
-            mysqli_stmt_execute($kh);
-            $customer_id = mysqli_insert_id($conn);
-            setcookie("customer_id", $customer_id, time() + (86400 * 30)); // thời gian sống 30 ngày
-        } else {
-            $customer_id = intval($_COOKIE['customer_id']);
-        }
-        
-        //tạo đơn hàng 
-        $dh = mysqli_prepare($conn, "INSERT INTO orders (customer_id, customer_name, address, phone, email, pay_method, pay_status, order_status) VALUES (?,?,?,?,?,?,?,?)");
-        mysqli_stmt_bind_param($dh, 'isssssii', $customer_id, $hoten, $fullAddress, $dt, $mail, $hinhthuc, $pay_status, $order_status);
-        mysqli_stmt_execute($dh);
-        $order_id = mysqli_insert_id($conn);
+    if (!isset($_COOKIE['customer_id'])) {
+        $kh = mysqli_prepare($conn, "INSERT INTO customers (customer_name, email, phone, address) VALUES (?,?,?,?)");
+        mysqli_stmt_bind_param($kh, 'ssss', $hoten, $mail, $dt, $fullAddress);
+        mysqli_stmt_execute($kh);
+        $customer_id = mysqli_insert_id($conn);
+        setcookie("customer_id", $customer_id, time() + (86400 * 30));
+    } else {
+        $customer_id = intval($_COOKIE['customer_id']);
+    }
 
+    $dh = mysqli_prepare($conn, "INSERT INTO orders 
+    (customer_id, customer_name, address, phone, email, pay_method, status) 
+    VALUES (?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param(
+        $dh,
+        'issssss',
+        $customer_id,
+        $hoten,
+        $fullAddress,
+        $dt,
+        $mail,
+        $hinhthuc,
+        $status
+    );
+    mysqli_stmt_execute($dh);
+    $order_id = mysqli_insert_id($conn);
 
-        //tạo chi tiết đơn hàng
+    foreach ($_SESSION['cart'] as $sp) {
         $product_id = $sp['id'];
         $quantity = $sp['quantity'];
         $price = $sp['price'];
         $total_ct = $price * $quantity;
-        foreach($_SESSION['cart'] as $sp){
-            $ctdh = mysqli_prepare($conn, "INSERT INTO order_details (order_id, product_id, price, quantity, total) VALUES (?,?,?,?,?)");
-            mysqli_stmt_bind_param($ctdh, 'iidid', $order_id, $product_id, $price, $quantity,$total_ct);
-            mysqli_stmt_execute($ctdh);
-            $order_details_id = mysqli_insert_id($conn);
-        }
-        unset($_SESSION['cart']);
-        echo "<script>alert('Đặt hàng thành công!'); window.location='index.php';</script>";
+
+        $ctdh = mysqli_prepare($conn, "INSERT INTO order_details (order_id, product_id, price, quantity, total) VALUES (?,?,?,?,?)");
+        mysqli_stmt_bind_param($ctdh, 'iidid', $order_id, $product_id, $price, $quantity, $total_ct);
+        mysqli_stmt_execute($ctdh);
     }
-    
 
-    if(empty($_SESSION['cart'])){ 
-?>
+    unset($_SESSION['cart']);
+    echo "<script>alert('Đặt hàng thành công!'); window.location='index.php';</script>";
+    exit();
+}
 
-<div align = "center" style="min-height: 450px; margin-top: 80px;">
-    <img style="width: 130px; height: 130px;" src="imgs/solar--cart-3-broken.svg" alt="">
-    <h3 style="color: gray;">CHƯA CÓ SẢN PHẨM NÀO TRONG GIỎ</h3>
-</div>
-
-<?php 
-    }
-    else {
+if (empty($_SESSION['cart'])) {
+    echo '<div align="center" style="min-height: 450px; margin-top: 80px;">
+            <img style="width: 130px; height: 130px;" src="imgs/solar--cart-3-broken.svg" alt="">
+            <h3 style="color: gray;">CHƯA CÓ SẢN PHẨM NÀO TRONG GIỌ</h3>
+          </div>';
+    return;
+}
 ?>
 
 
@@ -223,7 +231,7 @@
 
     
 <?php 
-}
+
 ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
