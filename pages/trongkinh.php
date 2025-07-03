@@ -6,20 +6,20 @@ $offset = ($page - 1) * $limit;
 $where = "WHERE category_id = 2 AND status = 'Active'";
 
 // Bộ lọc loại tròng
-if (!empty($_GET['refractive_id'])) {
-    $refractive_id = (int)$_GET['refractive_id'];
+if (!empty($_GET['loaitrong'])) {
+    $refractive_id = (int)$_GET['loaitrong'];
     $where .= " AND Refractive_id = $refractive_id";
 }
 
 // Bộ lọc thương hiệu
-if (!empty($_GET['brand_id'])) {
-    $brand_id = (int)$_GET['brand_id'];
+if (!empty($_GET['thuonghieu'])) {
+    $brand_id = (int)$_GET['thuonghieu'];
     $where .= " AND brand_id = $brand_id";
 }
 
 // Bộ lọc giá tiền
-if (!empty($_GET['price_range'])) {
-    list($min_price, $max_price) = explode('_', $_GET['price_range']);
+if (!empty($_GET['giatien'])) {
+    list($min_price, $max_price) = explode('_', $_GET['giatien']);
     $where .= " AND disscounted_price BETWEEN $min_price AND $max_price";
 }
 
@@ -41,44 +41,35 @@ $result = mysqli_query($conn, $sql);
 <div class="dmsp">
     <p style="margin: 20px;">Trang chủ > <b>Tròng kính</b></p>
     <h2 style="text-align: center;">Tròng Kính</h2>
-
-    <!-- Bộ lọc -->
-    <form method="get">
+    <form class="filter" method="get">
         <input type="hidden" name="page" value="trongkinh">
-        <div class="filter">
-            <!-- Loại tròng -->
-            <select name="refractive_id" class="filter1" onchange="this.form.submit()">
-                <option value="">Loại tròng</option>
-                <?php
-                $r_query = mysqli_query($conn, "SELECT * FROM Refractive WHERE status = 'Active'");
-                while ($r = mysqli_fetch_assoc($r_query)) {
-                    $selected = (isset($_GET['refractive_id']) && $_GET['refractive_id'] == $r['refractive_id']) ? 'selected' : '';
-                    echo "<option value='{$r['refractive_id']}' $selected>{$r['refractive_name']}</option>";
+        <select name="loaitrong" id="loaitrong" onchange="this.form.submit()">
+            <option value="">Loại tròng</option>
+            <?php
+                $m_query = mysqli_query($conn, "SELECT refractive_id, refractive_name FROM Refractive");
+                while ($m = mysqli_fetch_assoc($m_query)) {
+                    $selected = (isset($_GET['loaitrong']) && $_GET['loaitrong'] == $m['refractive_id']) ? 'selected' : '';
+                    echo "<option value='{$m['refractive_id']}' $selected>{$m['refractive_name']}</option>";
                 }
-                ?>
-            </select>
-
-            <!-- Thương hiệu -->
-            <select name="brand_id" class="filter2" onchange="this.form.submit()">
-                <option value="">Thương hiệu</option>
-                <?php
-                $b_query = mysqli_query($conn, "SELECT * FROM brands WHERE status = 'Active'");
-                while ($b = mysqli_fetch_assoc($b_query)) {
-                    $selected = (isset($_GET['brand_id']) && $_GET['brand_id'] == $b['brand_id']) ? 'selected' : '';
-                    echo "<option value='{$b['brand_id']}' $selected>{$b['brand_name']}</option>";
+            ?>
+        </select>
+        <select name="thuonghieu" id="thuonghieu" onchange="this.form.submit()">
+            <option value="">Thương hiệu</option>
+            <?php
+                $m_query = mysqli_query($conn, "SELECT brand_id, brand_name FROM brands WHERE status='Active'");
+                while ($m = mysqli_fetch_assoc($m_query)) {
+                    $selected = (isset($_GET['thuonghieu']) && $_GET['thuonghieu'] == $m['brand_id']) ? 'selected' : '';
+                    echo "<option value='{$m['brand_id']}' $selected>{$m['brand_name']}</option>";
                 }
-                ?>
-            </select>
-
-            <!-- Giá tiền -->
-            <select name="price_range" class="filter3" onchange="this.form.submit()">
-                <option value="">Giá tiền</option>
-                <option value="0_1000000" <?php if (isset($_GET['price_range']) && $_GET['price_range'] == '0_1000000') echo 'selected'; ?>>Dưới 1 triệu</option>
-                <option value="1000000_2000000" <?php if (isset($_GET['price_range']) && $_GET['price_range'] == '1000000_2000000') echo 'selected'; ?>>1 - 2 triệu</option>
-                <option value="2000000_4000000" <?php if (isset($_GET['price_range']) && $_GET['price_range'] == '2000000_4000000') echo 'selected'; ?>>2 - 4 triệu</option>
-                <option value="4000000_999999999" <?php if (isset($_GET['price_range']) && $_GET['price_range'] == '4000000_999999999') echo 'selected'; ?>>Trên 4 triệu</option>
-            </select>
-        </div>
+            ?>
+        </select>
+        <select name="giatien" id="giatien" onchange="this.form.submit()">
+            <option value="">Giá tiền</option>
+            <option value="0_1000000" <?php if (isset($_GET['giatien']) && $_GET['giatien'] == '0_1000000') echo 'selected'; ?>>Dưới 1 triệu</option>
+            <option value="1000000_2000000" <?php if (isset($_GET['giatien']) && $_GET['giatien'] == '1000000_2000000') echo 'selected'; ?>>1 - 2 triệu</option>
+            <option value="2000000_4000000" <?php if (isset($_GET['giatien']) && $_GET['giatien'] == '2000000_4000000') echo 'selected'; ?>>2 - 4 triệu</option>
+            <option value="4000000_999999999" <?php if (isset($_GET['giatien']) && $_GET['giatien'] == '4000000_999999999') echo 'selected'; ?>>Trên 4 triệu</option>
+        </select>
     </form>
 
     <!-- Hiển thị sản phẩm -->
