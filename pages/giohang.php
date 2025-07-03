@@ -111,7 +111,7 @@ if (empty($_SESSION['cart'])) {
             <input type="text" name="hoten" placeholder="Họ và tên của bạn">
         </div>
         <div style="display: flex; gap: 5px">
-            <div class="sdt" style="width: 52%;"> 
+            <div class="sdt" style="width: 52%;">
                 <p>Số điện thoại *</p>
                 <input type="text" name="dt" placeholder="Số điện thoại của bạn">
             </div>
@@ -153,56 +153,59 @@ if (empty($_SESSION['cart'])) {
         </div>
         <div class="htthanhtoan" style="margin-top: 20px;">
             <b style="font-size: 25px;">HÌNH THỨC THANH TOÁN</b>
-            <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" value="Tiền mặt" checked = "true"></label>
+            <label>Thanh toán khi nhận hàng<input type="radio" name="hinhthuc" value="Tiền mặt" checked="true"></label>
             <label>Chuyển khoản ngân hàng<input type="radio" name="hinhthuc" value="Chuyển khoản"></label>
             <p style="font-size: 10px; margin: -10px 3px; font-size: 12px;">Thông tin cá nhân của bạn được sử dụng để xử lý đơn hàng, trải nghiệm trên trang web và các mục đích khác được mô tả trong <b>chính sách bảo mật</b> của chúng tôi.</p>
             <input type="submit" name="thanhtoan" value="THANH TOÁN"></input>
         </div>
     </form>
- 
-    <div class="ttvc" >
+
+    <div class="ttvc">
         <b style="font-size: 25px;">GIỎ HÀNG</b>
-        <?php $total = 0;?>
+        <?php $total = 0; ?>
         <?php foreach ($_SESSION['cart'] as $sp): ?>
-        <div class="sp_cart" style="margin-top: 25px;">
-            <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" class="sp">
-                <div class="ndsp" style="display: flex; flex-direction: row; gap: 30px; justify-content: flex-start;">
-                    <div class="anhsp" style="width: 140px;">
-                         <?php
-                            $firstImage = $sp['imgs'];
-                            if (preg_match('#^https?://#i', $firstImage)) {
-                                    // Là URL tuyệt đối
-                                    $imgSrc = $firstImage;
+            <div class="sp_cart" style="margin-top: 25px;">
+                <a style="margin-bottom: 20px;" href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" class="sp">
+                    <div class="ndsp" style="display: flex; flex-direction: row; gap: 30px; justify-content: flex-start;">
+                        <div class="anhsp" style="width: 140px;">
+                            <?php
+                            $imgInput = $sp['imgs'];
+
+                            // Nếu là URL tuyệt đối
+                            if (preg_match('#^https?://#i', $imgInput)) {
+                                $imgSrc = $imgInput;
+                            } else {
+                                // Là tên file ảnh, nối vào thư mục local
+                                $localPath = 'imgs/products/' . $imgInput;
+
+                                // Kiểm tra file có tồn tại không
+                                if (file_exists($localPath)) {
+                                    $imgSrc = $localPath;
                                 } else {
-                                    // Là tên file ảnh được upload, kiểm tra file tồn tại
-                                    $localPath = 'imgs/products/' . $firstImage;
-                                    if (file_exists($localPath)) {
-                                        $imgSrc = $localPath;
-                                    } else {
-                                        $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định nếu file không tồn tại
-                                    }
+                                    $imgSrc = 'imgs/products/default.jpg'; // fallback ảnh mặc định
+                                }
                             }
-                        ?>
-                        <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
-                    </div>
-                    <div>
-                        <p class="tensp" style="width: 230px;margin: 0; font-weight: 500;"> <a href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
-                        <p class="gia" style="margin-top: 20px;"><?php echo number_format($sp['price'], 0, ',', '.'). ' đ'; ?></p>
-                        <form method="post" style="display: inline-block;">
-                            <input type="hidden" name="update_quantity_id" value="<?php echo $sp['id']; ?>">
-                            <input type="number" name="update_quantity_value" value="<?php echo $sp['quantity']; ?>" min="1" onchange="this.form.submit()">
-                        </form>
-                    </div>
+                            ?>
+                            <img src="<?php echo $imgSrc; ?>" alt="Ảnh sản phẩm" loading="lazy">
+                        </div>
+                        <div>
+                            <p class="tensp" style="width: 230px;margin: 0; font-weight: 500;"> <a href="index.php?page=chitiet&id=<?php echo $sp['id']; ?>" style="text-decoration: underline; color: black;"><?php echo $sp['name']; ?></a></p>
+                            <p class="gia" style="margin-top: 20px;"><?php echo number_format($sp['price'], 0, ',', '.') . ' đ'; ?></p>
+                            <form method="post" style="display: inline-block;">
+                                <input type="hidden" name="update_quantity_id" value="<?php echo $sp['id']; ?>">
+                                <input type="number" name="update_quantity_value" value="<?php echo $sp['quantity']; ?>" min="1" onchange="this.form.submit()">
+                            </form>
+                        </div>
                         <form method="post">
                             <input type="hidden" name="del_id" value="<?php echo $sp['id']; ?>">
                             <input type="submit" name="del" value="X">
                         </form>
-                </div>
-            </a>
-        </div>
-        <?php 
+                    </div>
+                </a>
+            </div>
+            <?php
             $t = $sp['price'] * $sp['quantity'];
-            $total += $t;?>
+            $total += $t; ?>
         <?php endforeach; ?>
         <b style="font-size: 25px;">MÃ GIẢM GIÁ</b>
         <div class="giamgia" style="display: flex; gap:10px; margin-top:20px; margin-bottom: 60px;">
@@ -211,13 +214,13 @@ if (empty($_SESSION['cart'])) {
         </div>
         <div class="tien">
             <b style="font-size: 20px;">TỔNG TIỀN</b>
-            <p><?php echo number_format($total, 0, ',', '.'). ' VNĐ'; ?></p>
+            <p><?php echo number_format($total, 0, ',', '.') . ' VNĐ'; ?></p>
         </div>
     </div>
 </div>
 
-    
-<?php 
+
+<?php
 
 ?>
 

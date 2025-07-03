@@ -103,7 +103,9 @@
         <th>Chống tia UV</th>
         <th>Khúc xạ</th>
         <th>Chất liệu</th>
-        <th>Giá</th>
+        <th>Giá gốc</th>
+        <th>Giá sau khi giảm</th>
+        <th>Số lượng</th>
         <th>Đơn vị</th>
         <th colspan="2">Hành động</th>
       </tr>
@@ -189,6 +191,8 @@
             <td><?= $row["refractive_name"] ?></td>
             <td><?= $row["material_name"] ?></td>
             <td><?= $row["price"] ?></td>
+            <td><?= $row["disscounted_price"] ?></td>
+            <td><?= $row["stock"] ?></td>
             <td><?= $row["unit"] ?></td>
             <td><a class="btn-edit" href="editProduct.php?id=<?= $row['product_id'] ?>">Sửa</a></td>
             <td><a class="btn-delete" href="sanpham/deleteItemController.php?id=<?= $row['product_id'] ?>" onclick="return confirm('Bạn chắc chắn xóa mục này?');">Xóa</a></td>
@@ -250,8 +254,12 @@
           <form enctype='multipart/form-data' action="sanpham/addItemController.php" method="POST">
             <label for="p_name">Tên sản phẩm:</label>
             <input type="text" class="form-control" name="p_name" required>
-            <label for="p_price">Giá bán:</label>
+            <label for="p_price">Giá gốc:</label>
             <input type="text" class="form-control" name="p_price" required>
+            <label for="d_price">Giá sau khi giảm:</label>
+            <input type="text" class="form-control" name="d_price">
+            <label for="stock">Số lượng:</label>
+            <input type="text" class="form-control" name="stock"><br>
             <label for="unit">Đơn vị:</label>
             <input type="text" class="form-control" name="unit" required>
             <label for="p_desc">Mô tả:</label>

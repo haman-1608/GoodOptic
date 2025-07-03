@@ -90,7 +90,8 @@ if (isset($_GET['id'])) {
             </div>
             <div class="ttin">
                 <p>
-                    &nbsp;&nbsp;&nbsp;THÔNG TIN GỌNG KÍNH<br>
+                    &nbsp;&nbsp;&nbsp;THÔNG TIN SẢN PHẨM<br>
+                    * Mô tả: <?php echo $product['description']; ?><br>
                     * Thương Hiệu: <?php echo $product['brand_name']; ?><br>
                     * Mã sản phẩm: <?php echo $product['product_id']; ?><br>
                     * Chất liệu: <?php echo $product['material_name']; ?><br>
@@ -101,10 +102,18 @@ if (isset($_GET['id'])) {
                 <b style="font-size: 18px; margin-top: 40px;">Số lượng</b>
                 <form method="post">
                     <div class="add">
-                        <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
-                        <input type="hidden" name="name" value="<?php echo $product['product_name'];?>">
-                        <input type="hidden" name="price" value="<?php echo $product['disscounted_price'];?>">
-                        <input type="hidden" name="imgs" value="<?php echo $imgSrc;?>">
+                        <input type="hidden" name="id" value="<?php echo $product['product_id']; ?>">
+                        <input type="hidden" name="name" value="<?php echo $product['product_name']; ?>">
+                        <input type="hidden" name="price" value="<?php echo $product['disscounted_price']; ?>">
+                        <?php $firstImage = $product['images'];
+
+                        if (preg_match('#^https?://#i', $firstImage)) {
+                            $imgPath = $firstImage; // URL
+                        } else {
+                            $imgPath = basename($firstImage); // chỉ tên file có định dạng như .jpg
+                        }
+                        ?>
+                        <input type="hidden" name="imgs" value="<?php echo $imgPath; ?>">
                         <input type="number" name="quantity" value="1" min="1" />
                         <input type="submit" name="add_to_cart" value="ADD TO CARD"></input>
                     </div>
@@ -112,7 +121,7 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
- 
+
     <div class="dichvu" style="max-width: 1250px;padding: 30px; border-top: 0.5px solid black; border-bottom: 0.5px solid black; width: 90%; margin: 50px auto;">
         <div>
             <img src="imgs/trangchu/mdi--support 2.svg" alt="" class="">
