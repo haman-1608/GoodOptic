@@ -495,7 +495,7 @@ CREATE TABLE `orders` (
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pay_method` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Processing','Confirmed','Shipping','Delivered','Cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Processing',
+  `status` enum('Đang xử lý','Đã xác nhận','Đang giao hàng','Đã giao hàng','Đã hủy') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Đang xử lý',
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -504,10 +504,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders` (bảng đơn hàng)
 --
 INSERT INTO `orders` (`order_id`, `customer_id`, `customer_name`, `address`, `phone`, `email`,`pay_method`,`status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nguyen Van A', 'TP.HCM', '0909090909', 'Abc@gmail.com', 'Chuyển khoản', 'Cancelled', '2025-05-23 05:02:40', NOW()),
-(2, 2, 'Nguyen Van B', 'TP.HCM', '09090432429', 'Adasd@gmail.com', 'Tiền mặt', 'Processing', '2025-05-23 05:02:40', NOW()),
-(3, 3, 'Nguyen Van C', 'TP.HCM', '0123123123', 'Asza@gmail.com', 'Chuyển khoản', 'Delivered', '2025-05-23 05:02:40', NOW()),
-(4, 4, 'Nguyen Van D', 'TP.HCM', '01434553123', 'Aszsda@gmail.com', 'Chuyển khoản', 'Delivered', '2025-05-23 05:02:40', NOW());
+(1, 1, 'Nguyen Van A', 'TP.HCM', '0909090909', 'Abc@gmail.com', 'Chuyển khoản', 'Đã hủy', '2025-05-23 05:02:40', NOW()),
+(2, 2, 'Nguyen Van B', 'TP.HCM', '09090432429', 'Adasd@gmail.com', 'Tiền mặt', 'Đang xử lý', '2025-05-23 05:02:40', NOW()),
+(3, 3, 'Nguyen Van C', 'TP.HCM', '0123123123', 'Asza@gmail.com', 'Chuyển khoản', 'Đã giao hàng', '2025-05-23 05:02:40', NOW()),
+(4, 4, 'Nguyen Van D', 'TP.HCM', '01434553123', 'Aszsda@gmail.com', 'Chuyển khoản', 'Đang giao hàng', '2025-05-23 05:02:40', NOW());
 --
 -- Indexes for table `orders` (bảng đơn hàng)
 --
