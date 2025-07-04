@@ -9,11 +9,14 @@ if (isset($_POST['upload'])) {
     $address = $_POST['address'];
     $type = $_POST['type'];
 
+    // Mã hóa mật khẩu trước khi lưu
+    $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+
+    // Thêm người dùng vào DB với mật khẩu đã mã hóa
     $insert = mysqli_query($conn, "INSERT INTO admins
-         (name,email,password,phone,address,type,status,created_at,updated_at) 
-         VALUES ('$name','$email','$userPassword','$phone','$address','$type','Active', NOW(), NOW())");
-    
-    
+         (name, email, password, phone, address, type, status, created_at, updated_at) 
+         VALUES ('$name', '$email', '$hashedPassword', '$phone', '$address', '$type', 'Active', NOW(), NOW())");
+
     if (!$insert) {
         echo mysqli_error($conn);
     } else {

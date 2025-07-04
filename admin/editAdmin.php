@@ -13,20 +13,29 @@ $res = mysqli_query($conn, $sql_str);
 
 $admin = mysqli_fetch_assoc($res);
 if (isset($_POST['btnUpdate'])) {
-    //neu nut Cap nhat duoc nhan
-    //lay name
     $name = $_POST['name'];
     $email = $_POST['email'];
     $userPassword = $_POST['password'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $type = $_POST['type'];
-    //thuc hien viec cap nhat
-    $sql_str2 = "update admins set name='$name', email='$email', password='$userPassword', phone='$phone', address='$address', type='$type' where id=$id";
+
+    // Nếu mật khẩu đã nhập khác với mật khẩu đã lưu (đã mã hóa), thì hash lại
+    if (!password_verify($userPassword, $admin['password'])) {
+        $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+    }
+
+    $sql_str2 = "UPDATE admins SET 
+                    name='$name', 
+                    email='$email', 
+                    password='$userPassword', 
+                    phone='$phone', 
+                    address='$address', 
+                    type='$type' 
+                 WHERE id=$id";
 
     mysqli_query($conn, $sql_str2);
 
-    //chuyen qua trang quan ly nguoi dung
     header("location: viewUsers.php");
 }
 ?>
@@ -44,7 +53,7 @@ include "./sidebar.php"; ?>
                     <label for="email">Email:</label>
                     <input type="text" class="form-control" name="email" value=<?php echo $admin['email'] ?>>
                     <label for="password">Mật khẩu:</label>
-                    <input type="text" class="form-control" name="password" value=<?php echo $admin['password'] ?>>
+                    <input type="password" class="form-control" name="password" style="height: 25px; font-size: 16px;" value=<?php echo $admin['password'] ?>><br>
                     <label for="phone">Số điện thoại:</label>
                     <input type="text" class="form-control" name="phone" value=<?php echo $admin['phone'] ?>>
                     <label for="address">Địa chỉ:</label>
