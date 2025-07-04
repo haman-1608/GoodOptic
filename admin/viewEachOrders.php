@@ -16,26 +16,31 @@ $res = mysqli_query($conn, $sql_str);
 $row = mysqli_fetch_assoc($res);
 
 if (isset($_POST['btnUpdate'])) {
-    //lay du lieu tu form
+    // Lấy dữ liệu từ form
     $status = $_POST['status'];
 
+    // Cập nhật trạng thái đơn hàng
+    $sql_update_order = "UPDATE `orders` SET status = '$status' WHERE `order_id`=$id";
+    mysqli_query($conn, $sql_update_order);
 
+    // Lấy thông tin khách hàng từ đơn hàng
+    $customer_name = $row['customer_name'];
+    $email = $row['email'];
+    $phone = $row['phone'];
+    $address = $row['address'];
 
+    // Kiểm tra xem khách hàng đã tồn tại chưa (dựa trên email hoặc SĐT)
+    $sql_check = "SELECT * FROM customers WHERE email = '$email' OR phone = '$phone'";
+    $res_check = mysqli_query($conn, $sql_check);
 
-    // cau lenh them vao bang
-    $sql_str = "UPDATE `orders` 
-        SET status =  '$status'
-        WHERE `order_id`=$id
-        ";
-
-
-
-    //    echo $sql_str; exit;
-
-    //thuc thi cau lenh
-    mysqli_query($conn, $sql_str);
-
-    //tro ve trang 
+    if (mysqli_num_rows($res_check) == 0) {
+        // Nếu chưa có, thêm khách hàng mới
+        $sql_insert_customer = "INSERT INTO customers (customer_name, email, phone, address)
+                                VALUES ('$customer_name', '$email', '$phone', '$address')";
+        mysqli_query($conn, $sql_insert_customer);
+    }
+// Lưu ý: Bảng khách hàng chỉ hiện khách hàng có ở trong đơn hàng nếu bạn bấm nút cập nhật thôi
+    // Trở về trang danh sách đơn hàng
     header("location: viewAllOrders.php");
 }
 ?>
@@ -70,15 +75,15 @@ include "./sidebar.php"; ?>
                             <!-- 'Processing','Confirmed','Shipping','Delivered','Cancelled' -->
                             <span style="color: #007bff; font-weight: 600;">
                                 <select style="font-size: 16px;" name="status" id="">
-                                    <option <?= $row['status'] == 'Processing' ? 'selected' : '' ?>>Processing
+                                    <option <?= $row['status'] == 'Đang xử lý' ? 'selected' : '' ?>>Đang xử lý
                                     </option>
-                                    <option <?= $row['status'] == 'Confirmed' ? 'selected' : '' ?>>Confirmed
+                                    <option <?= $row['status'] == 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận
                                     </option>
-                                    <option <?= $row['status'] == 'Shipping' ? 'selected' : '' ?>>Shipping
+                                    <option <?= $row['status'] == 'Đang giao hàng' ? 'selected' : '' ?>>Đang giao hàng
                                     </option>
-                                    <option <?= $row['status'] == 'Delivered' ? 'selected' : '' ?>>Delivered
+                                    <option <?= $row['status'] == 'Đã giao hàng' ? 'selected' : '' ?>>Đã giao hàng
                                     </option>
-                                    <option <?= $row['status'] == 'Cancelled' ? 'selected' : '' ?>>Cancelled
+                                    <option <?= $row['status'] == 'Đã hủy' ? 'selected' : '' ?>>Đã hủy
                                     </option>
                                 </select>
                             </span>
