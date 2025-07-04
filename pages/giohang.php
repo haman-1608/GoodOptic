@@ -44,7 +44,7 @@ if (isset($_POST['thanhtoan'])) {
     $xa = $_POST['xa'] ?? '';
     $sonha = $_POST['sonha'] ?? '';
     $hinhthuc = $_POST['hinhthuc'] ?? '';
-    $status = 'Processing';
+    $status = 'Đang xử lý';
 
     $fullAddress = "$sonha, $xa, $tinh";
 
