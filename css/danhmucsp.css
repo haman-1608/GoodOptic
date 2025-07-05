@@ -14,6 +14,13 @@
     gap:30px;
 }
 
+.timkiem{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: center;
+    gap:30px;
+}
+
 .dsbc{
     display:grid;
     grid-template-columns: repeat(4,1fr);

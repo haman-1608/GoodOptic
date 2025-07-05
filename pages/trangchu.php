@@ -47,7 +47,7 @@ $(document).ready(function(){
 
 <div class="trangchu" style="margin: 0 auto; max-width: 1250px;">
     <div class="banner">
-        <img src="imgs/trangchu/Banner.png" alt="Good Optic">
+        <img src="imgs/trangchu/3.png" alt="Good Optic">
     </div>
 
     <div class="dichvu"> 

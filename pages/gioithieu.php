@@ -1,6 +1,6 @@
 <div class="gt" style="font-size: 19px; margin: 0 auto; max-width: 1250px;">
     <div class="banner">
-        <img src="imgs/trangchu/Banner1.png" alt="Good Optic">
+        <img src="imgs/trangchu/1.png" alt="Good Optic">
     </div>
     <div style="display: flex; justify-content: center; margin: 0px 30px">
         <div style="display: flex; flex-direction:column; margin-bottom: 60px; ">
