@@ -13,12 +13,6 @@
         </span>
         <ul>
             <li>
-                <img src="./icons/profile/user.png" /><a href="#">Thông tin cá nhân</a>
-            </li>
-            <li>
-                <img src="./icons/profile/edit.png" /><a href="#">Sửa thông tin cá nhân</a>
-            </li>
-            <li>
                 <img src="./icons/profile/log-out.png" /><a href="logout.php">Đăng xuất</a>
             </li>
         </ul>
