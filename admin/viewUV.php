@@ -4,14 +4,14 @@
   <table class="table ">
     <thead>
       <tr>
-        <th class="text-center">Mã số</th>
-        <th class="text-center">Tên UV</th>
+        <th class="text-center">STT</th>
+        <th class="text-center">Tên loại UV</th>
         <th class="text-center" colspan="2">Hành động</th>
       </tr>
     </thead>
     <?php
     include_once "./config/dbconnect.php";
-    $sql = "SELECT * from UV";
+    $sql = "SELECT uv_id, uv_name from UV";
     $result = $conn->query($sql);
     $count = 1;
     if ($result->num_rows > 0) {

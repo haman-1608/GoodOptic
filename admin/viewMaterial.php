@@ -4,14 +4,14 @@
   <table class="table ">
     <thead>
       <tr>
-        <th class="text-center">Mã số</th>
+        <th class="text-center">STT</th>
         <th class="text-center">Tên chất liệu</th>
         <th class="text-center" colspan="2">Hành động</th>
       </tr>
     </thead>
     <?php
     include_once "./config/dbconnect.php";
-    $sql = "SELECT * from Material";
+    $sql = "SELECT material_id, material_name from Material";
     $result = $conn->query($sql);
     $count = 1;
     if ($result->num_rows > 0) {

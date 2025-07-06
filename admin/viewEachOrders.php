@@ -8,7 +8,7 @@ $id = $_GET['id'];
 require('./config/dbconnect.php');
 
 $sql_str = "select 
-* from orders where order_id=$id";
+order_id, customer_name, email, phone, address, pay_method, status from orders where order_id=$id";
 // echo $sql_str; exit;   //debug cau lenh
 
 $res = mysqli_query($conn, $sql_str);
@@ -30,7 +30,7 @@ if (isset($_POST['btnUpdate'])) {
     $address = $row['address'];
 
     // Kiểm tra xem khách hàng đã tồn tại chưa (dựa trên email hoặc SĐT)
-    $sql_check = "SELECT * FROM customers WHERE email = '$email' OR phone = '$phone'";
+    $sql_check = "SELECT customer_id FROM customers WHERE email = '$email' OR phone = '$phone'";
     $res_check = mysqli_query($conn, $sql_check);
 
     if (mysqli_num_rows($res_check) == 0) {
@@ -39,7 +39,7 @@ if (isset($_POST['btnUpdate'])) {
                                 VALUES ('$customer_name', '$email', '$phone', '$address')";
         mysqli_query($conn, $sql_insert_customer);
     }
-// Lưu ý: Bảng khách hàng chỉ hiện khách hàng có ở trong đơn hàng nếu bạn bấm nút cập nhật thôi
+    // Lưu ý: Bảng khách hàng chỉ hiện khách hàng có ở trong đơn hàng khi bạn bấm nút cập nhật 
     // Trở về trang danh sách đơn hàng
     header("location: viewAllOrders.php");
 }
@@ -71,8 +71,11 @@ include "./sidebar.php"; ?>
                             <span style="color: #007bff; font-weight: 600;"><?= $row['email'] ?></span>
                         </div>
                         <div style="text-align: left; font-weight: 500; font-size: 20px; margin-bottom: 10px;">
+                            <span style="color: #333;">Hình thức thanh toán:</span>
+                            <span style="color: #007bff; font-weight: 600;"><?= $row['pay_method'] ?></span>
+                        </div>
+                        <div style="text-align: left; font-weight: 500; font-size: 20px; margin-bottom: 10px;">
                             <span style="color: #333;">Trạng thái đơn hàng:</span>
-                            <!-- 'Processing','Confirmed','Shipping','Delivered','Cancelled' -->
                             <span style="color: #007bff; font-weight: 600;">
                                 <select style="font-size: 16px;" name="status" id="">
                                     <option <?= $row['status'] == 'Đang xử lý' ? 'selected' : '' ?>>Đang xử lý
@@ -88,7 +91,7 @@ include "./sidebar.php"; ?>
                                 </select>
                             </span>
                         </div>
-                        <button class="btn btn-primary" name="btnUpdate">Cập nhật</button>
+                        <button class="btn btn-edit" name="btnUpdate" style="margin-bottom: 10px; font-size: 16px; padding: 8px 10px;">Cập nhật</button>
                     </form>
                 </div>
                 <div class="col-md-6">
@@ -103,7 +106,20 @@ include "./sidebar.php"; ?>
 
                         </tr>
                         <?php
-                        $sql = "select *, products.product_name as pname, order_details.price as oprice  from products, order_details where products.product_id=order_details.product_id and order_id=$id";
+                        $sql = "SELECT 
+                            products.product_id, 
+                            products.product_name AS pname, 
+                            order_details.price AS oprice, 
+                            order_details.quantity, 
+                            order_details.total 
+                        FROM 
+                            products 
+                        INNER JOIN 
+                            order_details 
+                        ON 
+                            products.product_id = order_details.product_id 
+                        WHERE 
+                            order_details.order_id = $id";
                         $res = mysqli_query($conn, $sql);
                         $stt = 0;
                         $tongtien = 0;

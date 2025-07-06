@@ -15,6 +15,8 @@ if (!isset($_SESSION["user"])) {
   <title>Trang quản trị GoodOptic</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/profile.css">
+  <link rel="stylesheet" href="./css/chart.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="icon" type="image/png" href="../imgs/Logo1.png">
 </head>

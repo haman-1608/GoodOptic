@@ -4,7 +4,7 @@
 //lay id goi edit
 $id = $_GET['id'];
 
-//tim trong CSDL brand co id trung
+//tim trong CSDL admins co id trung
 //ket noi csdl
 require('./config/dbconnect.php');
 
@@ -49,15 +49,15 @@ include "./sidebar.php"; ?>
             <div class="modal">
                 <form enctype='multipart/form-data' action="" method="POST">
                     <label for="name">Tên người dùng:</label>
-                    <input type="text" class="form-control" name="name" value=<?php echo $admin['name'] ?>>
+                    <input type="text" class="form-control" name="name" value="<?php echo $admin['name'] ?>">
                     <label for="email">Email:</label>
-                    <input type="text" class="form-control" name="email" value=<?php echo $admin['email'] ?>>
+                    <input type="text" class="form-control" name="email" value="<?php echo $admin['email'] ?>">
                     <label for="password">Mật khẩu:</label>
                     <input type="password" class="form-control" name="password" style="height: 25px; font-size: 16px;" value=<?php echo $admin['password'] ?>><br>
                     <label for="phone">Số điện thoại:</label>
-                    <input type="text" class="form-control" name="phone" value=<?php echo $admin['phone'] ?>>
+                    <input type="text" class="form-control" name="phone" value="<?php echo $admin['phone'] ?>">
                     <label for="address">Địa chỉ:</label>
-                    <input type="text" class="form-control" name="address" value=<?php echo $admin['address'] ?>>
+                    <input type="text" class="form-control" name="address" value="<?php echo $admin['address'] ?>">
                     <label for="type">Phân quyền:</label>
                     <select name="type">
                         <option value="Admin" <?= $admin['type'] === 'Admin'  ? 'selected' : '' ?>>Admin</option>

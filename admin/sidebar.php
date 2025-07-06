@@ -28,12 +28,12 @@
       </button>
       <ul class="sub-menu">
         <div>
-          <li><a href="viewCategories.php">Loại sản phẩm</a></li>
+          <li><a href="viewCategories.php">Loại kính</a></li>
           <li><a href="viewMaterial.php">Chất liệu</a></li>
           <li><a href="viewBrand.php">Thương hiệu</a></li>
           <li><a href="viewTarget.php">Đối tượng</a></li>
-          <li><a href="viewRefractive.php">Khúc xạ</a></li>
-          <li><a href="viewUV.php">Độ chống UV</a></li>
+          <li><a href="viewRefractive.php">Bệnh khúc xạ</a></li>
+          <li><a href="viewUV.php">Loại UV</a></li>
         </div>
       </ul>
     </li>

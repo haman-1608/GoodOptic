@@ -12,9 +12,9 @@
       style="width:120px; margin-right:8px;">
     <!-- ===== Lọc sản phẩm ===== -->
     <select name="category_id">
-      <option value="">-- Loại sản phẩm --</option>
+      <option value="">Loại sản phẩm</option>
       <?php
-      $sql = "SELECT * FROM categories";
+      $sql = "SELECT category_id, category_name FROM categories";
       $result = $conn->query($sql);
       while ($row = $result->fetch_assoc()) {
         $selected = ($_GET['category_id'] ?? '') == $row['category_id'] ? 'selected' : '';
@@ -24,9 +24,9 @@
     </select>
 
     <select name="brand_id">
-      <option value="">-- Thương hiệu --</option>
+      <option value="">Thương hiệu</option>
       <?php
-      $sql = "SELECT * FROM brands";
+      $sql = "SELECT brand_id, brand_name FROM brands";
       $result = $conn->query($sql);
       while ($row = $result->fetch_assoc()) {
         $selected = ($_GET['brand_id'] ?? '') == $row['brand_id'] ? 'selected' : '';
@@ -36,9 +36,9 @@
     </select>
 
     <select name="target_id">
-      <option value="">-- Đối tượng --</option>
+      <option value="">Đối tượng</option>
       <?php
-      $sql = "SELECT * FROM targets";
+      $sql = "SELECT target_id, target_name FROM targets";
       $result = $conn->query($sql);
       while ($row = $result->fetch_assoc()) {
         $selected = ($_GET['target_id'] ?? '') == $row['target_id'] ? 'selected' : '';
@@ -48,9 +48,9 @@
     </select>
 
     <select name="uv_id">
-      <option value="">-- Tia UV --</option>
+      <option value="">Tia UV</option>
       <?php
-      $sql = "SELECT * FROM UV";
+      $sql = "SELECT uv_id, uv_name FROM UV";
       $result = $conn->query($sql);
       while ($row = $result->fetch_assoc()) {
         $selected = ($_GET['uv_id'] ?? '') == $row['uv_id'] ? 'selected' : '';
@@ -60,9 +60,9 @@
     </select>
 
     <select name="refractive_id">
-      <option value="">-- Bệnh khúc xạ --</option>
+      <option value="">Bệnh khúc xạ</option>
       <?php
-      $sql = "SELECT * FROM Refractive";
+      $sql = "SELECT refractive_id, refractive_name FROM Refractive";
       $result = $conn->query($sql);
       while ($row = $result->fetch_assoc()) {
         $selected = ($_GET['refractive_id'] ?? '') == $row['refractive_id'] ? 'selected' : '';
@@ -72,9 +72,9 @@
     </select>
 
     <select name="material_id">
-      <option value="">-- Chất liệu --</option>
+      <option value="">Chất liệu</option>
       <?php
-      $sql = "SELECT * FROM Material";
+      $sql = "SELECT material_id, material_name FROM Material";
       $result = $conn->query($sql);
       while ($row = $result->fetch_assoc()) {
         $selected = ($_GET['material_id'] ?? '') == $row['material_id'] ? 'selected' : '';
@@ -97,11 +97,11 @@
         <th>Hình ảnh</th>
         <th>Tên sản phẩm</th>
         <th>Mô tả</th>
-        <th>Loại</th>
+        <th>Loại kính</th>
         <th>Thương hiệu</th>
         <th>Đối tượng</th>
-        <th>Chống tia UV</th>
-        <th>Khúc xạ</th>
+        <th>Loại UV</th>
+        <th>Bệnh khúc xạ</th>
         <th>Chất liệu</th>
         <th>Giá gốc</th>
         <th>Giá sau khi giảm</th>
@@ -119,13 +119,28 @@
       $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
       $offset = ($page - 1) * $limit;
 
-      $sql = "SELECT * FROM products 
-              JOIN categories ON products.category_id = categories.category_id
-              JOIN brands ON products.brand_id = brands.brand_id
-              JOIN targets ON products.target_id = targets.target_id
-              JOIN UV ON products.UV_id = UV.uv_id
-              JOIN Refractive ON products.Refractive_id = Refractive.refractive_id
-              JOIN Material ON products.Material_id = Material.material_id";
+      $sql = "SELECT 
+          products.product_id,
+          products.product_name,
+          products.description,
+          products.images,
+          products.price,
+          products.disscounted_price,
+          products.stock,
+          products.unit,
+          categories.category_name,
+          brands.brand_name,
+          targets.target_name,
+          UV.uv_name,
+          Refractive.refractive_name,
+          Material.material_name
+        FROM products
+        JOIN categories ON products.category_id = categories.category_id
+        JOIN brands ON products.brand_id = brands.brand_id
+        JOIN targets ON products.target_id = targets.target_id
+        JOIN UV ON products.UV_id = UV.uv_id
+        JOIN Refractive ON products.Refractive_id = Refractive.refractive_id
+        JOIN Material ON products.Material_id = Material.material_id";
 
       $where = [];
       if (!empty($_GET['product_id'])) {
@@ -154,6 +169,7 @@
       if (count($where) > 0) {
         $sql .= " WHERE " . implode(" AND ", $where);
       }
+
 
       // Đếm tổng số bản ghi
       $countSql = "SELECT COUNT(*) as total FROM products 
@@ -208,39 +224,39 @@
 
   <!-- Thanh phân trang -->
   <?php if ($totalPages > 1): ?>
-  <div class="pagination" style="text-align:center; margin: 20px 0;">
-    <?php
-    $currentPage = $page;
-    $maxDisplay = 5; // số trang tối đa hiển thị
-    $half = floor($maxDisplay / 2);
-    $start = max(1, $currentPage - $half);
-    $end = min($totalPages, $currentPage + $half);
+    <div class="pagination" style="text-align:center; margin: 20px 0;">
+      <?php
+      $currentPage = $page;
+      $maxDisplay = 5; // số trang tối đa hiển thị
+      $half = floor($maxDisplay / 2);
+      $start = max(1, $currentPage - $half);
+      $end = min($totalPages, $currentPage + $half);
 
-    if ($currentPage > 1) {
-      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => 1])) . '">«</a>';
-    }
+      if ($currentPage > 1) {
+        echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => 1])) . '">«</a>';
+      }
 
-    if ($start > 1) {
-      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => 1])) . '">1</a>';
-      if ($start > 2) echo '<span style="margin:0 5px;">...</span>';
-    }
+      if ($start > 1) {
+        echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => 1])) . '">1</a>';
+        if ($start > 2) echo '<span style="margin:0 5px;">...</span>';
+      }
 
-    for ($i = $start; $i <= $end; $i++) {
-      $active = $i == $currentPage ? 'font-weight:bold; background:#007bff; color:white;' : '';
-      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $i])) . '" style="margin:0 5px; padding:6px 12px; border:1px solid #ccc; text-decoration:none; ' . $active . '">' . $i . '</a>';
-    }
+      for ($i = $start; $i <= $end; $i++) {
+        $active = $i == $currentPage ? 'font-weight:bold; background:#007bff; color:white;' : '';
+        echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $i])) . '" style="margin:0 5px; padding:6px 12px; border:1px solid #ccc; text-decoration:none; ' . $active . '">' . $i . '</a>';
+      }
 
-    if ($end < $totalPages) {
-      if ($end < $totalPages - 1) echo '<span style="margin:0 5px;">...</span>';
-      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $totalPages])) . '">' . $totalPages . '</a>';
-    }
+      if ($end < $totalPages) {
+        if ($end < $totalPages - 1) echo '<span style="margin:0 5px;">...</span>';
+        echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $totalPages])) . '">' . $totalPages . '</a>';
+      }
 
-    if ($currentPage < $totalPages) {
-      echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $totalPages])) . '">»</a>';
-    }
-    ?>
-  </div>
-<?php endif; ?>
+      if ($currentPage < $totalPages) {
+        echo '<a href="?' . http_build_query(array_merge($_GET, ['page' => $totalPages])) . '">»</a>';
+      }
+      ?>
+    </div>
+  <?php endif; ?>
 
 
   <div class="box">
@@ -269,7 +285,7 @@
               <option disabled selected>Chọn</option>
               <?php
 
-              $sql = "SELECT * from categories";
+              $sql = "SELECT category_id, category_name from categories";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
@@ -284,7 +300,7 @@
               <option disabled selected>Chọn</option>
               <?php
 
-              $sql = "SELECT * from brands";
+              $sql = "SELECT brand_id, brand_name from brands";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
@@ -299,7 +315,7 @@
               <option disabled selected>Chọn</option>
               <?php
 
-              $sql = "SELECT * from targets";
+              $sql = "SELECT target_id, target_name from targets";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
@@ -314,7 +330,7 @@
               <option disabled selected>Chọn</option>
               <?php
 
-              $sql = "SELECT * from UV";
+              $sql = "SELECT uv_id, uv_name from UV";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
@@ -329,7 +345,7 @@
               <option disabled selected>Chọn</option>
               <?php
 
-              $sql = "SELECT * from Refractive";
+              $sql = "SELECT refractive_id, refractive_name from Refractive";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
@@ -344,7 +360,7 @@
               <option disabled selected>Chọn</option>
               <?php
 
-              $sql = "SELECT * from Material";
+              $sql = "SELECT material_id, material_name from Material";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {

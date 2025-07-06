@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dangnhap'])) {
     $password = $_POST['password'];
 
     // Chỉ lấy tài khoản theo email (không kiểm tra password trong SQL nữa)
-    $sql = "SELECT * FROM admins WHERE email = '$email'";
+    $sql = "SELECT id, email, password, name, type FROM admins WHERE email = '$email'";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     if (mysqli_num_rows($result) > 0) {

@@ -4,14 +4,14 @@
   <table class="table ">
     <thead>
       <tr>
-        <th class="text-center">Mã số</th>
-        <th class="text-center">Tên loại sản phẩm</th>
+        <th class="text-center">STT</th>
+        <th class="text-center">Tên loại kính</th>
         <th class="text-center" colspan="2">Hành động</th>
       </tr>
     </thead>
     <?php
     include_once "./config/dbconnect.php";
-    $sql = "SELECT * from categories";
+    $sql = "SELECT category_id, category_name from categories";
     $result = $conn->query($sql);
     $count = 1;
     if ($result->num_rows > 0) {

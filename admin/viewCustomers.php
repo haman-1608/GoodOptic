@@ -19,7 +19,7 @@ if ($_SESSION['user']['type'] != 'Admin'){
       </thead>
       <?php
       include_once "./config/dbconnect.php";
-      $sql = "SELECT * from customers";
+      $sql = "SELECT customer_id, customer_name, email, phone, address from customers";
       $result = $conn->query($sql);
       $count = 1;
       if ($result->num_rows > 0) {

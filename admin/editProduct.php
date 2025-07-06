@@ -108,7 +108,7 @@ include "./sidebar.php"; ?>
             <div class="modal">
                 <form enctype='multipart/form-data' action="" method="POST">
                     <label for="name">Tên sản phẩm:</label>
-                    <input type="text" class="form-control" name="name" value=<?php echo $product['pname'] ?>>
+                    <input type="text" class="form-control" name="name" value="<?php echo $product['pname'] ?>">
                     <label>Hình ảnh hiện tại:</label><br>
                     <?php
                     $imgPath = preg_match('#^https?://#', $product['images'])
@@ -127,9 +127,9 @@ include "./sidebar.php"; ?>
                         <?= $product['description'] ?>
                     </textarea>
                     <label for="stock">Số lượng:</label>
-                    <input type="text" class="form-control" name="stock" value=<?php echo $product['stock'] ?>>
+                    <input type="number" style="height: 25px; font-size: 16px;" class="form-control" name="stock" value=<?php echo $product['stock'] ?>><br>
                     <label for="unit">Đơn vị:</label>
-                    <input type="text" class="form-control" name="unit" value=<?php echo $product['unit'] ?>>
+                    <input type="text" class="form-control" name="unit" value="<?php echo $product['unit'] ?>">
                     <label for="price">Giá bán:</label>
                     <input type="text" class="form-control" name="price" value=<?php echo $product['price'] ?>>
                     <label for="diss_price">Giá sau khi giảm:</label>
