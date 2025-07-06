@@ -33,8 +33,8 @@ $(document).ready(function(){
 </script>
 
 <div class="lienhe" style="margin: 0 auto; max-width: 1250px;">
-    <div class="banner">
-        <img src="imgs/trangchu/1.png" alt="Good Optic">
+    <div class="banner" >
+        <img src="imgs/trangchu/2.png" alt="Good Optic">
     </div>
     <div style="display: flex; justify-content: center;">
         <div style="display: flex; flex-direction:column; margin-left: 20px;">

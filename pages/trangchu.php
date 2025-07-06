@@ -12,6 +12,15 @@
 
 <script>
 $(document).ready(function(){
+    const slideCount = $(".slider-wrapper img").length;
+    let currentIndex = 0;
+
+    setInterval(function() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        const translateX = -currentIndex * 100;
+        $(".slider-wrapper").css("transform", `translateX(${translateX}%)`);
+    }, 3000);
+
     $(".tab_button").click(function(){
         let index = $(this).data("index");
 
@@ -47,7 +56,11 @@ $(document).ready(function(){
 
 <div class="trangchu" style="margin: 0 auto; max-width: 1250px;">
     <div class="banner">
-        <img src="imgs/trangchu/3.png" alt="Good Optic">
+        <div class="slider-wrapper">
+            <img src="imgs/trangchu/1.png" alt="Good Optic">
+            <img src="imgs/trangchu/2.png" alt="Good Optic">
+            <img src="imgs/trangchu/3.png" alt="Good Optic">
+        </div>
     </div>
 
     <div class="dichvu"> 
